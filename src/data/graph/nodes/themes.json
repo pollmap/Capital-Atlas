@@ -78,5 +78,53 @@
       { "tier": 5, "name": "재활용", "nameEn": "Recycling", "nodes": ["sungeel_hitech"] }
     ],
     "connectedMacroNodes": ["copper", "us_fed_rate", "us_cpi"]
+  },
+  {
+    "id": "bio_healthcare",
+    "name": "바이오/헬스케어",
+    "nameEn": "Bio & Healthcare",
+    "type": "theme",
+    "description": "비만치료제·ADC 항암제·AI 신약개발 등 글로벌 제약바이오 혁신 밸류체인",
+    "tags": ["바이오", "제약", "헬스케어", "비만치료제", "ADC"],
+    "tiers": [
+      { "tier": 1, "name": "신약 R&D", "nameEn": "Drug Discovery & R&D", "nodes": ["samsung_biologics", "celltrion"] },
+      { "tier": 2, "name": "CDMO·위탁생산", "nameEn": "CDMO & CMO", "nodes": ["samsung_biologics", "sk_bioscience"] },
+      { "tier": 3, "name": "의약품 제조", "nameEn": "Pharma Manufacturing", "nodes": ["yuhan", "hanmi_pharm"] },
+      { "tier": 4, "name": "진단·의료기기", "nameEn": "Diagnostics & Devices", "nodes": ["seegene", "osstem_implant"] },
+      { "tier": 5, "name": "유통·플랫폼", "nameEn": "Distribution & Platform", "nodes": ["pharma_platform"] }
+    ],
+    "connectedMacroNodes": ["us_fed_rate", "usd_krw", "nasdaq"]
+  },
+  {
+    "id": "reits_real_estate",
+    "name": "부동산/리츠",
+    "nameEn": "Real Estate & REITs",
+    "type": "theme",
+    "description": "금리 인하 수혜 + 데이터센터 리츠 부상. 실물자산 기반 인컴 투자 밸류체인",
+    "tags": ["리츠", "부동산", "데이터센터", "인프라", "금리"],
+    "tiers": [
+      { "tier": 1, "name": "토지·개발", "nameEn": "Land & Development", "nodes": ["daewoo_enc", "hyundai_dev"] },
+      { "tier": 2, "name": "건설·시공", "nameEn": "Construction", "nodes": ["samsung_ct", "hyundai_enc"] },
+      { "tier": 3, "name": "오피스·상업", "nameEn": "Office & Commercial", "nodes": ["esr_kendall", "koramco_reit"] },
+      { "tier": 4, "name": "데이터센터·인프라 리츠", "nameEn": "DC & Infra REITs", "nodes": ["digital_realty_proxy", "sk_reit"] },
+      { "tier": 5, "name": "물류·창고", "nameEn": "Logistics & Warehouse", "nodes": ["esc_reit", "lotte_reit"] }
+    ],
+    "connectedMacroNodes": ["us_fed_rate", "us_10y", "us_housing", "kr_bok_rate"]
+  },
+  {
+    "id": "space_satellite",
+    "name": "우주/위성",
+    "nameEn": "Space & Satellite",
+    "type": "theme",
+    "description": "뉴스페이스 시대. 군사정찰위성·SAR 위성·우주발사체·위성통신 밸류체인",
+    "tags": ["우주", "위성", "발사체", "뉴스페이스"],
+    "tiers": [
+      { "tier": 1, "name": "발사체·추진", "nameEn": "Launch & Propulsion", "nodes": ["hanwha_aerospace", "innospace"] },
+      { "tier": 2, "name": "위성 제조", "nameEn": "Satellite Manufacturing", "nodes": ["satrec_i", "korea_aerospace"] },
+      { "tier": 3, "name": "위성 부품·센서", "nameEn": "Components & Sensors", "nodes": ["lumir", "victek"] },
+      { "tier": 4, "name": "지상국·통신", "nameEn": "Ground Station & Comm", "nodes": ["ktnf", "contec"] },
+      { "tier": 5, "name": "데이터·서비스", "nameEn": "Data & Services", "nodes": ["si_analytics", "nara_space"] }
+    ],
+    "connectedMacroNodes": ["geopolitical_risk", "usd_krw"]
   }
 ]

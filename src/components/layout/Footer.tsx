@@ -48,6 +48,36 @@ export function Footer() {
                 섹터 비교
               </Link>
               <Link
+                href="/investors"
+                className="block text-sm text-atlas-text-muted hover:text-atlas-text-primary transition-colors"
+              >
+                매크로 투자자
+              </Link>
+              <Link
+                href="/tools"
+                className="block text-sm text-atlas-text-muted hover:text-atlas-text-primary transition-colors"
+              >
+                밸류에이션 도구
+              </Link>
+              <Link
+                href="/research"
+                className="block text-sm text-atlas-text-muted hover:text-atlas-text-primary transition-colors"
+              >
+                리서치 아카이브
+              </Link>
+              <Link
+                href="/glossary"
+                className="block text-sm text-atlas-text-muted hover:text-atlas-text-primary transition-colors"
+              >
+                금융 용어사전
+              </Link>
+              <Link
+                href="/changelog"
+                className="block text-sm text-atlas-text-muted hover:text-atlas-text-primary transition-colors"
+              >
+                Changelog
+              </Link>
+              <Link
                 href="/about"
                 className="block text-sm text-atlas-text-muted hover:text-atlas-text-primary transition-colors"
               >

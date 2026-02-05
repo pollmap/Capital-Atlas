@@ -1,8 +1,9 @@
-import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getSectorNodes, getSectorById, getCompanyById, formatMarketCap } from "@/lib/data";
 import { NodeBadge } from "@/components/common/NodeBadge";
+import { SectorChartsSection } from "@/components/charts/SectorCharts";
+import type { CompanyNode } from "@/types";
 
 export function generateStaticParams() {
   return getSectorNodes().map((s) => ({ sectorId: s.id }));
@@ -14,11 +15,21 @@ export default function SectorDetailPage({
   params: { sectorId: string };
 }) {
   const sector = getSectorById(params.sectorId);
-  if (!sector) return notFound();
+
+  if (!sector) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 py-16 text-center">
+        <h1 className="text-xl font-bold text-atlas-text-primary">섹터를 찾을 수 없습니다</h1>
+        <Link href="/sectors" className="text-sm text-atlas-sector hover:underline mt-2 inline-block">
+          섹터 목록으로 돌아가기
+        </Link>
+      </div>
+    );
+  }
 
   const companies = sector.companyIds
     .map((id) => getCompanyById(id))
-    .filter(Boolean);
+    .filter((c): c is CompanyNode => c !== undefined);
 
   const metrics = [
     { key: "per", label: "PER", unit: "x" },
@@ -34,7 +45,7 @@ export default function SectorDetailPage({
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-sm text-atlas-text-muted mb-6">
-        <Link href="/sectors" className="hover:text-atlas-link">
+        <Link href="/sectors" className="hover:text-atlas-sector">
           섹터
         </Link>
         <ArrowRight size={12} />
@@ -53,31 +64,34 @@ export default function SectorDetailPage({
         <p className="text-atlas-text-secondary mt-3">{sector.description}</p>
       </div>
 
+      {/* Recharts Visualizations */}
+      <SectorChartsSection companies={companies} />
+
       {/* Comparison Table */}
-      <div className="bg-atlas-panel border border-atlas-border rounded-xl overflow-hidden mb-6">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-atlas-border">
-                <th className="text-left px-4 py-3 text-xs font-semibold text-atlas-text-muted uppercase">
-                  기업
-                </th>
-                <th className="text-right px-4 py-3 text-xs font-semibold text-atlas-text-muted uppercase">
-                  시가총액
-                </th>
-                {metrics.map((m) => (
-                  <th
-                    key={m.key}
-                    className="text-right px-4 py-3 text-xs font-semibold text-atlas-text-muted uppercase"
-                  >
-                    {m.label}
+      {companies.length > 0 && (
+        <div className="bg-atlas-panel border border-atlas-border rounded-xl overflow-hidden mb-6">
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-atlas-border">
+                  <th className="text-left px-4 py-3 text-xs font-semibold text-atlas-text-muted uppercase">
+                    기업
                   </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {companies.map((company) =>
-                company ? (
+                  <th className="text-right px-4 py-3 text-xs font-semibold text-atlas-text-muted uppercase">
+                    시가총액
+                  </th>
+                  {metrics.map((m) => (
+                    <th
+                      key={m.key}
+                      className="text-right px-4 py-3 text-xs font-semibold text-atlas-text-muted uppercase"
+                    >
+                      {m.label}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {companies.map((company) => (
                   <tr
                     key={company.id}
                     className="border-b border-atlas-border/50 hover:bg-atlas-panel-light transition-colors"
@@ -119,61 +133,66 @@ export default function SectorDetailPage({
                       );
                     })}
                   </tr>
-                ) : null
-              )}
-            </tbody>
-          </table>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      )}
+
+      {companies.length === 0 && (
+        <div className="bg-atlas-panel border border-atlas-border rounded-xl p-8 text-center mb-6">
+          <p className="text-atlas-text-muted">이 섹터에 등록된 기업이 아직 없습니다</p>
+          <p className="text-xs text-atlas-text-muted mt-1">다음 업데이트에서 추가될 예정입니다</p>
+        </div>
+      )}
 
       {/* Company Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {companies.map((company) =>
-          company ? (
-            <Link key={company.id} href={`/companies/${company.id}`}>
-              <div className="bg-atlas-panel border border-atlas-border rounded-xl p-5 hover:border-atlas-company/50 transition-all cursor-pointer group">
-                <div className="flex items-start justify-between mb-3">
-                  <div>
-                    <h3 className="font-bold text-atlas-text-primary group-hover:text-atlas-company transition-colors">
-                      {company.name}
-                    </h3>
-                    <p className="text-xs text-atlas-text-muted">
-                      {company.ticker} · {company.market}
-                    </p>
-                  </div>
-                  <span
-                    className={`font-data text-sm font-semibold ${
-                      company.financials.return52w >= 0
-                        ? "text-atlas-up"
-                        : "text-atlas-down"
-                    }`}
-                  >
-                    {company.financials.return52w > 0 ? "+" : ""}
-                    {company.financials.return52w}%
-                  </span>
-                </div>
-                {company.role && (
-                  <p className="text-xs text-atlas-text-secondary mb-3">
-                    {company.role}
+        {companies.map((company) => (
+          <Link key={company.id} href={`/companies/${company.id}`}>
+            <div className="bg-atlas-panel border border-atlas-border rounded-xl p-5 hover:border-atlas-company/50 transition-all cursor-pointer group">
+              <div className="flex items-start justify-between mb-3">
+                <div>
+                  <h3 className="font-bold text-atlas-text-primary group-hover:text-atlas-company transition-colors">
+                    {company.name}
+                  </h3>
+                  <p className="text-xs text-atlas-text-muted">
+                    {company.ticker} · {company.market}
                   </p>
-                )}
-                {company.valuation && (
-                  <div className="bg-atlas-bg rounded-lg p-3 border border-atlas-border">
-                    <div className="text-xs text-atlas-text-muted mb-1">
-                      적정가치 괴리율
-                    </div>
-                    <div className="font-data text-sm text-atlas-gold font-semibold">
-                      {company.valuation.gap}
-                    </div>
-                    <p className="text-xs text-atlas-text-muted mt-1">
-                      {company.valuation.thesis}
-                    </p>
-                  </div>
-                )}
+                </div>
+                <span
+                  className={`font-data text-sm font-semibold ${
+                    company.financials.return52w >= 0
+                      ? "text-atlas-up"
+                      : "text-atlas-down"
+                  }`}
+                >
+                  {company.financials.return52w > 0 ? "+" : ""}
+                  {company.financials.return52w}%
+                </span>
               </div>
-            </Link>
-          ) : null
-        )}
+              {company.role && (
+                <p className="text-xs text-atlas-text-secondary mb-3">
+                  {company.role}
+                </p>
+              )}
+              {company.valuation && (
+                <div className="bg-atlas-bg rounded-lg p-3 border border-atlas-border">
+                  <div className="text-xs text-atlas-text-muted mb-1">
+                    적정가치 괴리율
+                  </div>
+                  <div className="font-data text-sm text-atlas-gold font-semibold">
+                    {company.valuation.gap}
+                  </div>
+                  <p className="text-xs text-atlas-text-muted mt-1">
+                    {company.valuation.thesis}
+                  </p>
+                </div>
+              )}
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   );

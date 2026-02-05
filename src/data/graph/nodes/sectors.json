@@ -27,7 +27,7 @@
     "description": "K-방산 글로벌 수출 급증. 폴란드, 사우디, 호주 등 대형 계약",
     "tags": ["방산", "K-방산", "수출"],
     "benchmark": "KRX 방산업종",
-    "companyIds": ["hanwha_aerospace", "korea_aerospace", "hanwha_ocean"]
+    "companyIds": ["hanwha_aerospace", "korea_aerospace", "lig_nex1", "hanwha_ocean"]
   },
   {
     "id": "electric_equipment",
@@ -46,7 +46,7 @@
     "type": "sector",
     "description": "EV 배터리 밸류체인. 셀 → 양극재/음극재 → 리사이클링",
     "tags": ["배터리", "전기차", "EV"],
-    "companyIds": ["lg_energy"]
+    "companyIds": ["lg_energy", "samsung_sdi", "ecopro_bm"]
   },
   {
     "id": "energy_equipment",
@@ -65,5 +65,41 @@
     "description": "조선, 건설, 자동차 등 전방산업 수요. 중국 감산 여부가 관건",
     "tags": ["철강", "포스코", "원자재"],
     "companyIds": ["posco_holdings"]
+  },
+  {
+    "id": "bio_pharma",
+    "name": "바이오/제약",
+    "nameEn": "Bio & Pharma",
+    "type": "sector",
+    "description": "비만치료제·ADC 항암제·바이오시밀러·CDMO. 글로벌 제약 밸류체인",
+    "tags": ["바이오", "제약", "CDMO", "헬스케어"],
+    "companyIds": ["samsung_biologics", "celltrion", "yuhan"]
+  },
+  {
+    "id": "finance",
+    "name": "금융",
+    "nameEn": "Finance",
+    "type": "sector",
+    "description": "은행·보험·증권. 금리 환경 변화에 민감한 이자이익·투자수익 구조",
+    "tags": ["은행", "보험", "증권", "금리"],
+    "companyIds": ["kb_financial", "shinhan_financial", "samsung_fire"]
+  },
+  {
+    "id": "it_platform",
+    "name": "IT/플랫폼",
+    "nameEn": "IT & Platform",
+    "type": "sector",
+    "description": "인터넷 플랫폼, SaaS, 클라우드. 디지털 전환의 핵심 인프라",
+    "tags": ["IT", "플랫폼", "클라우드", "SaaS"],
+    "companyIds": ["naver", "kakao", "krafton"]
+  },
+  {
+    "id": "real_estate",
+    "name": "부동산/리츠",
+    "nameEn": "Real Estate & REITs",
+    "type": "sector",
+    "description": "오피스·물류·데이터센터 리츠. 금리 인하 사이클 수혜 기대",
+    "tags": ["리츠", "부동산", "인컴투자"],
+    "companyIds": ["macquarie_infra", "esr_kendall"]
   }
 ]

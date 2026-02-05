@@ -11,6 +11,8 @@ import {
   Search,
   Menu,
   X,
+  Calculator,
+  Users,
 } from "lucide-react";
 
 const navItems = [
@@ -18,6 +20,8 @@ const navItems = [
   { label: "매크로", href: "/macro", icon: TrendingUp },
   { label: "테마", href: "/themes", icon: Layers },
   { label: "섹터", href: "/sectors", icon: BarChart3 },
+  { label: "투자자", href: "/investors", icon: Users },
+  { label: "도구", href: "/tools", icon: Calculator },
   { label: "검색", href: "/search", icon: Search },
 ];
 
