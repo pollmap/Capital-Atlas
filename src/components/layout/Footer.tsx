@@ -48,6 +48,12 @@ export function Footer() {
                 섹터 비교
               </Link>
               <Link
+                href="/investors"
+                className="block text-sm text-atlas-text-muted hover:text-atlas-text-primary transition-colors"
+              >
+                매크로 투자자
+              </Link>
+              <Link
                 href="/tools"
                 className="block text-sm text-atlas-text-muted hover:text-atlas-text-primary transition-colors"
               >
