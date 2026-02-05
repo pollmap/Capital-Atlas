@@ -65,5 +65,41 @@
     "description": "조선, 건설, 자동차 등 전방산업 수요. 중국 감산 여부가 관건",
     "tags": ["철강", "포스코", "원자재"],
     "companyIds": ["posco_holdings"]
+  },
+  {
+    "id": "bio_pharma",
+    "name": "바이오/제약",
+    "nameEn": "Bio & Pharma",
+    "type": "sector",
+    "description": "비만치료제·ADC 항암제·바이오시밀러·CDMO. 글로벌 제약 밸류체인",
+    "tags": ["바이오", "제약", "CDMO", "헬스케어"],
+    "companyIds": []
+  },
+  {
+    "id": "finance",
+    "name": "금융",
+    "nameEn": "Finance",
+    "type": "sector",
+    "description": "은행·보험·증권. 금리 환경 변화에 민감한 이자이익·투자수익 구조",
+    "tags": ["은행", "보험", "증권", "금리"],
+    "companyIds": []
+  },
+  {
+    "id": "it_platform",
+    "name": "IT/플랫폼",
+    "nameEn": "IT & Platform",
+    "type": "sector",
+    "description": "인터넷 플랫폼, SaaS, 클라우드. 디지털 전환의 핵심 인프라",
+    "tags": ["IT", "플랫폼", "클라우드", "SaaS"],
+    "companyIds": []
+  },
+  {
+    "id": "real_estate",
+    "name": "부동산/리츠",
+    "nameEn": "Real Estate & REITs",
+    "type": "sector",
+    "description": "오피스·물류·데이터센터 리츠. 금리 인하 사이클 수혜 기대",
+    "tags": ["리츠", "부동산", "인컴투자"],
+    "companyIds": []
   }
 ]
