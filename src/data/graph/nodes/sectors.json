@@ -1,0 +1,69 @@
+[
+  {
+    "id": "semiconductor",
+    "name": "반도체",
+    "nameEn": "Semiconductor",
+    "type": "sector",
+    "description": "메모리(DRAM, NAND, HBM) + 비메모리(파운드리, 팹리스). AI 시대 핵심 인프라",
+    "tags": ["반도체", "메모리", "파운드리", "AI"],
+    "benchmark": "KOSPI 반도체",
+    "companyIds": ["nvidia", "tsmc", "sk_hynix", "samsung_elec"]
+  },
+  {
+    "id": "shipbuilding",
+    "name": "조선",
+    "nameEn": "Shipbuilding",
+    "type": "sector",
+    "description": "LNG선 슈퍼사이클 + 친환경 선박 교체 수요. 한국 3대 조선사 글로벌 점유율 1위",
+    "tags": ["조선", "LNG", "해양"],
+    "benchmark": "KRX 조선업종지수",
+    "companyIds": ["hd_korea_shipbuilding", "samsung_heavy", "hanwha_ocean", "sk_oceanplant"]
+  },
+  {
+    "id": "defense",
+    "name": "방산",
+    "nameEn": "Defense",
+    "type": "sector",
+    "description": "K-방산 글로벌 수출 급증. 폴란드, 사우디, 호주 등 대형 계약",
+    "tags": ["방산", "K-방산", "수출"],
+    "benchmark": "KRX 방산업종",
+    "companyIds": ["hanwha_aerospace", "korea_aerospace", "hanwha_ocean"]
+  },
+  {
+    "id": "electric_equipment",
+    "name": "전력기기",
+    "nameEn": "Electric Equipment",
+    "type": "sector",
+    "description": "AI 데이터센터 전력 + 미국 전력망 노후화 교체 + 원전 수혜",
+    "tags": ["전력기기", "변압기", "데이터센터"],
+    "benchmark": "KRX 전기전자",
+    "companyIds": ["ls_electric", "hd_hyundai_electric", "hyosung_heavy"]
+  },
+  {
+    "id": "battery",
+    "name": "2차전지",
+    "nameEn": "Secondary Battery",
+    "type": "sector",
+    "description": "EV 배터리 밸류체인. 셀 → 양극재/음극재 → 리사이클링",
+    "tags": ["배터리", "전기차", "EV"],
+    "companyIds": ["lg_energy"]
+  },
+  {
+    "id": "energy_equipment",
+    "name": "에너지기자재",
+    "nameEn": "Energy Equipment",
+    "type": "sector",
+    "description": "원전, 화력, 신재생 발전 기자재. 원전 르네상스 수혜",
+    "tags": ["에너지", "원전", "발전"],
+    "companyIds": ["doosan_enerbility"]
+  },
+  {
+    "id": "steel",
+    "name": "철강",
+    "nameEn": "Steel",
+    "type": "sector",
+    "description": "조선, 건설, 자동차 등 전방산업 수요. 중국 감산 여부가 관건",
+    "tags": ["철강", "포스코", "원자재"],
+    "companyIds": ["posco_holdings"]
+  }
+]

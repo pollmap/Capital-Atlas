@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ai_datacenter",
+    "name": "AI 데이터센터",
+    "nameEn": "AI Data Center",
+    "type": "theme",
+    "description": "AI 학습·추론을 위한 대규모 연산 인프라 밸류체인. GPU 설계부터 전력·냉각·건설까지",
+    "tags": ["AI", "데이터센터", "GPU", "HBM", "전력"],
+    "tiers": [
+      { "tier": 1, "name": "설계·칩", "nameEn": "Design & Chips", "nodes": ["nvidia", "amd", "broadcom"] },
+      { "tier": 2, "name": "파운드리·패키징", "nameEn": "Foundry & Packaging", "nodes": ["tsmc", "sk_hynix", "samsung_elec"] },
+      { "tier": 3, "name": "장비·소재", "nameEn": "Equipment & Materials", "nodes": ["asml", "hanmi_semi", "soulbrain"] },
+      { "tier": 4, "name": "전력·냉각", "nameEn": "Power & Cooling", "nodes": ["ls_electric", "hd_hyundai_electric", "hyosung_heavy"] },
+      { "tier": 5, "name": "네트워크·서버", "nameEn": "Network & Server", "nodes": ["arista", "dell_tech"] },
+      { "tier": 6, "name": "클라우드·운영", "nameEn": "Cloud & Operations", "nodes": ["aws_amzn", "msft_azure", "naver_cloud"] }
+    ],
+    "connectedMacroNodes": ["us_fed_rate", "copper", "semiconductor_cycle", "nasdaq"]
+  },
+  {
+    "id": "nuclear_renaissance",
+    "name": "원전 르네상스",
+    "nameEn": "Nuclear Renaissance",
+    "type": "theme",
+    "description": "탄소중립 + AI 전력수요 급증으로 원전 재부상. 소형모듈원자로(SMR) 주목",
+    "tags": ["원전", "SMR", "에너지", "탄소중립", "전력"],
+    "tiers": [
+      { "tier": 1, "name": "원료·연료", "nameEn": "Fuel & Uranium", "nodes": ["cameco", "kazatomprom"] },
+      { "tier": 2, "name": "원자로·기자재", "nameEn": "Reactor & Equipment", "nodes": ["doosan_enerbility", "bwx_tech"] },
+      { "tier": 3, "name": "건설·시공", "nameEn": "Construction", "nodes": ["kepco_enc", "samsung_ct"] },
+      { "tier": 4, "name": "운영·발전", "nameEn": "Operation & Generation", "nodes": ["kepco", "khnp_proxy"] },
+      { "tier": 5, "name": "해체·폐기물", "nameEn": "Decommission & Waste", "nodes": ["hyundai_eng"] }
+    ],
+    "connectedMacroNodes": ["wti", "natural_gas", "copper", "us_cpi"]
+  },
+  {
+    "id": "k_defense",
+    "name": "K-방산",
+    "nameEn": "K-Defense",
+    "type": "theme",
+    "description": "한국 방산의 글로벌 수출 확대. 폴란드·사우디·호주 등 대형 계약 수주",
+    "tags": ["방산", "수출", "무기", "군사"],
+    "tiers": [
+      { "tier": 1, "name": "탄약·소화기", "nameEn": "Ammunition & Small Arms", "nodes": ["poongsan"] },
+      { "tier": 2, "name": "지상무기", "nameEn": "Land Systems", "nodes": ["hyundai_rotem", "hanwha_aerospace"] },
+      { "tier": 3, "name": "항공·미사일", "nameEn": "Aerospace & Missiles", "nodes": ["korea_aerospace", "lig_nex1"] },
+      { "tier": 4, "name": "함정·해양", "nameEn": "Naval Systems", "nodes": ["hd_hyundai_heavy", "hanwha_ocean"] },
+      { "tier": 5, "name": "전자·C4I", "nameEn": "Electronics & C4I", "nodes": ["hanwha_systems", "huneed_tech"] }
+    ],
+    "connectedMacroNodes": ["usd_krw", "kr_export"]
+  },
+  {
+    "id": "shipbuilding_cycle",
+    "name": "조선·해운",
+    "nameEn": "Shipbuilding & Shipping",
+    "type": "theme",
+    "description": "LNG선 슈퍼사이클 + 친환경 선박 교체 수요. 한국 조선 3사 수주잔고 역대 최대",
+    "tags": ["조선", "해운", "LNG", "친환경선박"],
+    "tiers": [
+      { "tier": 1, "name": "철강·소재", "nameEn": "Steel & Materials", "nodes": ["posco_holdings"] },
+      { "tier": 2, "name": "엔진·기자재", "nameEn": "Engine & Equipment", "nodes": ["hsd_engine", "sk_oceanplant"] },
+      { "tier": 3, "name": "조선", "nameEn": "Shipbuilding", "nodes": ["hd_korea_shipbuilding", "samsung_heavy", "hanwha_ocean"] },
+      { "tier": 4, "name": "해운", "nameEn": "Shipping", "nodes": ["hmm", "pan_ocean"] }
+    ],
+    "connectedMacroNodes": ["wti", "natural_gas", "kr_export", "usd_krw"]
+  },
+  {
+    "id": "secondary_battery",
+    "name": "2차전지",
+    "nameEn": "Secondary Battery (EV)",
+    "type": "theme",
+    "description": "전기차 핵심 부품. 광물→양극재/음극재→셀→팩→재활용 전체 밸류체인",
+    "tags": ["2차전지", "전기차", "배터리", "리튬"],
+    "tiers": [
+      { "tier": 1, "name": "광물·원재료", "nameEn": "Minerals & Raw Materials", "nodes": ["albemarle", "posco_future_m"] },
+      { "tier": 2, "name": "양극재·음극재", "nameEn": "Cathode & Anode", "nodes": ["ecopro_bm", "lg_chem"] },
+      { "tier": 3, "name": "분리막·전해액", "nameEn": "Separator & Electrolyte", "nodes": ["sk_ie_tech", "enchem"] },
+      { "tier": 4, "name": "셀·팩", "nameEn": "Cell & Pack", "nodes": ["lg_energy", "samsung_sdi", "sk_on_proxy"] },
+      { "tier": 5, "name": "재활용", "nameEn": "Recycling", "nodes": ["sungeel_hitech"] }
+    ],
+    "connectedMacroNodes": ["copper", "us_fed_rate", "us_cpi"]
+  }
+]
