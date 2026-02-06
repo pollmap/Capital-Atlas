@@ -21,10 +21,12 @@ interface GraphNode3D {
 }
 
 interface GraphEdge3D {
+  id: string;
   source: string;
   target: string;
   direction?: string;
   strength?: string;
+  mechanism?: string;
 }
 
 interface CausalGraph3DProps {
@@ -47,7 +49,6 @@ function computeLayout(
   const positions = new Map<string, [number, number, number]>();
   const radius = Math.max(8, nodes.length * 0.4);
 
-  // Group by type for clustering
   const groups: Record<string, BaseNode[]> = {};
   nodes.forEach((n) => {
     if (!groups[n.type]) groups[n.type] = [];
@@ -75,7 +76,6 @@ function computeLayout(
     });
   });
 
-  // Simple force-directed relaxation (edge attraction)
   for (let iter = 0; iter < 30; iter++) {
     edges.forEach((edge) => {
       const sp = positions.get(edge.source);
@@ -124,6 +124,7 @@ function GraphNodeMesh({
   onClick: () => void;
 }) {
   const meshRef = useRef<THREE.Mesh>(null);
+  const ringRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
 
   const color = useMemo(() => {
@@ -150,6 +151,9 @@ function GraphNodeMesh({
     if (isFocused) {
       meshRef.current.position.y =
         node.position[1] + Math.sin(state.clock.elapsedTime * 2) * 0.15;
+    }
+    if (ringRef.current && (isFocused || scenarioDirection)) {
+      ringRef.current.rotation.z = state.clock.elapsedTime * 0.5;
     }
   });
 
@@ -189,24 +193,120 @@ function GraphNodeMesh({
           {node.name}
         </Text>
       )}
+      {/* Scenario direction label */}
+      {scenarioDirection && (
+        <Text
+          position={[0, -node.size * 0.4 - 0.15, 0]}
+          fontSize={0.18}
+          color={
+            scenarioDirection === "up"
+              ? "#10B981"
+              : scenarioDirection === "down"
+              ? "#EF4444"
+              : "#F59E0B"
+          }
+          anchorX="center"
+          anchorY="top"
+          outlineWidth={0.02}
+          outlineColor="#0A0A0F"
+        >
+          {scenarioDirection === "up"
+            ? "▲ 상승"
+            : scenarioDirection === "down"
+            ? "▼ 하락"
+            : "◆ 복합"}
+        </Text>
+      )}
       {/* Glow ring */}
-      {(isFocused || isHighlighted) && (
-        <mesh rotation={[Math.PI / 2, 0, 0]} scale={scale * node.size}>
+      {(isFocused || isHighlighted || scenarioDirection) && (
+        <mesh
+          ref={ringRef}
+          rotation={[Math.PI / 2, 0, 0]}
+          scale={scale * node.size}
+        >
           <ringGeometry args={[0.35, 0.42, 32]} />
           <meshBasicMaterial
             color={color}
             transparent
-            opacity={0.3}
+            opacity={scenarioDirection ? 0.5 : 0.3}
             side={THREE.DoubleSide}
           />
         </mesh>
       )}
+      {/* Pulse ring for scenario nodes */}
+      {scenarioDirection && <ScenarioPulse color={color} size={node.size} />}
     </group>
   );
 }
 
 // ============================================================
-// 3D Edge Component
+// Scenario Pulse Effect
+// ============================================================
+
+function ScenarioPulse({ color, size }: { color: string; size: number }) {
+  const meshRef = useRef<THREE.Mesh>(null);
+
+  useFrame((state) => {
+    if (!meshRef.current) return;
+    const t = (state.clock.elapsedTime % 2) / 2;
+    const s = 1 + t * 1.5;
+    meshRef.current.scale.set(s * size, s * size, 1);
+    const mat = meshRef.current.material as THREE.MeshBasicMaterial;
+    mat.opacity = 0.4 * (1 - t);
+  });
+
+  return (
+    <mesh ref={meshRef} rotation={[Math.PI / 2, 0, 0]}>
+      <ringGeometry args={[0.35, 0.4, 32]} />
+      <meshBasicMaterial
+        color={color}
+        transparent
+        opacity={0.4}
+        side={THREE.DoubleSide}
+      />
+    </mesh>
+  );
+}
+
+// ============================================================
+// Animated Edge Particle
+// ============================================================
+
+function EdgeParticle({
+  sourcePos,
+  targetPos,
+  color,
+  speed,
+}: {
+  sourcePos: [number, number, number];
+  targetPos: [number, number, number];
+  color: string;
+  speed: number;
+}) {
+  const meshRef = useRef<THREE.Mesh>(null);
+
+  useFrame((state) => {
+    if (!meshRef.current) return;
+    const t = (state.clock.elapsedTime * speed) % 1;
+    meshRef.current.position.set(
+      sourcePos[0] + (targetPos[0] - sourcePos[0]) * t,
+      sourcePos[1] + (targetPos[1] - sourcePos[1]) * t,
+      sourcePos[2] + (targetPos[2] - sourcePos[2]) * t
+    );
+    const mat = meshRef.current.material as THREE.MeshBasicMaterial;
+    mat.opacity = t < 0.1 ? t * 10 : t > 0.9 ? (1 - t) * 10 : 1;
+  });
+
+  return (
+    <mesh ref={meshRef}>
+      <sphereGeometry args={[0.06, 8, 8]} />
+      <meshBasicMaterial color={color} transparent opacity={1} />
+    </mesh>
+  );
+}
+
+// ============================================================
+// 3D Edge Component with Labels & Arrows
 // ============================================================
 
 function GraphEdgeLine({
@@ -215,12 +315,15 @@ function GraphEdgeLine({
   direction,
   strength,
   isHighlighted,
+  showLabel,
 }: {
   sourcePos: [number, number, number];
   targetPos: [number, number, number];
   direction?: string;
   strength?: string;
   isHighlighted: boolean;
+  showLabel?: boolean;
+  mechanism?: string;
 }) {
   const color =
     direction === "positive"
@@ -229,17 +332,93 @@ function GraphEdgeLine({
       ? "#EF4444"
       : "#F59E0B";
 
-  const lineWidth = strength === "strong" ? 2 : strength === "medium" ? 1.5 : 1;
-  const opacity = isHighlighted ? 0.8 : 0.15;
+  const lineWidth = strength === "strong" ? 2.5 : strength === "medium" ? 1.8 : 1;
+  const opacity = isHighlighted ? 0.8 : 0.12;
+
+  const midPoint: [number, number, number] = [
+    (sourcePos[0] + targetPos[0]) / 2,
+    (sourcePos[1] + targetPos[1]) / 2 + 0.3,
+    (sourcePos[2] + targetPos[2]) / 2,
+  ];
+
+  // Arrow position (75% along the edge toward the target)
+  const arrowPos: [number, number, number] = [
+    sourcePos[0] + (targetPos[0] - sourcePos[0]) * 0.75,
+    sourcePos[1] + (targetPos[1] - sourcePos[1]) * 0.75,
+    sourcePos[2] + (targetPos[2] - sourcePos[2]) * 0.75,
+  ];
+
+  // Direction for arrow rotation
+  const dir = new THREE.Vector3(
+    targetPos[0] - sourcePos[0],
+    targetPos[1] - sourcePos[1],
+    targetPos[2] - sourcePos[2]
+  ).normalize();
+
+  const quaternion = useMemo(() => {
+    const q = new THREE.Quaternion();
+    q.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+    return q;
+  }, [dir]);
 
   return (
-    <Line
-      points={[sourcePos, targetPos]}
-      color={color}
-      lineWidth={lineWidth}
-      transparent
-      opacity={opacity}
-    />
+    <group>
+      <Line
+        points={[sourcePos, targetPos]}
+        color={color}
+        lineWidth={lineWidth}
+        transparent
+        opacity={opacity}
+      />
+      {/* Direction arrow */}
+      {isHighlighted && (
+        <mesh position={arrowPos} quaternion={quaternion}>
+          <coneGeometry args={[0.08, 0.2, 8]} />
+          <meshBasicMaterial color={color} transparent opacity={0.7} />
+        </mesh>
+      )}
+      {/* Edge label */}
+      {showLabel && isHighlighted && (
+        <Text
+          position={midPoint}
+          fontSize={0.15}
+          color={color}
+          anchorX="center"
+          anchorY="bottom"
+          outlineWidth={0.015}
+          outlineColor="#0A0A0F"
+          maxWidth={3}
+        >
+          {direction === "positive"
+            ? "▲ 정(+)"
+            : direction === "negative"
+            ? "▼ 역(-)"
+            : "◆ 복합"}{" "}
+          {strength === "strong"
+            ? "●●●"
+            : strength === "medium"
+            ? "●●○"
+            : "●○○"}
+        </Text>
+      )}
+      {/* Animated particle flow on highlighted edges */}
+      {isHighlighted && (
+        <>
+          <EdgeParticle
+            sourcePos={sourcePos}
+            targetPos={targetPos}
+            color={color}
+            speed={0.3}
+          />
+          <EdgeParticle
+            sourcePos={sourcePos}
+            targetPos={targetPos}
+            color={color}
+            speed={0.3 + 0.15}
+          />
+        </>
+      )}
+    </group>
   );
 }
 
@@ -255,6 +434,7 @@ function Scene({
   focusNodeId,
   highlightedNodes,
   scenarioResults,
+  showEdgeLabels,
 }: {
   graphNodes: GraphNode3D[];
   graphEdges: GraphEdge3D[];
@@ -263,6 +443,7 @@ function Scene({
   focusNodeId?: string;
   highlightedNodes?: Set<string>;
   scenarioResults?: Map<string, "up" | "down" | "complex">;
+  showEdgeLabels?: boolean;
 }) {
   return (
     <>
@@ -271,7 +452,7 @@ function Scene({
       <pointLight position={[-10, -10, -5]} intensity={0.4} color="#06B6D4" />
 
       {/* Edges */}
-      {graphEdges.map((edge, i) => {
+      {graphEdges.map((edge) => {
         const sp = positions.get(edge.source);
         const tp = positions.get(edge.target);
         if (!sp || !tp) return null;
@@ -285,12 +466,14 @@ function Scene({
 
         return (
           <GraphEdgeLine
-            key={`edge-${i}`}
+            key={edge.id}
             sourcePos={sp}
             targetPos={tp}
             direction={edge.direction}
             strength={edge.strength}
             isHighlighted={isHighlighted}
+            showLabel={showEdgeLabels}
+            mechanism={edge.mechanism}
           />
         );
       })}
@@ -331,6 +514,7 @@ export function CausalGraph3D({
   highlightedNodes,
   scenarioResults,
 }: CausalGraph3DProps) {
+  const [showEdgeLabels, setShowEdgeLabels] = useState(true);
   const positions = useMemo(() => computeLayout(nodes, edges), [nodes, edges]);
 
   const graphNodes: GraphNode3D[] = useMemo(
@@ -349,16 +533,18 @@ export function CausalGraph3D({
   const graphEdges: GraphEdge3D[] = useMemo(
     () =>
       edges.map((e) => ({
+        id: e.id,
         source: e.source,
         target: e.target,
         direction: e.direction,
         strength: e.strength,
+        mechanism: e.mechanism,
       })),
     [edges]
   );
 
   return (
-    <div className="w-full h-full bg-atlas-bg rounded-xl overflow-hidden">
+    <div className="w-full h-full bg-atlas-bg rounded-xl overflow-hidden relative">
       <Canvas
         camera={{ position: [0, 8, 18], fov: 60 }}
         gl={{ antialias: true, alpha: true }}
@@ -372,8 +558,16 @@ export function CausalGraph3D({
           focusNodeId={focusNodeId}
           highlightedNodes={highlightedNodes}
           scenarioResults={scenarioResults}
+          showEdgeLabels={showEdgeLabels}
         />
       </Canvas>
+      {/* Edge label toggle */}
+      <button
+        onClick={() => setShowEdgeLabels(!showEdgeLabels)}
+        className="absolute top-4 right-4 glass px-3 py-1.5 rounded-lg text-xs text-atlas-text-secondary hover:text-atlas-text-primary transition-colors"
+      >
+        {showEdgeLabels ? "라벨 숨기기" : "라벨 보기"}
+      </button>
     </div>
   );
 }

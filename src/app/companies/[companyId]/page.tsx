@@ -9,6 +9,7 @@ import {
   formatMarketCap,
 } from "@/lib/data";
 import { NodeBadge } from "@/components/common/NodeBadge";
+import { CompanyExportButton } from "./ExportButton";
 
 export function generateStaticParams() {
   return getCompanyNodes().map((c) => ({ companyId: c.id }));
@@ -79,6 +80,19 @@ export default function CompanyDetailPage({
           </h1>
           <p className="text-sm text-atlas-text-muted mt-1">{company.nameEn}</p>
         </div>
+        <CompanyExportButton
+          company={{
+            name: company.name,
+            nameEn: company.nameEn,
+            ticker: company.ticker,
+            market: company.market,
+            sectorName: sector?.name || "",
+            description: company.description,
+            financials: company.financials,
+            valuation: company.valuation,
+            themes: themes.map((t) => t?.name || "").filter(Boolean),
+          }}
+        />
       </div>
 
       {/* Role */}

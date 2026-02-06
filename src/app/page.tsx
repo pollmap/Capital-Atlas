@@ -7,6 +7,7 @@ import {
   ArrowRight,
   GitBranch,
   Zap,
+  FileText,
 } from "lucide-react";
 import { getMacroNodes, getThemeNodes, getStats } from "@/lib/data";
 import { MacroCard } from "@/components/common/MacroCard";
@@ -158,66 +159,86 @@ export default function Home() {
               분석 모듈
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {[
-                {
-                  title: "매크로 인과지도",
-                  desc: "금리, 환율, 원자재 간 인과관계를 3D로 탐색",
-                  href: "/graph",
-                  icon: Network,
-                  color: "atlas-macro",
-                  count: `${stats.macroNodes} 변수`,
-                },
-                {
-                  title: "밸류체인 지도",
-                  desc: "테마별 상류→하류 산업 구조 시각화",
-                  href: "/themes",
-                  icon: Layers,
-                  color: "atlas-sector",
-                  count: `${stats.themeCount} 테마`,
-                },
-                {
-                  title: "섹터 비교 엔진",
-                  desc: "동일 섹터 내 기업 정량 비교 분석",
-                  href: "/sectors",
-                  icon: BarChart3,
-                  color: "atlas-company",
-                  count: `${stats.companyCount} 기업`,
-                },
-                {
-                  title: "리서치 아카이브",
-                  desc: "CUFA 리서치 리포트 (Phase 3)",
-                  href: "/about",
-                  icon: TrendingUp,
-                  color: "atlas-report",
-                  count: "준비 중",
-                },
-              ].map((module) => {
-                const Icon = module.icon;
-                return (
-                  <Link key={module.href} href={module.href}>
-                    <div className="bg-atlas-panel border border-atlas-border rounded-lg p-4 hover:border-atlas-border transition-all group cursor-pointer h-full">
-                      <div className="flex items-start gap-3">
-                        <div
-                          className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-${module.color}/10`}
-                        >
-                          <Icon size={20} className={`text-${module.color}`} />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-sm text-atlas-text-primary">
-                            {module.title}
-                          </h3>
-                          <p className="text-xs text-atlas-text-muted mt-0.5">
-                            {module.desc}
-                          </p>
-                          <span className="inline-block text-xs font-data text-atlas-text-secondary mt-2">
-                            {module.count}
-                          </span>
-                        </div>
-                      </div>
+              <Link href="/graph">
+                <div className="bg-atlas-panel border border-atlas-border rounded-lg p-4 hover:border-atlas-macro/40 transition-all group cursor-pointer h-full">
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-atlas-macro/10">
+                      <Network size={20} className="text-atlas-macro" />
                     </div>
-                  </Link>
-                );
-              })}
+                    <div>
+                      <h3 className="font-semibold text-sm text-atlas-text-primary group-hover:text-atlas-macro transition-colors">
+                        매크로 인과지도
+                      </h3>
+                      <p className="text-xs text-atlas-text-muted mt-0.5">
+                        금리, 환율, 원자재 간 인과관계를 3D로 탐색
+                      </p>
+                      <span className="inline-block text-xs font-data text-atlas-text-secondary mt-2">
+                        {stats.macroNodes} 변수
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+              <Link href="/themes">
+                <div className="bg-atlas-panel border border-atlas-border rounded-lg p-4 hover:border-atlas-sector/40 transition-all group cursor-pointer h-full">
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-atlas-sector/10">
+                      <Layers size={20} className="text-atlas-sector" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-sm text-atlas-text-primary group-hover:text-atlas-sector transition-colors">
+                        밸류체인 지도
+                      </h3>
+                      <p className="text-xs text-atlas-text-muted mt-0.5">
+                        테마별 상류→하류 산업 구조 시각화
+                      </p>
+                      <span className="inline-block text-xs font-data text-atlas-text-secondary mt-2">
+                        {stats.themeCount} 테마
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+              <Link href="/sectors">
+                <div className="bg-atlas-panel border border-atlas-border rounded-lg p-4 hover:border-atlas-company/40 transition-all group cursor-pointer h-full">
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-atlas-company/10">
+                      <BarChart3 size={20} className="text-atlas-company" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-sm text-atlas-text-primary group-hover:text-atlas-company transition-colors">
+                        섹터 비교 엔진
+                      </h3>
+                      <p className="text-xs text-atlas-text-muted mt-0.5">
+                        동일 섹터 내 기업 정량 비교 분석
+                      </p>
+                      <span className="inline-block text-xs font-data text-atlas-text-secondary mt-2">
+                        {stats.companyCount} 기업
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+              <Link href="/research">
+                <div className="bg-atlas-panel border border-atlas-border rounded-lg p-4 hover:border-atlas-report/40 transition-all group cursor-pointer h-full">
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-atlas-report/10">
+                      <FileText size={20} className="text-atlas-report" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-sm text-atlas-text-primary group-hover:text-atlas-report transition-colors">
+                        리서치 아카이브
+                      </h3>
+                      <p className="text-xs text-atlas-text-muted mt-0.5">
+                        CUFA 리서치 리포트 아카이브
+                      </p>
+                      <span className="inline-block text-xs font-data text-atlas-text-secondary mt-2">
+                        리포트
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
             </div>
           </div>
         </div>

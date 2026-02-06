@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Network,
   TrendingUp,
@@ -13,6 +13,8 @@ import {
   X,
   Calculator,
   Users,
+  FileText,
+  Grid3X3,
 } from "lucide-react";
 
 const navItems = [
@@ -22,27 +24,47 @@ const navItems = [
   { label: "섹터", href: "/sectors", icon: BarChart3 },
   { label: "투자자", href: "/investors", icon: Users },
   { label: "도구", href: "/tools", icon: Calculator },
+  { label: "리서치", href: "/research", icon: FileText },
   { label: "검색", href: "/search", icon: Search },
 ];
 
 export function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-atlas-border">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 glass border-b transition-all duration-200 ${
+        scrolled
+          ? "border-atlas-border shadow-lg shadow-black/20"
+          : "border-atlas-border/50"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-14">
           <Link href="/" className="flex items-center gap-2 group">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-atlas-gold to-atlas-accent flex items-center justify-center">
               <span className="text-atlas-bg font-bold text-sm">CA</span>
             </div>
-            <span className="font-display font-bold text-lg text-atlas-text-primary group-hover:text-atlas-gold transition-colors">
+            <span className="font-display font-bold text-lg text-atlas-text-primary group-hover:text-atlas-gold transition-colors hidden sm:inline">
               Capital Atlas
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-0.5">
             {navItems.map((item) => {
               const isActive =
                 pathname === item.href ||
@@ -52,13 +74,13 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm transition-all ${
+                  className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-sm transition-all ${
                     isActive
                       ? "bg-atlas-panel-light text-atlas-gold"
                       : "text-atlas-text-secondary hover:text-atlas-text-primary hover:bg-atlas-panel"
                   }`}
                 >
-                  <Icon size={16} />
+                  <Icon size={15} />
                   {item.label}
                 </Link>
               );
@@ -66,8 +88,9 @@ export function Header() {
           </nav>
 
           <button
-            className="md:hidden p-2 text-atlas-text-secondary hover:text-atlas-text-primary"
+            className="lg:hidden p-2 text-atlas-text-secondary hover:text-atlas-text-primary touch-target"
             onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? "메뉴 닫기" : "메뉴 열기"}
           >
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -75,7 +98,7 @@ export function Header() {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden border-t border-atlas-border bg-atlas-panel">
+        <div className="lg:hidden border-t border-atlas-border bg-atlas-panel animate-slide-down">
           <nav className="px-4 py-2 space-y-1">
             {navItems.map((item) => {
               const isActive =
@@ -86,8 +109,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-all ${
+                  className={`flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm transition-all touch-target ${
                     isActive
                       ? "bg-atlas-panel-light text-atlas-gold"
                       : "text-atlas-text-secondary hover:text-atlas-text-primary"
@@ -98,6 +120,15 @@ export function Header() {
                 </Link>
               );
             })}
+            <div className="border-t border-atlas-border mt-2 pt-2">
+              <Link
+                href="/tools/heatmap"
+                className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-atlas-text-secondary hover:text-atlas-text-primary touch-target"
+              >
+                <Grid3X3 size={16} />
+                상관관계 히트맵
+              </Link>
+            </div>
           </nav>
         </div>
       )}

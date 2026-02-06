@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useCallback } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import {
   Network,
   ArrowUp,
@@ -9,6 +10,12 @@ import {
   X,
   ChevronRight,
   Zap,
+  TrendingUp,
+  TrendingDown,
+  Shuffle,
+  ExternalLink,
+  Activity,
+  Download,
 } from "lucide-react";
 import {
   getMacroNodes,
@@ -20,6 +27,7 @@ import {
 } from "@/lib/data";
 import { NodeBadge } from "@/components/common/NodeBadge";
 import { EdgeIndicator } from "@/components/common/EdgeIndicator";
+import { exportToPdf, buildScenarioExportData } from "@/lib/export";
 import type { MacroNode, ScenarioResult } from "@/types";
 
 const CausalGraph3D = dynamic(
@@ -39,12 +47,41 @@ function GraphLoading() {
   );
 }
 
+function ScenarioSummaryBar({ results }: { results: ScenarioResult[] }) {
+  const upCount = results.filter((r) => r.expectedDirection === "up").length;
+  const downCount = results.filter((r) => r.expectedDirection === "down").length;
+  const complexCount = results.filter((r) => r.expectedDirection === "complex").length;
+  const strongCount = results.filter((r) => r.strength === "strong").length;
+
+  return (
+    <div className="grid grid-cols-4 gap-2 mb-3">
+      <div className="bg-atlas-up/10 border border-atlas-up/20 rounded-lg p-2 text-center">
+        <div className="font-data text-lg font-bold text-atlas-up">{upCount}</div>
+        <div className="text-xs text-atlas-text-muted">상승</div>
+      </div>
+      <div className="bg-atlas-down/10 border border-atlas-down/20 rounded-lg p-2 text-center">
+        <div className="font-data text-lg font-bold text-atlas-down">{downCount}</div>
+        <div className="text-xs text-atlas-text-muted">하락</div>
+      </div>
+      <div className="bg-atlas-accent/10 border border-atlas-accent/20 rounded-lg p-2 text-center">
+        <div className="font-data text-lg font-bold text-atlas-accent">{complexCount}</div>
+        <div className="text-xs text-atlas-text-muted">복합</div>
+      </div>
+      <div className="bg-atlas-panel-light border border-atlas-border rounded-lg p-2 text-center">
+        <div className="font-data text-lg font-bold text-atlas-text-primary">{strongCount}</div>
+        <div className="text-xs text-atlas-text-muted">강한 영향</div>
+      </div>
+    </div>
+  );
+}
+
 export default function GraphPage() {
   const macroNodes = getMacroNodes();
   const edges = getEdges();
 
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
   const [scenarioMode, setScenarioMode] = useState(false);
+  const [scenarioAction, setScenarioAction] = useState<"increase" | "decrease" | null>(null);
   const [scenarioResults, setScenarioResults] = useState<ScenarioResult[]>([]);
 
   const selectedNode = selectedNodeId
@@ -71,10 +108,12 @@ export default function GraphPage() {
         setSelectedNodeId(null);
         setScenarioMode(false);
         setScenarioResults([]);
+        setScenarioAction(null);
       } else {
         setSelectedNodeId(nodeId);
         setScenarioMode(false);
         setScenarioResults([]);
+        setScenarioAction(null);
       }
     },
     [selectedNodeId]
@@ -86,9 +125,17 @@ export default function GraphPage() {
       const results = runScenario(selectedNodeId, action);
       setScenarioResults(results);
       setScenarioMode(true);
+      setScenarioAction(action);
     },
     [selectedNodeId]
   );
+
+  const sortedResults = useMemo(() => {
+    const strengthOrder = { strong: 0, medium: 1, weak: 2 };
+    return [...scenarioResults].sort(
+      (a, b) => strengthOrder[a.strength] - strengthOrder[b.strength]
+    );
+  }, [scenarioResults]);
 
   return (
     <div className="h-[calc(100vh-3.5rem)] flex flex-col lg:flex-row">
@@ -131,6 +178,22 @@ export default function GraphPage() {
             </span>
           </div>
         </div>
+
+        {/* Scenario mode banner */}
+        {scenarioMode && selectedNode && (
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 glass px-4 py-2 rounded-lg border border-atlas-gold/30">
+            <div className="flex items-center gap-2 text-sm">
+              <Activity size={14} className="text-atlas-gold animate-pulse" />
+              <span className="text-atlas-text-secondary">
+                <span className="font-semibold text-atlas-gold">{selectedNode.name}</span>
+                {scenarioAction === "increase" ? " 상승" : " 하락"} 시나리오 분석 중
+              </span>
+              <span className="font-data text-xs text-atlas-text-muted">
+                ({scenarioResults.length}개 영향)
+              </span>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Side Panel */}
@@ -148,16 +211,26 @@ export default function GraphPage() {
                   {selectedNode.nameEn}
                 </p>
               </div>
-              <button
-                onClick={() => {
-                  setSelectedNodeId(null);
-                  setScenarioMode(false);
-                  setScenarioResults([]);
-                }}
-                className="p-1 hover:bg-atlas-panel-light rounded"
-              >
-                <X size={16} className="text-atlas-text-muted" />
-              </button>
+              <div className="flex items-center gap-1">
+                <Link
+                  href={`/macro/${selectedNode.id}`}
+                  className="p-1 hover:bg-atlas-panel-light rounded text-atlas-text-muted hover:text-atlas-link transition-colors"
+                  title="상세 페이지"
+                >
+                  <ExternalLink size={14} />
+                </Link>
+                <button
+                  onClick={() => {
+                    setSelectedNodeId(null);
+                    setScenarioMode(false);
+                    setScenarioResults([]);
+                    setScenarioAction(null);
+                  }}
+                  className="p-1 hover:bg-atlas-panel-light rounded"
+                >
+                  <X size={16} className="text-atlas-text-muted" />
+                </button>
+              </div>
             </div>
 
             {/* Current Value */}
@@ -200,7 +273,7 @@ export default function GraphPage() {
                 <button
                   onClick={() => handleScenario("increase")}
                   className={`flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                    scenarioMode && scenarioResults.length > 0
+                    scenarioAction === "increase"
                       ? "bg-atlas-up/20 text-atlas-up border border-atlas-up/30"
                       : "bg-atlas-panel-light text-atlas-text-secondary hover:text-atlas-up hover:bg-atlas-up/10"
                   }`}
@@ -210,7 +283,11 @@ export default function GraphPage() {
                 </button>
                 <button
                   onClick={() => handleScenario("decrease")}
-                  className="flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-lg text-sm font-medium bg-atlas-panel-light text-atlas-text-secondary hover:text-atlas-down hover:bg-atlas-down/10 transition-all"
+                  className={`flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                    scenarioAction === "decrease"
+                      ? "bg-atlas-down/20 text-atlas-down border border-atlas-down/30"
+                      : "bg-atlas-panel-light text-atlas-text-secondary hover:text-atlas-down hover:bg-atlas-down/10"
+                  }`}
                 >
                   <ArrowDown size={14} />
                   하락 시나리오
@@ -221,51 +298,113 @@ export default function GraphPage() {
             {/* Scenario Results */}
             {scenarioMode && scenarioResults.length > 0 && (
               <div className="mb-4">
-                <h3 className="text-xs font-semibold text-atlas-text-muted uppercase tracking-wider mb-2">
-                  예상 영향
-                </h3>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-xs font-semibold text-atlas-text-muted uppercase tracking-wider">
+                    예상 영향 ({scenarioResults.length}개)
+                  </h3>
+                  <button
+                    onClick={() => {
+                      if (!selectedNode || !scenarioAction) return;
+                      const data = buildScenarioExportData(
+                        selectedNode.name,
+                        selectedNode.nameEn,
+                        scenarioAction,
+                        selectedNode.currentValue,
+                        sortedResults.map((r) => ({
+                          name: getNodeById(r.nodeId)?.name || r.nodeId,
+                          direction: r.expectedDirection,
+                          strength: r.strength,
+                          mechanism: r.mechanism,
+                          timeLag: r.timeLag,
+                        }))
+                      );
+                      exportToPdf(data);
+                    }}
+                    className="flex items-center gap-1 px-2 py-1 rounded text-xs text-atlas-text-muted hover:text-atlas-gold hover:bg-atlas-gold/10 transition-colors"
+                  >
+                    <Download size={12} />
+                    PDF
+                  </button>
+                </div>
+                <ScenarioSummaryBar results={scenarioResults} />
                 <div className="space-y-2">
-                  {scenarioResults.map((result) => {
+                  {sortedResults.map((result) => {
                     const targetNode = getNodeById(result.nodeId);
+                    const DirIcon =
+                      result.expectedDirection === "up"
+                        ? TrendingUp
+                        : result.expectedDirection === "down"
+                        ? TrendingDown
+                        : Shuffle;
                     return (
                       <div
                         key={result.nodeId}
-                        className="bg-atlas-bg rounded-lg p-3 cursor-pointer hover:bg-atlas-panel-light transition-colors"
+                        className={`rounded-lg p-3 cursor-pointer transition-all border ${
+                          result.strength === "strong"
+                            ? "bg-atlas-bg border-atlas-border hover:border-atlas-gold/40"
+                            : "bg-atlas-bg/50 border-atlas-border/50 hover:border-atlas-border"
+                        }`}
                         onClick={() => handleNodeClick(result.nodeId)}
                       >
                         <div className="flex items-center justify-between">
-                          <span className="text-sm font-medium text-atlas-text-primary">
-                            {targetNode?.name || result.nodeId}
-                          </span>
-                          <span
-                            className={`text-xs font-semibold ${
-                              result.expectedDirection === "up"
-                                ? "text-atlas-up"
+                          <div className="flex items-center gap-2">
+                            <DirIcon
+                              size={14}
+                              className={
+                                result.expectedDirection === "up"
+                                  ? "text-atlas-up"
+                                  : result.expectedDirection === "down"
+                                  ? "text-atlas-down"
+                                  : "text-atlas-accent"
+                              }
+                            />
+                            <span className="text-sm font-medium text-atlas-text-primary">
+                              {targetNode?.name || result.nodeId}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-0.5">
+                              {Array.from({ length: 3 }).map((_, i) => (
+                                <div
+                                  key={i}
+                                  className={`w-1.5 h-1.5 rounded-full ${
+                                    i <
+                                    (result.strength === "strong"
+                                      ? 3
+                                      : result.strength === "medium"
+                                      ? 2
+                                      : 1)
+                                      ? "bg-atlas-accent"
+                                      : "bg-atlas-border"
+                                  }`}
+                                />
+                              ))}
+                            </div>
+                            <span
+                              className={`text-xs font-semibold px-1.5 py-0.5 rounded ${
+                                result.expectedDirection === "up"
+                                  ? "text-atlas-up bg-atlas-up/10"
+                                  : result.expectedDirection === "down"
+                                  ? "text-atlas-down bg-atlas-down/10"
+                                  : "text-atlas-accent bg-atlas-accent/10"
+                              }`}
+                            >
+                              {result.expectedDirection === "up"
+                                ? "상승"
                                 : result.expectedDirection === "down"
-                                ? "text-atlas-down"
-                                : "text-atlas-accent"
-                            }`}
-                          >
-                            {result.expectedDirection === "up"
-                              ? "상승"
-                              : result.expectedDirection === "down"
-                              ? "하락"
-                              : "복합"}
-                          </span>
+                                ? "하락"
+                                : "복합"}
+                            </span>
+                          </div>
                         </div>
-                        <p className="text-xs text-atlas-text-muted mt-1">
+                        <p className="text-xs text-atlas-text-muted mt-1.5 leading-relaxed">
                           {result.mechanism}
                         </p>
-                        <div className="flex items-center gap-2 mt-1">
-                          <span className="text-xs text-atlas-text-muted">
-                            강도: {result.strength}
+                        {result.timeLag && (
+                          <span className="inline-block text-xs text-atlas-text-muted mt-1 font-data">
+                            시차: {result.timeLag}
                           </span>
-                          {result.timeLag && (
-                            <span className="text-xs text-atlas-text-muted">
-                              시차: {result.timeLag}
-                            </span>
-                          )}
-                        </div>
+                        )}
                       </div>
                     );
                   })}
@@ -274,16 +413,18 @@ export default function GraphPage() {
             )}
 
             {/* Connected Edges */}
-            <div>
-              <h3 className="text-xs font-semibold text-atlas-text-muted uppercase tracking-wider mb-2">
-                연결된 인과관계 ({selectedEdges.length})
-              </h3>
-              <div className="space-y-2">
-                {selectedEdges.map((edge) => (
-                  <EdgeIndicator key={edge.id} edge={edge} showMechanism />
-                ))}
+            {!scenarioMode && (
+              <div>
+                <h3 className="text-xs font-semibold text-atlas-text-muted uppercase tracking-wider mb-2">
+                  연결된 인과관계 ({selectedEdges.length})
+                </h3>
+                <div className="space-y-2">
+                  {selectedEdges.map((edge) => (
+                    <EdgeIndicator key={edge.id} edge={edge} showMechanism />
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Tags */}
             {selectedNode.tags && selectedNode.tags.length > 0 && (
@@ -315,17 +456,20 @@ export default function GraphPage() {
               <br />
               인과관계와 시나리오 분석을 볼 수 있습니다
             </p>
-            <div className="mt-6 text-left space-y-2">
-              <p className="text-xs text-atlas-text-muted">주요 노드:</p>
+            <div className="mt-6 text-left space-y-1">
+              <p className="text-xs text-atlas-text-muted mb-2">주요 노드:</p>
               {macroNodes.slice(0, 8).map((node) => (
                 <button
                   key={node.id}
                   onClick={() => handleNodeClick(node.id)}
                   className="w-full text-left flex items-center justify-between px-3 py-2 rounded-lg hover:bg-atlas-panel-light transition-colors group"
                 >
-                  <span className="text-sm text-atlas-text-secondary group-hover:text-atlas-text-primary">
-                    {node.name}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-atlas-macro" />
+                    <span className="text-sm text-atlas-text-secondary group-hover:text-atlas-text-primary">
+                      {node.name}
+                    </span>
+                  </div>
                   <ChevronRight
                     size={14}
                     className="text-atlas-text-muted group-hover:text-atlas-macro"

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Calculator, TrendingUp, Percent, DollarSign, BarChart3 } from "lucide-react";
+import { Calculator, TrendingUp, Percent, DollarSign, BarChart3, Grid3X3 } from "lucide-react";
 
 const tools = [
   {
@@ -46,6 +46,15 @@ const tools = [
     icon: BarChart3,
     color: "text-atlas-company",
     bgColor: "bg-atlas-company/10",
+  },
+  {
+    id: "heatmap",
+    name: "상관관계 히트맵",
+    nameEn: "Correlation Heatmap",
+    description: "매크로 변수 간 인과적 상관관계를 히트맵으로 시각화합니다",
+    icon: Grid3X3,
+    color: "text-atlas-report",
+    bgColor: "bg-atlas-report/10",
   },
 ];
 

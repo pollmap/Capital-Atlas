@@ -187,7 +187,7 @@ export function getDirectionColor(direction: "up" | "down" | "neutral" | "comple
 export function formatMarketCap(value: number): string {
   if (value >= 1000000000000000) return `${(value / 1000000000000000).toFixed(0)}천조`;
   if (value >= 1000000000000) return `${(value / 1000000000000).toFixed(1)}조`;
-  if (value >= 100000000) return `${(value / 100000000).toFixed(0)}억`;
   if (value >= 1000000000) return `$${(value / 1000000000).toFixed(0)}B`;
+  if (value >= 100000000) return `${(value / 100000000).toFixed(0)}억`;
   return value.toLocaleString();
 }
