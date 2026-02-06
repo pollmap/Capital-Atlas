@@ -4,102 +4,230 @@
     "name": "반도체",
     "nameEn": "Semiconductor",
     "type": "sector",
-    "description": "메모리(DRAM, NAND, HBM) + 비메모리(파운드리, 팹리스). AI 시대 핵심 인프라",
-    "tags": ["반도체", "메모리", "파운드리", "AI"],
-    "benchmark": "KOSPI 반도체",
-    "companyIds": ["nvidia", "tsmc", "sk_hynix", "samsung_elec"]
+    "description": "한국 수출의 30% 이상을 차지하는 핵심 산업. 메모리(DRAM, NAND, HBM)와 비메모리(파운드리, 팹리스, 장비)를 포괄하며, AI 시대 데이터 처리 인프라의 근간. 삼성전자와 SK하이닉스가 글로벌 메모리 시장을 양분하고, 후공정·장비·소재 생태계가 두텁게 형성되어 있다.",
+    "tags": ["반도체", "메모리", "HBM", "파운드리", "AI", "수출"],
+    "companyIds": ["samsung_elec", "sk_hynix", "db_hitek", "hanmi_semi", "wonik_ips", "semes"]
+  },
+  {
+    "id": "display",
+    "name": "디스플레이",
+    "nameEn": "Display",
+    "type": "sector",
+    "description": "OLED 기술에서 글로벌 주도권을 가진 한국의 핵심 제조업. 스마트폰·TV·차량용 디스플레이 수요에 따라 사이클이 결정되며, 삼성디스플레이의 중소형 OLED와 LG디스플레이의 대형 OLED가 양축을 이룬다. 폴더블·마이크로LED 등 차세대 기술 전환이 진행 중이다.",
+    "tags": ["디스플레이", "OLED", "LCD", "폴더블"],
+    "companyIds": ["samsung_display", "lg_display", "toray_advanced"]
   },
   {
     "id": "shipbuilding",
     "name": "조선",
     "nameEn": "Shipbuilding",
     "type": "sector",
-    "description": "LNG선 슈퍼사이클 + 친환경 선박 교체 수요. 한국 3대 조선사 글로벌 점유율 1위",
-    "tags": ["조선", "LNG", "해양"],
+    "description": "LNG선 슈퍼사이클과 친환경 선박 교체 수요로 한국 3대 조선사의 수주잔고가 역대 최대 수준. 글로벌 상위 수주 점유율 60% 이상을 차지하며, 고부가가치 LNG운반선·컨테이너선·해양플랜트 분야에서 독보적 경쟁력을 보유하고 있다.",
+    "tags": ["조선", "LNG", "해양", "친환경선박"],
     "benchmark": "KRX 조선업종지수",
-    "companyIds": ["hd_korea_shipbuilding", "samsung_heavy", "hanwha_ocean", "sk_oceanplant"]
+    "companyIds": ["hd_korea_shipbuilding", "samsung_heavy", "hanwha_ocean"]
   },
   {
     "id": "defense",
     "name": "방산",
     "nameEn": "Defense",
     "type": "sector",
-    "description": "K-방산 글로벌 수출 급증. 폴란드, 사우디, 호주 등 대형 계약",
-    "tags": ["방산", "K-방산", "수출"],
+    "description": "K-방산 수출이 폴란드·사우디·호주 등 대형 계약으로 급증하며 글로벌 방산 시장에서 한국의 입지가 급부상. K9 자주포, K2 전차, KF-21 전투기, 천궁 미사일 등 세계적 경쟁력을 갖춘 무기 체계를 보유하며, 수출 수주잔고가 사상 최고치를 경신하고 있다.",
+    "tags": ["방산", "K-방산", "수출", "무기체계"],
     "benchmark": "KRX 방산업종",
-    "companyIds": ["hanwha_aerospace", "korea_aerospace", "lig_nex1", "hanwha_ocean"]
+    "companyIds": ["hanwha_aerospace", "lig_nex1", "korea_aerospace", "hyundai_rotem"]
   },
   {
-    "id": "electric_equipment",
-    "name": "전력기기",
-    "nameEn": "Electric Equipment",
+    "id": "nuclear_energy",
+    "name": "원자력",
+    "nameEn": "Nuclear Energy",
     "type": "sector",
-    "description": "AI 데이터센터 전력 + 미국 전력망 노후화 교체 + 원전 수혜",
-    "tags": ["전력기기", "변압기", "데이터센터"],
-    "benchmark": "KRX 전기전자",
-    "companyIds": ["ls_electric", "hd_hyundai_electric", "hyosung_heavy"]
+    "description": "탄소중립 목표와 AI 데이터센터 전력 수요 급증으로 원전이 재부상하는 '원전 르네상스' 시대. 한국은 APR1400 원자로 수출 경쟁력을 보유하며, 체코·사우디·폴란드 등 해외 수주전에 적극 참여 중. 소형모듈원자로(SMR) 기술 개발도 병행하고 있다.",
+    "tags": ["원자력", "원전", "SMR", "탄소중립", "전력"],
+    "companyIds": ["doosan_enerbility", "kepco", "kepco_eng", "bwxt"]
   },
   {
     "id": "battery",
     "name": "2차전지",
     "nameEn": "Secondary Battery",
     "type": "sector",
-    "description": "EV 배터리 밸류체인. 셀 → 양극재/음극재 → 리사이클링",
-    "tags": ["배터리", "전기차", "EV"],
-    "companyIds": ["lg_energy", "samsung_sdi", "ecopro_bm"]
+    "description": "전기차(EV) 배터리 밸류체인의 핵심. 셀 제조에서 양극재·음극재·분리막·전해액 소재까지 한국이 글로벌 공급망의 중심축. LG에너지솔루션·삼성SDI가 세계 2~3위를 차지하며, 미국 IRA 정책에 따라 북미 생산 거점 확대가 가속화되고 있다.",
+    "tags": ["배터리", "전기차", "EV", "리튬", "양극재"],
+    "companyIds": ["lg_energy", "samsung_sdi", "sk_ie_tech", "posco_future_m", "ecopro_bm"]
   },
   {
-    "id": "energy_equipment",
-    "name": "에너지기자재",
-    "nameEn": "Energy Equipment",
+    "id": "automobile",
+    "name": "자동차",
+    "nameEn": "Automobile",
     "type": "sector",
-    "description": "원전, 화력, 신재생 발전 기자재. 원전 르네상스 수혜",
-    "tags": ["에너지", "원전", "발전"],
-    "companyIds": ["doosan_enerbility"]
+    "description": "현대·기아를 중심으로 글로벌 판매량 3위 그룹으로 도약한 한국 자동차 산업. 전기차·하이브리드·수소차 라인업 확대와 미국·유럽 현지 생산 확대로 환율 리스크를 분산하고 있으며, 소프트웨어 정의 차량(SDV)과 자율주행 기술 투자를 가속하고 있다.",
+    "tags": ["자동차", "전기차", "현대차", "기아", "SDV"],
+    "benchmark": "KRX 자동차업종지수",
+    "companyIds": ["hyundai_motor", "kia", "hyundai_mobis"]
   },
   {
     "id": "steel",
     "name": "철강",
     "nameEn": "Steel",
     "type": "sector",
-    "description": "조선, 건설, 자동차 등 전방산업 수요. 중국 감산 여부가 관건",
-    "tags": ["철강", "포스코", "원자재"],
-    "companyIds": ["posco_holdings"]
+    "description": "조선·건설·자동차·에너지 등 전방산업의 기초소재를 공급하는 산업. 중국의 과잉생산과 감산 여부가 글로벌 가격을 좌우하며, 포스코를 중심으로 고부가가치 특수강·친환경 수소환원제철 기술 전환이 진행 중이다.",
+    "tags": ["철강", "포스코", "원자재", "건설", "조선"],
+    "benchmark": "KRX 철강업종지수",
+    "companyIds": ["posco_hldg", "hyundai_steel", "dongkuk_steel"]
   },
   {
-    "id": "bio_pharma",
-    "name": "바이오/제약",
-    "nameEn": "Bio & Pharma",
+    "id": "petrochemical",
+    "name": "석유화학",
+    "nameEn": "Petrochemical",
     "type": "sector",
-    "description": "비만치료제·ADC 항암제·바이오시밀러·CDMO. 글로벌 제약 밸류체인",
-    "tags": ["바이오", "제약", "CDMO", "헬스케어"],
-    "companyIds": ["samsung_biologics", "celltrion", "yuhan"]
+    "description": "나프타를 원료로 에틸렌·프로필렌 등 기초화학 제품을 생산하는 장치산업. 중국의 자급률 상승과 글로벌 공급 과잉으로 구조적 다운사이클 우려가 있으나, 고부가 스페셜티 화학으로의 전환과 배터리 소재 사업 확장으로 포트폴리오 다각화를 추진 중이다.",
+    "tags": ["석유화학", "나프타", "에틸렌", "화학"],
+    "companyIds": ["lg_chem", "lotte_chemical", "kumho_petro"]
   },
   {
-    "id": "finance",
-    "name": "금융",
-    "nameEn": "Finance",
+    "id": "construction",
+    "name": "건설",
+    "nameEn": "Construction",
     "type": "sector",
-    "description": "은행·보험·증권. 금리 환경 변화에 민감한 이자이익·투자수익 구조",
-    "tags": ["은행", "보험", "증권", "금리"],
-    "companyIds": ["kb_financial", "shinhan_financial", "samsung_fire"]
+    "description": "국내 주택·인프라·플랜트 건설과 해외 EPC(설계·조달·시공) 사업을 영위하는 산업. 금리·부동산 정책에 민감하며, 중동·동남아 해외 플랜트 수주와 국내 SOC 투자 확대가 성장 동력. 원전·데이터센터 건설 특수도 주목받고 있다.",
+    "tags": ["건설", "플랜트", "EPC", "부동산", "인프라"],
+    "companyIds": ["samsung_engineering", "hyundai_engineering", "daewoo_enc"]
   },
   {
-    "id": "it_platform",
-    "name": "IT/플랫폼",
-    "nameEn": "IT & Platform",
+    "id": "telecom",
+    "name": "통신",
+    "nameEn": "Telecom",
     "type": "sector",
-    "description": "인터넷 플랫폼, SaaS, 클라우드. 디지털 전환의 핵심 인프라",
-    "tags": ["IT", "플랫폼", "클라우드", "SaaS"],
-    "companyIds": ["naver", "kakao", "krafton"]
+    "description": "5G 네트워크 인프라를 기반으로 안정적인 가입자 매출을 확보하는 한국 통신 3사. 전통 통신 수익 외에 AI·클라우드·미디어·데이터센터 등 신사업 확장을 통해 성장 동력을 모색하고 있으며, 높은 배당수익률로 인컴형 투자 대상으로도 주목받고 있다.",
+    "tags": ["통신", "5G", "배당", "AI", "클라우드"],
+    "benchmark": "KRX 통신업종지수",
+    "companyIds": ["sk_telecom", "kt_corp", "lg_uplus"]
   },
   {
-    "id": "real_estate",
-    "name": "부동산/리츠",
-    "nameEn": "Real Estate & REITs",
+    "id": "banking",
+    "name": "은행",
+    "nameEn": "Banking",
     "type": "sector",
-    "description": "오피스·물류·데이터센터 리츠. 금리 인하 사이클 수혜 기대",
-    "tags": ["리츠", "부동산", "인컴투자"],
-    "companyIds": ["macquarie_infra", "esr_kendall"]
+    "description": "금리 환경에 따른 이자이익이 핵심 수익원인 한국 은행업. KB·신한·하나 3대 금융지주가 시장을 주도하며, 기업가치 제고(밸류업) 프로그램에 따라 주주환원(배당·자사주) 확대가 가속화되고 있다. PBR 0.4~0.6배 수준의 저평가 매력이 부각되고 있다.",
+    "tags": ["은행", "금융", "금리", "배당", "밸류업"],
+    "benchmark": "KRX 은행업종지수",
+    "companyIds": ["kb_financial", "shinhan_financial", "hana_financial"]
+  },
+  {
+    "id": "insurance",
+    "name": "보험",
+    "nameEn": "Insurance",
+    "type": "sector",
+    "description": "IFRS17(보험계약 국제회계기준) 도입으로 수익성 중심 경영이 본격화된 보험업. 손해보험은 자동차·장기보험, 생명보험은 보장성 보험 중심으로 수익 구조가 재편되고 있으며, 보험손익(CSM 상각) 중심의 안정적 이익 체력이 재평가받고 있다.",
+    "tags": ["보험", "IFRS17", "손해보험", "CSM"],
+    "companyIds": ["samsung_fire", "hyundai_marine"]
+  },
+  {
+    "id": "securities",
+    "name": "증권",
+    "nameEn": "Securities",
+    "type": "sector",
+    "description": "위탁매매·IB(투자은행)·자산관리·트레이딩 등 다각화된 수익 구조를 가진 증권업. 시장 거래대금과 IPO 시장 활황에 민감하며, 대형 증권사를 중심으로 PF(프로젝트 파이낸싱)·해외 투자·WM(자산관리) 역량 강화가 진행 중이다.",
+    "tags": ["증권", "IB", "자산관리", "트레이딩"],
+    "companyIds": ["mirae_asset", "samsung_securities"]
+  },
+  {
+    "id": "it_software",
+    "name": "IT/소프트웨어",
+    "nameEn": "IT & Software",
+    "type": "sector",
+    "description": "인터넷 플랫폼, 클라우드, AI, 게임 등 디지털 경제의 핵심 인프라를 구축하는 산업. 네이버·카카오가 검색·커머스·핀테크 플랫폼을 지배하며, 크래프톤 등 게임사가 글로벌 IP 경쟁력을 확보하고 있다. 생성형 AI 시대에 LLM·AI 서비스 확장이 핵심 과제이다.",
+    "tags": ["IT", "플랫폼", "AI", "클라우드", "게임"],
+    "companyIds": ["kakao", "naver", "krafton"]
+  },
+  {
+    "id": "biotech",
+    "name": "바이오텍",
+    "nameEn": "Biotech",
+    "type": "sector",
+    "description": "바이오시밀러·CDMO·항체의약품 분야에서 글로벌 경쟁력을 갖춘 한국 바이오 산업. 셀트리온은 바이오시밀러 글로벌 1위, 삼성바이오로직스는 CDMO 생산능력 세계 1위를 달성했으며, SK바이오팜은 자체 개발 신약의 글로벌 라이선스아웃에 성공하며 기술력을 입증했다.",
+    "tags": ["바이오", "바이오시밀러", "CDMO", "항체", "신약"],
+    "companyIds": ["celltrion", "samsung_biologics", "sk_biopharmaceuticals"]
+  },
+  {
+    "id": "pharma",
+    "name": "제약",
+    "nameEn": "Pharmaceuticals",
+    "type": "sector",
+    "description": "전통 의약품 제조에서 혁신 신약 개발로 전환 중인 한국 제약산업. 유한양행은 레이저티닙(표적항암제) 글로벌 라이선스아웃으로 기술 수출의 새 기준을 제시했으며, 한미약품·대웅제약 등도 비만치료제·ADC 항암제 파이프라인을 적극 확대하고 있다.",
+    "tags": ["제약", "신약", "항암제", "비만치료제"],
+    "companyIds": ["yuhan", "hanmi_pharma", "daewoong_pharma"]
+  },
+  {
+    "id": "media_entertainment",
+    "name": "미디어/엔터",
+    "nameEn": "Media & Entertainment",
+    "type": "sector",
+    "description": "K-POP·K-드라마를 축으로 한 한류 콘텐츠 산업. HYBE·JYP·SM 등 엔터사가 글로벌 팬덤을 기반으로 음반·콘서트·MD·라이선싱 등 IP 비즈니스를 확장 중이며, OTT 플랫폼과의 협업을 통해 K-콘텐츠의 글로벌 배급력이 강화되고 있다.",
+    "tags": ["엔터", "K-POP", "콘텐츠", "한류", "IP"],
+    "companyIds": ["hybe", "jyp_ent", "sm_ent"]
+  },
+  {
+    "id": "food_beverage",
+    "name": "식음료",
+    "nameEn": "Food & Beverage",
+    "type": "sector",
+    "description": "내수 소비의 근간을 이루는 식품산업. CJ제일제당은 바이오·식품 소재에서 글로벌 경쟁력을 확보했으며, 오뚜기 등은 안정적인 브랜드 파워로 내수 시장을 지배하고 있다. K-푸드 수출 확대와 HMR(간편식) 시장 성장이 새로운 성장 동력이다.",
+    "tags": ["식품", "음료", "K-푸드", "HMR", "소비재"],
+    "companyIds": ["cj_cheiljedang", "ottogi"]
+  },
+  {
+    "id": "retail",
+    "name": "유통",
+    "nameEn": "Retail",
+    "type": "sector",
+    "description": "백화점·대형마트·이커머스가 경합하는 유통 시장. 신세계는 오프라인 백화점·면세점과 이커머스(SSG닷컴)를 병행하며, 쿠팡은 로켓배송을 앞세워 이커머스 시장을 재편하고 있다. 소비 양극화와 플랫폼 경쟁이 산업 구조 변화를 가속하고 있다.",
+    "tags": ["유통", "이커머스", "백화점", "소비"],
+    "companyIds": ["shinsegae", "coupang"]
+  },
+  {
+    "id": "logistics",
+    "name": "물류",
+    "nameEn": "Logistics",
+    "type": "sector",
+    "description": "이커머스 성장과 글로벌 공급망 재편에 따라 물류 인프라의 중요성이 급증하는 산업. CJ대한통운은 국내 택배 1위이자 글로벌 물류 네트워크를 확대하고 있으며, 한진은 항공·육상·해상 복합물류 역량을 보유하고 있다. 풀필먼트·자동화 투자가 핵심 경쟁력이다.",
+    "tags": ["물류", "택배", "풀필먼트", "공급망"],
+    "companyIds": ["cj_logistics", "hanjin_logistics"]
+  },
+  {
+    "id": "utility",
+    "name": "유틸리티",
+    "nameEn": "Utility",
+    "type": "sector",
+    "description": "전력·가스·열 등 공공 에너지를 공급하는 기간산업. 한국전력(KEPCO)이 전력 공급을 독점하며, 한국가스공사는 LNG 도입·배관 공급을 담당한다. 전기요금 정상화, AI 데이터센터 전력 수요 증가, 에너지 전환 정책이 산업 방향을 좌우하고 있다.",
+    "tags": ["유틸리티", "전력", "가스", "공기업", "에너지"],
+    "companyIds": ["kepco", "korea_gas", "korea_district_heating"]
+  },
+  {
+    "id": "machinery",
+    "name": "기계",
+    "nameEn": "Machinery",
+    "type": "sector",
+    "description": "건설기계·산업용 기계·자동화 장비를 생산하는 산업. 두산밥캣은 북미 소형건설기계 시장에서 글로벌 1위를 차지하며, 현대엘리베이터는 승강기·에스컬레이터 시장에서 국내 1위 경쟁력을 보유하고 있다. 스마트팩토리·로봇 수요 증가가 새로운 성장 기회이다.",
+    "tags": ["기계", "건설기계", "자동화", "로봇"],
+    "companyIds": ["doosan_bobcat", "hyundai_elevator"]
+  },
+  {
+    "id": "chemical",
+    "name": "화학",
+    "nameEn": "Chemical",
+    "type": "sector",
+    "description": "기초화학에서 첨단소재까지 폭넓은 제품군을 생산하는 산업. 한화솔루션은 태양광 모듈·화학 사업을 병행하며, SKC는 반도체 소재·모빌리티 소재 중심으로 포트폴리오를 전환 중이다. 친환경 소재와 고부가가치 스페셜티 화학으로의 구조 전환이 핵심 과제이다.",
+    "tags": ["화학", "소재", "태양광", "스페셜티"],
+    "companyIds": ["hanwha_solutions", "skc"]
+  },
+  {
+    "id": "cosmetics",
+    "name": "화장품",
+    "nameEn": "Cosmetics",
+    "type": "sector",
+    "description": "K-뷰티로 글로벌 시장에서 영향력을 확대하는 한국 화장품 산업. 아모레퍼시픽은 설화수·라네즈 등 프리미엄 브랜드로 아시아·북미 시장을 공략하며, LG생활건강은 생활용품·음료까지 다각화된 포트폴리오를 보유하고 있다. 인디 브랜드의 급성장도 주목할 트렌드이다.",
+    "tags": ["화장품", "K-뷰티", "뷰티", "소비재"],
+    "companyIds": ["amorepacific", "lg_household"]
   }
 ]

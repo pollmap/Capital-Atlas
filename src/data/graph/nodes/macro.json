@@ -1,20 +1,26 @@
 [
   {
-    "id": "us_fed_rate",
-    "name": "미국 기준금리",
-    "nameEn": "US Federal Funds Rate",
+    "id": "boj_rate",
+    "name": "일본 기준금리",
+    "nameEn": "BOJ Policy Rate",
     "type": "macro",
     "category": "monetary_policy",
-    "region": "US",
+    "region": "JP",
     "unit": "%",
-    "currentValue": "5.25-5.50%",
-    "change": "+0.25",
+    "currentValue": "0.25%",
+    "change": "+0.15",
     "changeDirection": "up",
-    "dataSource": "FRED",
-    "apiKey": "FEDFUNDS",
-    "description": "미 연준이 설정하는 기준금리. 글로벌 자본 흐름의 기준점. 드러켄밀러: '유동성이 시장을 움직인다'",
-    "tags": ["금리", "연준", "통화정책", "Fed"],
-    "trackedBy": ["드러켄밀러", "시타델", "애크먼", "성상현", "막스", "VIP", "르네상스"]
+    "description": "일본은행 정책금리. 수십 년간의 초저금리에서 정상화 시도 중",
+    "tags": [
+      "금리",
+      "BOJ",
+      "일본",
+      "통화정책"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "시타델"
+    ]
   },
   {
     "id": "bok_rate",
@@ -29,8 +35,37 @@
     "changeDirection": "neutral",
     "dataSource": "ECOS",
     "description": "한국은행이 설정하는 기준금리. 가계부채 문제로 Fed 대비 유연성 제약",
-    "tags": ["금리", "한은", "통화정책"],
-    "trackedBy": ["성상현"]
+    "tags": [
+      "금리",
+      "한은",
+      "통화정책"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
+  },
+  {
+    "id": "ecb_deposit_rate",
+    "name": "ECB 예금금리",
+    "nameEn": "ECB Deposit Facility Rate",
+    "type": "macro",
+    "category": "monetary_policy",
+    "region": "EU",
+    "unit": "%",
+    "currentValue": "4.00%",
+    "change": "-0.25",
+    "changeDirection": "down",
+    "description": "유럽 은행간 실질 벤치마크 금리. 기준금리보다 시장 영향력이 크며 유로존 대출·예금 금리를 직접 결정",
+    "tags": [
+      "ECB",
+      "예금금리",
+      "유럽",
+      "통화정책"
+    ],
+    "trackedBy": [
+      "시타델",
+      "드러켄밀러"
+    ]
   },
   {
     "id": "ecb_rate",
@@ -44,23 +79,16 @@
     "change": "-0.25",
     "changeDirection": "down",
     "description": "유럽중앙은행 기준금리. 유로존 통화정책의 핵심",
-    "tags": ["금리", "ECB", "유럽", "통화정책"],
-    "trackedBy": ["드러켄밀러", "시타델"]
-  },
-  {
-    "id": "boj_rate",
-    "name": "일본 기준금리",
-    "nameEn": "BOJ Policy Rate",
-    "type": "macro",
-    "category": "monetary_policy",
-    "region": "JP",
-    "unit": "%",
-    "currentValue": "0.25%",
-    "change": "+0.15",
-    "changeDirection": "up",
-    "description": "일본은행 정책금리. 수십 년간의 초저금리에서 정상화 시도 중",
-    "tags": ["금리", "BOJ", "일본", "통화정책"],
-    "trackedBy": ["드러켄밀러", "시타델"]
+    "tags": [
+      "금리",
+      "ECB",
+      "유럽",
+      "통화정책"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "시타델"
+    ]
   },
   {
     "id": "fed_balance_sheet",
@@ -74,8 +102,158 @@
     "change": "-$0.1T",
     "changeDirection": "down",
     "description": "연준 총자산 규모. QE/QT의 직접 결과. 드러켄밀러가 유동성 판단의 핵심 지표로 활용",
-    "tags": ["연준", "QE", "QT", "유동성", "대차대조표"],
-    "trackedBy": ["드러켄밀러", "시타델", "성상현"]
+    "tags": [
+      "연준",
+      "QE",
+      "QT",
+      "유동성",
+      "대차대조표"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "시타델",
+      "성상현"
+    ]
+  },
+  {
+    "id": "fed_dot_plot",
+    "name": "Fed 점도표",
+    "nameEn": "Fed Dot Plot Median",
+    "type": "macro",
+    "category": "monetary_policy",
+    "region": "US",
+    "unit": "%",
+    "currentValue": "4.625%",
+    "change": "-0.25",
+    "changeDirection": "down",
+    "description": "FOMC 위원들의 금리 전망 중간값. 시장 기대와의 괴리가 변동성 촉발. 분기마다 업데이트",
+    "tags": [
+      "연준",
+      "점도표",
+      "금리전망"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "시타델"
+    ]
+  },
+  {
+    "id": "global_liquidity_index",
+    "name": "글로벌 유동성",
+    "nameEn": "Global Liquidity Index",
+    "type": "macro",
+    "category": "monetary_policy",
+    "region": "Global",
+    "unit": "$T",
+    "currentValue": "$170T",
+    "change": "+2.5%",
+    "changeDirection": "up",
+    "description": "주요 5개 중앙은행 총 유동성. 비트코인·위험자산과 높은 상관관계. 유동성 사이클이 자산가격 사이클을 선행",
+    "tags": [
+      "유동성",
+      "글로벌",
+      "중앙은행",
+      "M2"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "시타델"
+    ]
+  },
+  {
+    "id": "kr_cd_rate",
+    "name": "CD 91일물",
+    "nameEn": "Korea CD 91-Day Rate",
+    "type": "macro",
+    "category": "monetary_policy",
+    "region": "KR",
+    "unit": "%",
+    "currentValue": "3.72%",
+    "change": "-0.02",
+    "changeDirection": "down",
+    "description": "한국 단기 자금시장 벤치마크. 변동금리 대출의 기준. 기준금리 변동의 실물 전달 경로",
+    "tags": [
+      "CD금리",
+      "단기금리",
+      "대출",
+      "한국"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
+  },
+  {
+    "id": "kr_us_rate_diff",
+    "name": "한미 금리차",
+    "nameEn": "KR-US Rate Differential",
+    "type": "macro",
+    "category": "monetary_policy",
+    "region": "Global",
+    "unit": "%p",
+    "currentValue": "-1.75%p",
+    "change": "-0.25",
+    "changeDirection": "down",
+    "description": "한국-미국 기준금리 차이. 역전 시 자본유출 압력. 성상현의 핵심 분석 변수",
+    "tags": [
+      "금리차",
+      "자본유출",
+      "환율"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
+  },
+  {
+    "id": "pboc_rate",
+    "name": "중국 기준금리",
+    "nameEn": "PBOC LPR Rate",
+    "type": "macro",
+    "category": "monetary_policy",
+    "region": "CN",
+    "unit": "%",
+    "currentValue": "3.45%",
+    "change": "-0.10",
+    "changeDirection": "down",
+    "description": "중국인민은행 대출우대금리(LPR). 중국 경기부양 의지의 직접 신호. 위안화 약세와 부동산 경기에 직결",
+    "tags": [
+      "금리",
+      "PBOC",
+      "중국",
+      "통화정책"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "us_fed_rate",
+    "name": "미국 기준금리",
+    "nameEn": "US Federal Funds Rate",
+    "type": "macro",
+    "category": "monetary_policy",
+    "region": "US",
+    "unit": "%",
+    "currentValue": "5.25-5.50%",
+    "change": "+0.25",
+    "changeDirection": "up",
+    "dataSource": "FRED",
+    "apiKey": "FEDFUNDS",
+    "description": "미 연준이 설정하는 기준금리. 글로벌 자본 흐름의 기준점. 드러켄밀러: '유동성이 시장을 움직인다'",
+    "tags": [
+      "금리",
+      "연준",
+      "통화정책",
+      "Fed"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "시타델",
+      "애크먼",
+      "성상현",
+      "막스",
+      "VIP",
+      "르네상스"
+    ]
   },
   {
     "id": "us_m2",
@@ -91,23 +269,288 @@
     "dataSource": "FRED",
     "apiKey": "M2SL",
     "description": "광의통화(M2) 규모. 2020년 30-40% 급증 후 정상화. 인플레이션의 선행지표",
-    "tags": ["통화공급", "M2", "유동성"],
-    "trackedBy": ["드러켄밀러", "성상현"]
+    "tags": [
+      "통화공급",
+      "M2",
+      "유동성"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "성상현"
+    ]
   },
   {
-    "id": "kr_us_rate_diff",
-    "name": "한미 금리차",
-    "nameEn": "KR-US Rate Differential",
+    "id": "us_reverse_repo",
+    "name": "역레포 잔액",
+    "nameEn": "Fed Reverse Repo Facility",
     "type": "macro",
     "category": "monetary_policy",
-    "region": "Global",
-    "unit": "%p",
-    "currentValue": "-1.75%p",
-    "change": "-0.25",
+    "region": "US",
+    "unit": "$B",
+    "currentValue": "$350B",
+    "change": "-$80B",
     "changeDirection": "down",
-    "description": "한국-미국 기준금리 차이. 역전 시 자본유출 압력. 성상현의 핵심 분석 변수",
-    "tags": ["금리차", "자본유출", "환율"],
-    "trackedBy": ["성상현"]
+    "description": "MMF가 Fed에 맡긴 초과 유동성. 감소=시장으로 유동성 유입. QT 충격 완충재 역할",
+    "tags": [
+      "역레포",
+      "유동성",
+      "MMF",
+      "연준"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "시타델"
+    ]
+  },
+  {
+    "id": "cn_10y",
+    "name": "중국 10년물 국채",
+    "nameEn": "China 10Y Government Bond",
+    "type": "macro",
+    "category": "bond",
+    "region": "CN",
+    "unit": "%",
+    "currentValue": "2.55%",
+    "change": "-0.08",
+    "changeDirection": "down",
+    "description": "중국 장기금리. 미중 금리차 확대 시 위안화 약세 압력. 중국 디플레이션 우려의 바로미터",
+    "tags": [
+      "중국",
+      "국채",
+      "10년물",
+      "금리"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "de_10y",
+    "name": "독일 10년물 국채",
+    "nameEn": "German 10Y Bund Yield",
+    "type": "macro",
+    "category": "bond",
+    "region": "EU",
+    "unit": "%",
+    "currentValue": "2.35%",
+    "change": "+0.02",
+    "changeDirection": "up",
+    "description": "유럽 무위험 수익률 벤치마크. 남유럽 국가채와의 스프레드가 유로존 재정위기 지표",
+    "tags": [
+      "분트",
+      "독일",
+      "국채",
+      "유럽"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "시타델"
+    ]
+  },
+  {
+    "id": "em_bond_spread",
+    "name": "EM 채권 스프레드",
+    "nameEn": "EM Bond Spread (EMBI+)",
+    "type": "macro",
+    "category": "bond",
+    "region": "Global",
+    "unit": "bp",
+    "currentValue": "320bp",
+    "change": "+15",
+    "changeDirection": "up",
+    "description": "신흥국 달러채 vs 미국채 스프레드. DXY 강세·Fed 긴축 시 확대. 신흥국 자본유출의 선행지표",
+    "tags": [
+      "신흥국",
+      "채권",
+      "스프레드",
+      "EMBI"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "hy_spread",
+    "name": "HY 신용 스프레드",
+    "nameEn": "High Yield Credit Spread",
+    "type": "macro",
+    "category": "bond",
+    "region": "US",
+    "unit": "bp",
+    "currentValue": "350bp",
+    "change": "-15",
+    "changeDirection": "down",
+    "description": "하이일드 채권 스프레드. 신용시장의 위험선호 지표. 역사적 저점은 비대칭 헷지 기회",
+    "tags": [
+      "신용",
+      "스프레드",
+      "하이일드",
+      "HY"
+    ],
+    "trackedBy": [
+      "애크먼",
+      "막스"
+    ]
+  },
+  {
+    "id": "ig_spread",
+    "name": "IG 신용 스프레드",
+    "nameEn": "Investment Grade Credit Spread",
+    "type": "macro",
+    "category": "bond",
+    "region": "US",
+    "unit": "bp",
+    "currentValue": "95bp",
+    "change": "-5",
+    "changeDirection": "down",
+    "description": "투자등급 회사채 vs 국채 스프레드. 막스: 신용사이클 위치 판단의 핵심. 애크먼: CDS 헷지의 기준",
+    "tags": [
+      "신용",
+      "스프레드",
+      "회사채",
+      "IG"
+    ],
+    "trackedBy": [
+      "애크먼",
+      "막스"
+    ]
+  },
+  {
+    "id": "jgb_10y",
+    "name": "일본 10년물 국채",
+    "nameEn": "Japan 10Y JGB Yield",
+    "type": "macro",
+    "category": "bond",
+    "region": "JP",
+    "unit": "%",
+    "currentValue": "0.95%",
+    "change": "+0.15",
+    "changeDirection": "up",
+    "description": "BOJ YCC 정책의 타겟. 상한선 돌파 시 글로벌 채권시장 충격파. 일본 보험사의 해외채권 리패트리에이션 촉발",
+    "tags": [
+      "JGB",
+      "일본",
+      "국채",
+      "YCC"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "시타델"
+    ]
+  },
+  {
+    "id": "kr_10y",
+    "name": "한국 10년물 국채",
+    "nameEn": "Korea 10Y Treasury Yield",
+    "type": "macro",
+    "category": "bond",
+    "region": "KR",
+    "unit": "%",
+    "currentValue": "3.45%",
+    "change": "+0.03",
+    "changeDirection": "up",
+    "dataSource": "ECOS",
+    "description": "한국 장기금리 벤치마크. 주택담보대출 고정금리의 기준. 미국 10년물과의 스프레드가 자본유출입 결정",
+    "tags": [
+      "국채",
+      "한국",
+      "10년물",
+      "장기금리"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
+  },
+  {
+    "id": "kr_3y",
+    "name": "한국 3년물 국채",
+    "nameEn": "Korea 3Y Treasury Yield",
+    "type": "macro",
+    "category": "bond",
+    "region": "KR",
+    "unit": "%",
+    "currentValue": "3.20%",
+    "change": "-0.05",
+    "changeDirection": "down",
+    "dataSource": "ECOS",
+    "description": "한국 채권시장의 벤치마크 금리",
+    "tags": [
+      "국채",
+      "한국",
+      "3년물"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
+  },
+  {
+    "id": "kr_credit_spread",
+    "name": "한국 신용 스프레드",
+    "nameEn": "Korea Credit Spread (AA-)",
+    "type": "macro",
+    "category": "bond",
+    "region": "KR",
+    "unit": "bp",
+    "currentValue": "55bp",
+    "change": "-3",
+    "changeDirection": "down",
+    "description": "한국 회사채(AA-) vs 국고채 스프레드. 기업 자금조달 비용과 신용위험의 온도계",
+    "tags": [
+      "신용",
+      "스프레드",
+      "회사채",
+      "한국"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
+  },
+  {
+    "id": "real_interest_rate",
+    "name": "실질금리",
+    "nameEn": "US Real Interest Rate (TIPS)",
+    "type": "macro",
+    "category": "bond",
+    "region": "US",
+    "unit": "%",
+    "currentValue": "1.95%",
+    "change": "+0.15",
+    "changeDirection": "up",
+    "description": "명목금리-기대인플레이션 = 실질금리. 금 가격의 역지표. 자산 밸류에이션의 진짜 할인율",
+    "tags": [
+      "실질금리",
+      "TIPS",
+      "할인율",
+      "금"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "애크먼",
+      "막스"
+    ]
+  },
+  {
+    "id": "term_premium",
+    "name": "기간 프리미엄",
+    "nameEn": "US Term Premium",
+    "type": "macro",
+    "category": "bond",
+    "region": "US",
+    "unit": "%p",
+    "currentValue": "0.35%",
+    "change": "+0.10",
+    "changeDirection": "up",
+    "description": "장기채 보유에 대한 보상. 재정적자 확대, 국채 발행 증가 시 상승. 애크먼 30Y 공식의 핵심 변수",
+    "tags": [
+      "기간프리미엄",
+      "장기채",
+      "재정적자",
+      "국채"
+    ],
+    "trackedBy": [
+      "애크먼",
+      "드러켄밀러"
+    ]
   },
   {
     "id": "us_10y",
@@ -123,8 +566,18 @@
     "dataSource": "FRED",
     "apiKey": "DGS10",
     "description": "글로벌 무위험 수익률의 벤치마크. 모든 자산의 할인율 기준. 애크먼의 장기금리 공식의 핵심",
-    "tags": ["국채", "장기금리", "10년물", "할인율"],
-    "trackedBy": ["드러켄밀러", "애크먼", "시타델", "막스"]
+    "tags": [
+      "국채",
+      "장기금리",
+      "10년물",
+      "할인율"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "애크먼",
+      "시타델",
+      "막스"
+    ]
   },
   {
     "id": "us_2y",
@@ -140,8 +593,110 @@
     "dataSource": "FRED",
     "apiKey": "DGS2",
     "description": "단기금리 기대를 반영. Fed 정책 기대의 프록시",
-    "tags": ["국채", "단기금리", "2년물"],
-    "trackedBy": ["드러켄밀러", "시타델"]
+    "tags": [
+      "국채",
+      "단기금리",
+      "2년물"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "시타델"
+    ]
+  },
+  {
+    "id": "us_2y10y_spread",
+    "name": "미국 2-10년 스프레드",
+    "nameEn": "US 2Y-10Y Spread",
+    "type": "macro",
+    "category": "bond",
+    "region": "US",
+    "unit": "bp",
+    "currentValue": "-35bp",
+    "change": "+10",
+    "changeDirection": "up",
+    "description": "장단기 금리차. 역전 지속 후 정상화 시점이 경기침체 직전 신호. 가장 검증된 침체 선행지표",
+    "tags": [
+      "스프레드",
+      "장단기",
+      "경기침체",
+      "선행지표"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "시타델"
+    ]
+  },
+  {
+    "id": "us_30y",
+    "name": "미국 30년물 국채",
+    "nameEn": "US 30Y Treasury Yield",
+    "type": "macro",
+    "category": "bond",
+    "region": "US",
+    "unit": "%",
+    "currentValue": "4.45%",
+    "change": "+0.08",
+    "changeDirection": "up",
+    "dataSource": "FRED",
+    "apiKey": "DGS30",
+    "description": "초장기 금리. 연금·보험 자산배분의 기준. 애크먼이 구조적 금리 상승 배팅에 활용한 핵심 만기",
+    "tags": [
+      "국채",
+      "30년물",
+      "초장기",
+      "연금"
+    ],
+    "trackedBy": [
+      "애크먼",
+      "드러켄밀러"
+    ]
+  },
+  {
+    "id": "us_bbb_spread",
+    "name": "BBB 스프레드",
+    "nameEn": "US BBB Corporate Spread",
+    "type": "macro",
+    "category": "bond",
+    "region": "US",
+    "unit": "bp",
+    "currentValue": "135bp",
+    "change": "-8",
+    "changeDirection": "down",
+    "description": "투자등급 하단. BBB → HY 강등(Fallen Angel) 리스크. 전체 IG 물량의 50%가 BBB에 집중",
+    "tags": [
+      "BBB",
+      "스프레드",
+      "신용",
+      "강등"
+    ],
+    "trackedBy": [
+      "막스",
+      "애크먼"
+    ]
+  },
+  {
+    "id": "us_tips_10y",
+    "name": "TIPS 10년물",
+    "nameEn": "US 10Y TIPS Yield",
+    "type": "macro",
+    "category": "bond",
+    "region": "US",
+    "unit": "%",
+    "currentValue": "1.90%",
+    "change": "+0.05",
+    "changeDirection": "up",
+    "dataSource": "FRED",
+    "description": "물가연동채 실질수익률. 금 가격과 역상관. 실질 자금조달 비용의 척도",
+    "tags": [
+      "TIPS",
+      "실질금리",
+      "물가연동",
+      "국채"
+    ],
+    "trackedBy": [
+      "애크먼",
+      "드러켄밀러"
+    ]
   },
   {
     "id": "yield_curve",
@@ -155,54 +710,16 @@
     "change": "+0.10",
     "changeDirection": "up",
     "description": "10년물-2년물 금리차. 역전 시 경기침체 신호 (6-18개월 선행). 드러켄밀러가 가장 신뢰하는 선행지표",
-    "tags": ["수익률곡선", "장단기", "경기침체", "선행지표"],
-    "trackedBy": ["드러켄밀러", "시타델"]
-  },
-  {
-    "id": "kr_3y",
-    "name": "한국 3년물 국채",
-    "nameEn": "Korea 3Y Treasury Yield",
-    "type": "macro",
-    "category": "bond",
-    "region": "KR",
-    "unit": "%",
-    "currentValue": "3.20%",
-    "change": "-0.05",
-    "changeDirection": "down",
-    "dataSource": "ECOS",
-    "description": "한국 채권시장의 벤치마크 금리",
-    "tags": ["국채", "한국", "3년물"],
-    "trackedBy": ["성상현"]
-  },
-  {
-    "id": "ig_spread",
-    "name": "IG 신용 스프레드",
-    "nameEn": "Investment Grade Credit Spread",
-    "type": "macro",
-    "category": "bond",
-    "region": "US",
-    "unit": "bp",
-    "currentValue": "95bp",
-    "change": "-5",
-    "changeDirection": "down",
-    "description": "투자등급 회사채 vs 국채 스프레드. 막스: 신용사이클 위치 판단의 핵심. 애크먼: CDS 헷지의 기준",
-    "tags": ["신용", "스프레드", "회사채", "IG"],
-    "trackedBy": ["애크먼", "막스"]
-  },
-  {
-    "id": "hy_spread",
-    "name": "HY 신용 스프레드",
-    "nameEn": "High Yield Credit Spread",
-    "type": "macro",
-    "category": "bond",
-    "region": "US",
-    "unit": "bp",
-    "currentValue": "350bp",
-    "change": "-15",
-    "changeDirection": "down",
-    "description": "하이일드 채권 스프레드. 신용시장의 위험선호 지표. 역사적 저점은 비대칭 헷지 기회",
-    "tags": ["신용", "스프레드", "하이일드", "HY"],
-    "trackedBy": ["애크먼", "막스"]
+    "tags": [
+      "수익률곡선",
+      "장단기",
+      "경기침체",
+      "선행지표"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "시타델"
+    ]
   },
   {
     "id": "dxy",
@@ -218,23 +735,127 @@
     "dataSource": "FRED",
     "apiKey": "DTWEXBGS",
     "description": "주요 6개 통화 대비 달러 가치. 글로벌 유동성의 역지표. 달러 강세 = 신흥국 압력",
-    "tags": ["달러", "환율", "DXY"],
-    "trackedBy": ["시타델", "성상현", "드러켄밀러"]
+    "tags": [
+      "달러",
+      "환율",
+      "DXY"
+    ],
+    "trackedBy": [
+      "시타델",
+      "성상현",
+      "드러켄밀러"
+    ]
   },
   {
-    "id": "usd_krw",
-    "name": "원/달러 환율",
-    "nameEn": "USD/KRW Exchange Rate",
+    "id": "em_fx_index",
+    "name": "EM 통화지수",
+    "nameEn": "EM Currency Index",
     "type": "macro",
     "category": "currency",
-    "region": "KR",
-    "unit": "원",
-    "currentValue": "1,340",
-    "change": "+12",
+    "region": "Global",
+    "unit": "pt",
+    "currentValue": "95.2",
+    "change": "-0.8",
+    "changeDirection": "down",
+    "description": "신흥국 통화 바스켓. DXY와 역상관. Fed 긴축기에 약세. 한국 원화 방향의 맥락 제공",
+    "tags": [
+      "신흥국",
+      "통화",
+      "환율",
+      "EM"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "eur_usd",
+    "name": "유로/달러",
+    "nameEn": "EUR/USD",
+    "type": "macro",
+    "category": "currency",
+    "region": "EU",
+    "unit": "",
+    "currentValue": "1.085",
+    "change": "-0.005",
+    "changeDirection": "down",
+    "description": "세계 최대 거래량 통화쌍. 미-유럽 금리차와 경기차에 연동. DXY의 57% 비중",
+    "tags": [
+      "유로",
+      "달러",
+      "환율"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "시타델"
+    ]
+  },
+  {
+    "id": "gbp_usd",
+    "name": "파운드/달러",
+    "nameEn": "GBP/USD",
+    "type": "macro",
+    "category": "currency",
+    "region": "EU",
+    "unit": "",
+    "currentValue": "1.265",
+    "change": "+0.003",
     "changeDirection": "up",
-    "description": "한국 투자의 핵심 변수. 1,300원+ = 외국인 매도 압력. 성상현: 금리-환율-유동성 삼각관계",
-    "tags": ["환율", "원달러", "외국인"],
-    "trackedBy": ["성상현"]
+    "description": "영국 파운드화. BOE 정책과 브렉시트 후 경제 구조변화 반영",
+    "tags": [
+      "파운드",
+      "달러",
+      "영국",
+      "환율"
+    ],
+    "trackedBy": [
+      "드러켄밀러"
+    ]
+  },
+  {
+    "id": "usd_cnh_offshore",
+    "name": "역외 위안화",
+    "nameEn": "USD/CNH Offshore",
+    "type": "macro",
+    "category": "currency",
+    "region": "CN",
+    "unit": "위안",
+    "currentValue": "7.28",
+    "change": "+0.02",
+    "changeDirection": "up",
+    "description": "역외 위안화. 역내(CNY) 대비 프리미엄이 자본유출 압력 반영. 시장 심리의 진짜 바로미터",
+    "tags": [
+      "위안",
+      "역외",
+      "CNH",
+      "환율"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "usd_cny",
+    "name": "위안/달러",
+    "nameEn": "USD/CNY",
+    "type": "macro",
+    "category": "currency",
+    "region": "CN",
+    "unit": "위안",
+    "currentValue": "7.25",
+    "change": "+0.03",
+    "changeDirection": "up",
+    "description": "중국 위안화 환율. PBOC 관리변동. 7.0 돌파 시 자본유출 가속. 한국 수출 경쟁력과 직결",
+    "tags": [
+      "위안",
+      "달러",
+      "중국",
+      "환율"
+    ],
+    "trackedBy": [
+      "시타델",
+      "성상현"
+    ]
   },
   {
     "id": "usd_jpy",
@@ -248,23 +869,36 @@
     "change": "-1.2",
     "changeDirection": "down",
     "description": "캐리 트레이드의 핵심 통화쌍. BOJ 정책 변화에 민감",
-    "tags": ["환율", "엔달러", "캐리트레이드"],
-    "trackedBy": ["시타델", "드러켄밀러"]
+    "tags": [
+      "환율",
+      "엔달러",
+      "캐리트레이드"
+    ],
+    "trackedBy": [
+      "시타델",
+      "드러켄밀러"
+    ]
   },
   {
-    "id": "wti",
-    "name": "WTI 유가",
-    "nameEn": "WTI Crude Oil",
+    "id": "usd_krw",
+    "name": "원/달러 환율",
+    "nameEn": "USD/KRW Exchange Rate",
     "type": "macro",
-    "category": "commodity",
-    "region": "Global",
-    "unit": "$/bbl",
-    "currentValue": "$72.5",
-    "change": "-1.3",
-    "changeDirection": "down",
-    "description": "글로벌 에너지 벤치마크. CPI의 변동성 주요 요인. 지정학적 리스크 반영",
-    "tags": ["유가", "원유", "에너지", "인플레이션"],
-    "trackedBy": ["시타델", "드러켄밀러"]
+    "category": "currency",
+    "region": "KR",
+    "unit": "원",
+    "currentValue": "1,340",
+    "change": "+12",
+    "changeDirection": "up",
+    "description": "한국 투자의 핵심 변수. 1,300원+ = 외국인 매도 압력. 성상현: 금리-환율-유동성 삼각관계",
+    "tags": [
+      "환율",
+      "원달러",
+      "외국인"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
   },
   {
     "id": "brent",
@@ -278,23 +912,14 @@
     "change": "-0.9",
     "changeDirection": "down",
     "description": "국제 유가 벤치마크. WTI 대비 프리미엄 = 지정학적 리스크 지표",
-    "tags": ["유가", "브렌트", "에너지"],
-    "trackedBy": ["시타델"]
-  },
-  {
-    "id": "gold",
-    "name": "금",
-    "nameEn": "Gold (XAU/USD)",
-    "type": "macro",
-    "category": "commodity",
-    "region": "Global",
-    "unit": "$/oz",
-    "currentValue": "$2,035",
-    "change": "+18",
-    "changeDirection": "up",
-    "description": "안전자산. 실질금리의 역지표. 중앙은행 금 매입 추세 주목",
-    "tags": ["금", "안전자산", "실질금리"],
-    "trackedBy": ["드러켄밀러", "막스"]
+    "tags": [
+      "유가",
+      "브렌트",
+      "에너지"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
   },
   {
     "id": "copper",
@@ -308,8 +933,86 @@
     "change": "+125",
     "changeDirection": "up",
     "description": "'닥터 코퍼' — 경기 선행지표. AI 데이터센터 전력 수요 + 전기차로 구조적 수요 증가",
-    "tags": ["구리", "경기선행", "전기차", "데이터센터"],
-    "trackedBy": ["시타델", "드러켄밀러"]
+    "tags": [
+      "구리",
+      "경기선행",
+      "전기차",
+      "데이터센터"
+    ],
+    "trackedBy": [
+      "시타델",
+      "드러켄밀러"
+    ]
+  },
+  {
+    "id": "gold",
+    "name": "금",
+    "nameEn": "Gold (XAU/USD)",
+    "type": "macro",
+    "category": "commodity",
+    "region": "Global",
+    "unit": "$/oz",
+    "currentValue": "$2,035",
+    "change": "+18",
+    "changeDirection": "up",
+    "description": "안전자산. 실질금리의 역지표. 중앙은행 금 매입 추세 주목",
+    "tags": [
+      "금",
+      "안전자산",
+      "실질금리"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "막스"
+    ]
+  },
+  {
+    "id": "iron_ore",
+    "name": "철광석",
+    "nameEn": "Iron Ore (62% Fe)",
+    "type": "macro",
+    "category": "commodity",
+    "region": "Global",
+    "unit": "$/mt",
+    "currentValue": "$125",
+    "change": "+3.2",
+    "changeDirection": "up",
+    "description": "건설/조선/자동차 원재료. 중국 부동산 경기와 밀접. 글로벌 인프라 투자 사이클 반영",
+    "tags": [
+      "철광석",
+      "철강",
+      "건설",
+      "조선",
+      "원자재"
+    ],
+    "trackedBy": [
+      "시타델",
+      "성상현"
+    ]
+  },
+  {
+    "id": "lithium",
+    "name": "리튬 가격",
+    "nameEn": "Lithium Carbonate Price",
+    "type": "macro",
+    "category": "commodity",
+    "region": "Global",
+    "unit": "$/mt",
+    "currentValue": "$15,500",
+    "change": "-8.5%",
+    "changeDirection": "down",
+    "description": "2차전지 핵심 원재료. EV 수요와 공급 과잉 간 균형이 가격 결정. 배터리 셀 원가의 40%+ 차지",
+    "tags": [
+      "리튬",
+      "2차전지",
+      "배터리",
+      "원자재",
+      "EV"
+    ],
+    "trackedBy": [
+      "시타델",
+      "성상현"
+    ]
   },
   {
     "id": "natural_gas",
@@ -323,8 +1026,1155 @@
     "change": "+0.15",
     "changeDirection": "up",
     "description": "에너지 전환의 브릿지 연료. LNG 수출 증가 추세",
-    "tags": ["천연가스", "LNG", "에너지"],
-    "trackedBy": ["시타델"]
+    "tags": [
+      "천연가스",
+      "LNG",
+      "에너지"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "wti",
+    "name": "WTI 유가",
+    "nameEn": "WTI Crude Oil",
+    "type": "macro",
+    "category": "commodity",
+    "region": "Global",
+    "unit": "$/bbl",
+    "currentValue": "$72.5",
+    "change": "-1.3",
+    "changeDirection": "down",
+    "description": "글로벌 에너지 벤치마크. CPI의 변동성 주요 요인. 지정학적 리스크 반영",
+    "tags": [
+      "유가",
+      "원유",
+      "에너지",
+      "인플레이션"
+    ],
+    "trackedBy": [
+      "시타델",
+      "드러켄밀러"
+    ]
+  },
+  {
+    "id": "carbon_eu_ets",
+    "name": "EU 탄소배출권",
+    "nameEn": "EU ETS Carbon Price",
+    "type": "macro",
+    "category": "commodity_energy",
+    "region": "EU",
+    "unit": "€/tCO2",
+    "currentValue": "€65",
+    "change": "-3",
+    "changeDirection": "down",
+    "description": "EU 탄소 배출권 가격. 에너지 전환 비용의 직접 지표. 높을수록 재생에너지·원전 경제성 개선",
+    "tags": [
+      "탄소",
+      "배출권",
+      "ETS",
+      "에너지전환"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "coal_newcastle",
+    "name": "석탄(뉴캐슬)",
+    "nameEn": "Newcastle Coal",
+    "type": "macro",
+    "category": "commodity_energy",
+    "region": "Global",
+    "unit": "$/mt",
+    "currentValue": "$135",
+    "change": "-5",
+    "changeDirection": "down",
+    "description": "아태 석탄 벤치마크. 인도·동남아 전력 수요 반영. 탈탄소 정책에도 개도국 수요 견조",
+    "tags": [
+      "석탄",
+      "에너지",
+      "뉴캐슬"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "diesel",
+    "name": "디젤",
+    "nameEn": "Diesel (ULSD)",
+    "type": "macro",
+    "category": "commodity_energy",
+    "region": "Global",
+    "unit": "$/gal",
+    "currentValue": "$2.75",
+    "change": "+0.08",
+    "changeDirection": "up",
+    "description": "물류·건설 핵심 연료. 경기 실물 수요의 프록시. 디젤 마진(crack spread)이 정유업 수익성 결정",
+    "tags": [
+      "디젤",
+      "연료",
+      "물류",
+      "정유"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "electricity_kr",
+    "name": "한국 전력단가",
+    "nameEn": "Korea Electricity Price",
+    "type": "macro",
+    "category": "commodity_energy",
+    "region": "KR",
+    "unit": "원/kWh",
+    "currentValue": "132",
+    "change": "+5",
+    "changeDirection": "up",
+    "description": "한국전력 판매단가. 원가보전율 미달 시 KEPCO 적자. 산업용 전기요금이 제조업 경쟁력에 직결",
+    "tags": [
+      "전력",
+      "전기요금",
+      "한전",
+      "에너지"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
+  },
+  {
+    "id": "electricity_pjm",
+    "name": "미국 전력(PJM)",
+    "nameEn": "PJM Electricity Price",
+    "type": "macro",
+    "category": "commodity_energy",
+    "region": "US",
+    "unit": "$/MWh",
+    "currentValue": "$45",
+    "change": "+8",
+    "changeDirection": "up",
+    "description": "미국 동부 전력 도매가격. 데이터센터 밀집 지역(버지니아). AI 전력수요 급증으로 구조적 상승세",
+    "tags": [
+      "전력",
+      "PJM",
+      "데이터센터",
+      "에너지"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "eu_natural_gas_ttf",
+    "name": "유럽 천연가스(TTF)",
+    "nameEn": "EU Natural Gas TTF",
+    "type": "macro",
+    "category": "commodity_energy",
+    "region": "EU",
+    "unit": "€/MWh",
+    "currentValue": "€32",
+    "change": "+2.5",
+    "changeDirection": "up",
+    "description": "유럽 천연가스 벤치마크. 러시아 파이프라인 단절 후 LNG 의존도 급증. 유럽 산업 경쟁력의 핵심 변수",
+    "tags": [
+      "천연가스",
+      "TTF",
+      "유럽",
+      "에너지"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "henry_hub",
+    "name": "헨리허브 천연가스",
+    "nameEn": "Henry Hub Natural Gas",
+    "type": "macro",
+    "category": "commodity_energy",
+    "region": "US",
+    "unit": "$/MMBtu",
+    "currentValue": "$2.85",
+    "change": "+0.15",
+    "changeDirection": "up",
+    "description": "미국 천연가스 벤치마크. LNG 수출 터미널 가동률과 연동. 겨울 난방 수요 시즌에 변동성 급증",
+    "tags": [
+      "천연가스",
+      "헨리허브",
+      "에너지",
+      "LNG"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "lng_spot",
+    "name": "LNG 현물",
+    "nameEn": "LNG Spot (JKM)",
+    "type": "macro",
+    "category": "commodity_energy",
+    "region": "Global",
+    "unit": "$/MMBtu",
+    "currentValue": "$12.5",
+    "change": "+0.8",
+    "changeDirection": "up",
+    "description": "동북아 LNG 현물가격. 한국·일본 전력 비용에 직결. 카타르·미국 LNG 수출 확대 중",
+    "tags": [
+      "LNG",
+      "천연가스",
+      "에너지",
+      "현물"
+    ],
+    "trackedBy": [
+      "시타델",
+      "성상현"
+    ]
+  },
+  {
+    "id": "aluminum",
+    "name": "알루미늄",
+    "nameEn": "Aluminum (LME)",
+    "type": "macro",
+    "category": "commodity_metal",
+    "region": "Global",
+    "unit": "$/mt",
+    "currentValue": "$2,350",
+    "change": "+45",
+    "changeDirection": "up",
+    "description": "경량화 소재. EV 차체·배터리 케이스 수요 증가. 전력 원가(전기분해)가 생산비의 40%",
+    "tags": [
+      "알루미늄",
+      "경량화",
+      "EV",
+      "금속"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "cobalt",
+    "name": "코발트",
+    "nameEn": "Cobalt",
+    "type": "macro",
+    "category": "commodity_metal",
+    "region": "Global",
+    "unit": "$/lb",
+    "currentValue": "$13.5",
+    "change": "-0.5",
+    "changeDirection": "down",
+    "description": "배터리 양극재. 콩고 공급 70%+. 코발트프리 배터리 기술 발전으로 장기 수요 불확실",
+    "tags": [
+      "코발트",
+      "배터리",
+      "콩고",
+      "금속"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "hrc_steel",
+    "name": "열연강판",
+    "nameEn": "HRC Steel",
+    "type": "macro",
+    "category": "commodity_metal",
+    "region": "Global",
+    "unit": "$/mt",
+    "currentValue": "$680",
+    "change": "+15",
+    "changeDirection": "up",
+    "description": "철강 제품 벤치마크. 자동차·조선·건설 원가에 직결. 중국 과잉생산이 글로벌 가격 결정",
+    "tags": [
+      "철강",
+      "열연",
+      "자동차",
+      "건설"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
+  },
+  {
+    "id": "lithium_carbonate",
+    "name": "탄산리튬",
+    "nameEn": "Lithium Carbonate (China)",
+    "type": "macro",
+    "category": "commodity_metal",
+    "region": "CN",
+    "unit": "만위안/mt",
+    "currentValue": "8.5",
+    "change": "-0.3",
+    "changeDirection": "down",
+    "description": "중국 현물 탄산리튬. 배터리 원가의 40%. 2022년 60만 → 현재 8.5만으로 폭락. 공급과잉 진행 중",
+    "tags": [
+      "리튬",
+      "탄산리튬",
+      "배터리",
+      "원자재"
+    ],
+    "trackedBy": [
+      "시타델",
+      "성상현"
+    ]
+  },
+  {
+    "id": "nickel",
+    "name": "니켈",
+    "nameEn": "Nickel (LME)",
+    "type": "macro",
+    "category": "commodity_metal",
+    "region": "Global",
+    "unit": "$/mt",
+    "currentValue": "$16,800",
+    "change": "+350",
+    "changeDirection": "up",
+    "description": "배터리 양극재 핵심 원료. 인도네시아 공급과점. 하이니켈 NCM 배터리에서 코발트 대체 추세",
+    "tags": [
+      "니켈",
+      "배터리",
+      "금속",
+      "인도네시아"
+    ],
+    "trackedBy": [
+      "시타델",
+      "성상현"
+    ]
+  },
+  {
+    "id": "palladium",
+    "name": "팔라듐",
+    "nameEn": "Palladium",
+    "type": "macro",
+    "category": "commodity_metal",
+    "region": "Global",
+    "unit": "$/oz",
+    "currentValue": "$1,050",
+    "change": "-25",
+    "changeDirection": "down",
+    "description": "가솔린차 배기촉매. EV 전환으로 장기 수요 감소 전망. 러시아 공급 40%로 지정학 리스크 내재",
+    "tags": [
+      "팔라듐",
+      "촉매",
+      "귀금속",
+      "자동차"
+    ],
+    "trackedBy": []
+  },
+  {
+    "id": "platinum",
+    "name": "백금",
+    "nameEn": "Platinum",
+    "type": "macro",
+    "category": "commodity_metal",
+    "region": "Global",
+    "unit": "$/oz",
+    "currentValue": "$920",
+    "change": "+15",
+    "changeDirection": "up",
+    "description": "수소연료전지 촉매. 디젤차 배기촉매. 남아공 공급 70%. 수소경제 확대 시 구조적 수요 증가",
+    "tags": [
+      "백금",
+      "수소",
+      "촉매",
+      "귀금속"
+    ],
+    "trackedBy": []
+  },
+  {
+    "id": "rare_earth_index",
+    "name": "희토류 지수",
+    "nameEn": "Rare Earth Price Index",
+    "type": "macro",
+    "category": "commodity_metal",
+    "region": "CN",
+    "unit": "pt",
+    "currentValue": "185",
+    "change": "+8",
+    "changeDirection": "up",
+    "description": "중국이 세계 생산 60%+를 장악. 영구자석(NdFeB)은 EV모터·풍력발전의 핵심 소재. 지정학적 무기화 리스크",
+    "tags": [
+      "희토류",
+      "영구자석",
+      "중국",
+      "EV",
+      "풍력"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "silver",
+    "name": "은",
+    "nameEn": "Silver (XAG/USD)",
+    "type": "macro",
+    "category": "commodity_metal",
+    "region": "Global",
+    "unit": "$/oz",
+    "currentValue": "$24.5",
+    "change": "+0.8",
+    "changeDirection": "up",
+    "description": "귀금속이자 산업금속. 태양광 패널 은 페이스트 수요 급증. 금/은 비율이 역사적 저점이면 은 상대 저평가",
+    "tags": [
+      "은",
+      "귀금속",
+      "태양광",
+      "산업금속"
+    ],
+    "trackedBy": [
+      "드러켄밀러"
+    ]
+  },
+  {
+    "id": "steel",
+    "name": "중국 철근",
+    "nameEn": "China Rebar Steel",
+    "type": "macro",
+    "category": "commodity_metal",
+    "region": "CN",
+    "unit": "위안/mt",
+    "currentValue": "3,650",
+    "change": "-50",
+    "changeDirection": "down",
+    "description": "중국 건설 경기의 바로미터. 부동산 침체와 인프라 부양 사이에서 방향 결정",
+    "tags": [
+      "철근",
+      "건설",
+      "중국",
+      "철강"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "tin",
+    "name": "주석",
+    "nameEn": "Tin (LME)",
+    "type": "macro",
+    "category": "commodity_metal",
+    "region": "Global",
+    "unit": "$/mt",
+    "currentValue": "$28,500",
+    "change": "+800",
+    "changeDirection": "up",
+    "description": "반도체 솔더링 핵심 금속. 전자기기 수요와 직결. 공급 제한적(인도네시아·미얀마)",
+    "tags": [
+      "주석",
+      "반도체",
+      "솔더",
+      "전자"
+    ],
+    "trackedBy": []
+  },
+  {
+    "id": "uranium",
+    "name": "우라늄",
+    "nameEn": "Uranium (U3O8)",
+    "type": "macro",
+    "category": "commodity_metal",
+    "region": "Global",
+    "unit": "$/lb",
+    "currentValue": "$85",
+    "change": "+5",
+    "changeDirection": "up",
+    "description": "원전 연료. 10년 투자부족 후 공급부족. AI 전력수요+탈탄소로 원전 르네상스. 카자흐스탄 공급 40%",
+    "tags": [
+      "우라늄",
+      "원전",
+      "에너지",
+      "핵연료"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "zinc",
+    "name": "아연",
+    "nameEn": "Zinc (LME)",
+    "type": "macro",
+    "category": "commodity_metal",
+    "region": "Global",
+    "unit": "$/mt",
+    "currentValue": "$2,650",
+    "change": "+30",
+    "changeDirection": "up",
+    "description": "아연도금(갈바나이징) 용도. 건설·인프라 지표. 경기민감 금속",
+    "tags": [
+      "아연",
+      "건설",
+      "금속",
+      "도금"
+    ],
+    "trackedBy": []
+  },
+  {
+    "id": "coffee",
+    "name": "커피(아라비카)",
+    "nameEn": "Coffee Arabica",
+    "type": "macro",
+    "category": "commodity_agri",
+    "region": "Global",
+    "unit": "¢/lb",
+    "currentValue": "185",
+    "change": "+12",
+    "changeDirection": "up",
+    "description": "세계 2위 거래 원자재. 브라질 서리·가뭄에 민감. 기후변화로 재배적지 축소 중",
+    "tags": [
+      "커피",
+      "아라비카",
+      "농산물",
+      "기후"
+    ],
+    "trackedBy": []
+  },
+  {
+    "id": "corn",
+    "name": "옥수수",
+    "nameEn": "Corn (CBOT)",
+    "type": "macro",
+    "category": "commodity_agri",
+    "region": "Global",
+    "unit": "¢/bu",
+    "currentValue": "445",
+    "change": "+8",
+    "changeDirection": "up",
+    "description": "사료·바이오에탄올 원료. 미국 생산 35%. 에탄올 의무혼합 정책이 수요의 하한선",
+    "tags": [
+      "옥수수",
+      "곡물",
+      "사료",
+      "에탄올"
+    ],
+    "trackedBy": []
+  },
+  {
+    "id": "cotton",
+    "name": "면화",
+    "nameEn": "Cotton (ICE)",
+    "type": "macro",
+    "category": "commodity_agri",
+    "region": "Global",
+    "unit": "¢/lb",
+    "currentValue": "82",
+    "change": "-1.5",
+    "changeDirection": "down",
+    "description": "섬유산업 원료. 미국·인도·중국 주요 생산. 소비 경기와 직결",
+    "tags": [
+      "면화",
+      "섬유",
+      "농산물"
+    ],
+    "trackedBy": []
+  },
+  {
+    "id": "palm_oil",
+    "name": "팜유",
+    "nameEn": "Palm Oil (MYR)",
+    "type": "macro",
+    "category": "commodity_agri",
+    "region": "Global",
+    "unit": "MYR/mt",
+    "currentValue": "3,850",
+    "change": "+65",
+    "changeDirection": "up",
+    "description": "세계 최대 식용유. 인도네시아·말레이시아 생산 85%. 바이오디젤 원료로 에너지 가격과 연동",
+    "tags": [
+      "팜유",
+      "식용유",
+      "바이오디젤",
+      "농산물"
+    ],
+    "trackedBy": []
+  },
+  {
+    "id": "rice_kr",
+    "name": "한국 쌀",
+    "nameEn": "Korean Rice Price",
+    "type": "macro",
+    "category": "commodity_agri",
+    "region": "KR",
+    "unit": "원/80kg",
+    "currentValue": "215,000",
+    "change": "+5,000",
+    "changeDirection": "up",
+    "description": "한국 주식(主食). 수급조절 정책 영향. 농촌 경제와 식품 물가의 기초",
+    "tags": [
+      "쌀",
+      "한국",
+      "농산물",
+      "식량"
+    ],
+    "trackedBy": []
+  },
+  {
+    "id": "soybean",
+    "name": "대두",
+    "nameEn": "Soybean (CBOT)",
+    "type": "macro",
+    "category": "commodity_agri",
+    "region": "Global",
+    "unit": "¢/bu",
+    "currentValue": "1,185",
+    "change": "+15",
+    "changeDirection": "up",
+    "description": "식용유·사료·바이오디젤 원료. 브라질·미국 양대 생산국. 중국 수입의존도 높아 미중 무역갈등 영향",
+    "tags": [
+      "대두",
+      "곡물",
+      "사료",
+      "바이오디젤"
+    ],
+    "trackedBy": []
+  },
+  {
+    "id": "sugar",
+    "name": "설탕",
+    "nameEn": "Sugar #11",
+    "type": "macro",
+    "category": "commodity_agri",
+    "region": "Global",
+    "unit": "¢/lb",
+    "currentValue": "22.5",
+    "change": "+0.8",
+    "changeDirection": "up",
+    "description": "브라질 생산 25%. 에탄올과 경합. 엘니뇨 시 인도·태국 감산 → 가격 급등",
+    "tags": [
+      "설탕",
+      "농산물",
+      "브라질",
+      "에탄올"
+    ],
+    "trackedBy": []
+  },
+  {
+    "id": "wheat",
+    "name": "밀",
+    "nameEn": "Wheat (CBOT)",
+    "type": "macro",
+    "category": "commodity_agri",
+    "region": "Global",
+    "unit": "¢/bu",
+    "currentValue": "585",
+    "change": "-12",
+    "changeDirection": "down",
+    "description": "글로벌 식량안보 핵심. 우크라이나 전쟁으로 공급 불안 경험. 이상기후가 최대 리스크",
+    "tags": [
+      "밀",
+      "농산물",
+      "식량",
+      "곡물"
+    ],
+    "trackedBy": []
+  },
+  {
+    "id": "baltic_dry",
+    "name": "발틱운임지수",
+    "nameEn": "Baltic Dry Index (BDI)",
+    "type": "macro",
+    "category": "indicator",
+    "region": "Global",
+    "unit": "pt",
+    "currentValue": "1,850",
+    "change": "+125",
+    "changeDirection": "up",
+    "description": "해상 운임, 글로벌 교역 선행지표. 벌크 화물 운임 반영. 중국 원자재 수입과 높은 상관관계",
+    "tags": [
+      "운임",
+      "해운",
+      "교역",
+      "경기선행",
+      "BDI"
+    ],
+    "trackedBy": [
+      "시타델",
+      "성상현"
+    ]
+  },
+  {
+    "id": "china_pmi",
+    "name": "중국 PMI",
+    "nameEn": "China Manufacturing PMI",
+    "type": "macro",
+    "category": "indicator",
+    "region": "CN",
+    "unit": "pt",
+    "currentValue": "50.1",
+    "change": "+0.3",
+    "changeDirection": "up",
+    "description": "글로벌 제조업 경기의 바로미터. 50 기준선 위=확장. 한국 수출, 원자재 가격에 직결",
+    "tags": [
+      "PMI",
+      "중국",
+      "제조업",
+      "경기"
+    ],
+    "trackedBy": [
+      "시타델",
+      "드러켄밀러",
+      "성상현"
+    ]
+  },
+  {
+    "id": "cn_caixin_pmi",
+    "name": "차이신 PMI",
+    "nameEn": "Caixin Manufacturing PMI",
+    "type": "macro",
+    "category": "indicator",
+    "region": "CN",
+    "unit": "pt",
+    "currentValue": "50.8",
+    "change": "+0.5",
+    "changeDirection": "up",
+    "description": "민간 조사 기반 중국 제조업 PMI. 관방 PMI와 괴리 시 시장 충격. 중소기업 체감 경기 반영",
+    "tags": [
+      "PMI",
+      "차이신",
+      "중국",
+      "제조업"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "cn_exports",
+    "name": "중국 수출",
+    "nameEn": "China Exports",
+    "type": "macro",
+    "category": "indicator",
+    "region": "CN",
+    "unit": "% YoY",
+    "currentValue": "+5.2%",
+    "change": "+3.1",
+    "changeDirection": "up",
+    "description": "세계의 공장 중국의 수출 추이. 글로벌 수요의 프록시. 한국 중간재 수출과 높은 상관",
+    "tags": [
+      "수출",
+      "중국",
+      "교역",
+      "경기"
+    ],
+    "trackedBy": [
+      "시타델",
+      "성상현"
+    ]
+  },
+  {
+    "id": "cn_gdp",
+    "name": "중국 GDP",
+    "nameEn": "China GDP Growth",
+    "type": "macro",
+    "category": "indicator",
+    "region": "CN",
+    "unit": "% YoY",
+    "currentValue": "5.2%",
+    "change": "-0.3",
+    "changeDirection": "down",
+    "description": "세계 2위 경제대국. 부동산 침체·인구 감소 속 5% 성장목표 달성 여부가 글로벌 경기의 관건",
+    "tags": [
+      "GDP",
+      "중국",
+      "성장",
+      "경제"
+    ],
+    "trackedBy": [
+      "시타델",
+      "드러켄밀러"
+    ]
+  },
+  {
+    "id": "electricity_demand",
+    "name": "전력 수요",
+    "nameEn": "Global Electricity Demand",
+    "type": "macro",
+    "category": "indicator",
+    "region": "Global",
+    "unit": "TWh",
+    "currentValue": "증가세",
+    "change": "+4.5%",
+    "changeDirection": "up",
+    "description": "AI 데이터센터 전력수요 급증. 2030년까지 데이터센터 전력 소비 2-3배 증가 전망. 전력 인프라 투자 촉발",
+    "tags": [
+      "전력",
+      "데이터센터",
+      "AI",
+      "에너지",
+      "인프라"
+    ],
+    "trackedBy": [
+      "시타델",
+      "성상현",
+      "VIP"
+    ]
+  },
+  {
+    "id": "eu_gdp",
+    "name": "유로존 GDP",
+    "nameEn": "Eurozone GDP Growth",
+    "type": "macro",
+    "category": "indicator",
+    "region": "EU",
+    "unit": "% QoQ",
+    "currentValue": "0.1%",
+    "change": "-0.1",
+    "changeDirection": "down",
+    "description": "유로존 경제성장률. 독일 제조업 침체와 남유럽 서비스업 회복의 이중구조",
+    "tags": [
+      "GDP",
+      "유로존",
+      "성장",
+      "유럽"
+    ],
+    "trackedBy": [
+      "드러켄밀러"
+    ]
+  },
+  {
+    "id": "eu_pmi",
+    "name": "유로존 PMI",
+    "nameEn": "Eurozone Manufacturing PMI",
+    "type": "macro",
+    "category": "indicator",
+    "region": "EU",
+    "unit": "pt",
+    "currentValue": "46.5",
+    "change": "+0.3",
+    "changeDirection": "up",
+    "description": "유로존 제조업 경기. 독일 제조업 부진이 전체를 견인. 45 이하 시 경기침체 경보",
+    "tags": [
+      "PMI",
+      "유로존",
+      "제조업",
+      "유럽"
+    ],
+    "trackedBy": [
+      "시타델",
+      "드러켄밀러"
+    ]
+  },
+  {
+    "id": "inflation_expectations",
+    "name": "기대인플레이션",
+    "nameEn": "US Breakeven Inflation Rate (5Y)",
+    "type": "macro",
+    "category": "indicator",
+    "region": "US",
+    "unit": "%",
+    "currentValue": "2.4%",
+    "change": "+0.1",
+    "changeDirection": "up",
+    "description": "BEI(손익분기인플레이션). TIPS와 명목국채 수익률 차이. Fed 신뢰도와 인플레이션 고착화 판단 지표",
+    "tags": [
+      "기대인플레",
+      "BEI",
+      "TIPS",
+      "인플레이션"
+    ],
+    "trackedBy": [
+      "애크먼",
+      "드러켄밀러"
+    ]
+  },
+  {
+    "id": "jp_tankan",
+    "name": "일본 단칸지수",
+    "nameEn": "Japan Tankan Survey",
+    "type": "macro",
+    "category": "indicator",
+    "region": "JP",
+    "unit": "pt",
+    "currentValue": "12",
+    "change": "+3",
+    "changeDirection": "up",
+    "description": "일본 기업 경기체감지수. BOJ 통화정책 결정의 주요 참고지표. 분기별 발표",
+    "tags": [
+      "단칸",
+      "일본",
+      "경기",
+      "BOJ"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "kr_cpi",
+    "name": "한국 CPI",
+    "nameEn": "Korea Consumer Price Index",
+    "type": "macro",
+    "category": "indicator",
+    "region": "KR",
+    "unit": "% YoY",
+    "currentValue": "3.1%",
+    "change": "-0.2",
+    "changeDirection": "down",
+    "description": "한은 금리결정 핵심 변수. 목표치 2%. 농산물/에너지 가격 변동에 민감",
+    "tags": [
+      "인플레이션",
+      "CPI",
+      "물가",
+      "한국",
+      "한은"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
+  },
+  {
+    "id": "kr_credit_growth",
+    "name": "한국 가계신용",
+    "nameEn": "Korea Household Credit",
+    "type": "macro",
+    "category": "indicator",
+    "region": "KR",
+    "unit": "조원",
+    "currentValue": "1,890조",
+    "change": "+8조",
+    "changeDirection": "up",
+    "dataSource": "ECOS",
+    "description": "가계부채 증가율. BOK 금리정책의 핵심 제약. 주택가격과 밀접. DSR 규제 강화 중",
+    "tags": [
+      "가계부채",
+      "신용",
+      "부동산",
+      "한은"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
+  },
+  {
+    "id": "kr_employment",
+    "name": "한국 취업자 수",
+    "nameEn": "Korea Employment",
+    "type": "macro",
+    "category": "indicator",
+    "region": "KR",
+    "unit": "만명",
+    "currentValue": "2,845",
+    "change": "+15",
+    "changeDirection": "up",
+    "dataSource": "ECOS",
+    "description": "한국 고용시장 상황. 서비스업 고용 비중 70%+. 청년실업과 구조적 미스매치 문제",
+    "tags": [
+      "고용",
+      "취업",
+      "한국",
+      "노동시장"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
+  },
+  {
+    "id": "kr_export",
+    "name": "한국 수출",
+    "nameEn": "Korean Exports",
+    "type": "macro",
+    "category": "indicator",
+    "region": "KR",
+    "unit": "$B",
+    "currentValue": "$57.3B",
+    "change": "+12.3%",
+    "changeDirection": "up",
+    "dataSource": "KITA",
+    "description": "한국 경제의 핵심. 반도체 비중 30%+. KOSPI와 높은 상관관계",
+    "tags": [
+      "수출",
+      "한국",
+      "반도체"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
+  },
+  {
+    "id": "kr_fiscal_policy",
+    "name": "한국 재정정책",
+    "nameEn": "Korea Fiscal Policy Stance",
+    "type": "macro",
+    "category": "indicator",
+    "region": "KR",
+    "unit": "조원",
+    "currentValue": "긴축",
+    "change": "세수결손",
+    "changeDirection": "down",
+    "description": "추경 편성, 세수 결손 등 재정정책 기조. 확장적 재정 시 건설·SOC 섹터 수혜",
+    "tags": [
+      "재정",
+      "정부",
+      "한국",
+      "추경"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
+  },
+  {
+    "id": "kr_gdp",
+    "name": "한국 GDP 성장률",
+    "nameEn": "Korea GDP Growth",
+    "type": "macro",
+    "category": "indicator",
+    "region": "KR",
+    "unit": "% YoY",
+    "currentValue": "2.2%",
+    "change": "-0.3",
+    "changeDirection": "down",
+    "dataSource": "ECOS",
+    "description": "한국 경제성장률. 수출 의존도 높아 글로벌 경기에 민감. 반도체 사이클이 GDP 변동의 30% 설명",
+    "tags": [
+      "GDP",
+      "한국",
+      "성장",
+      "경제"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
+  },
+  {
+    "id": "kr_leading_index",
+    "name": "한국 경기선행지수",
+    "nameEn": "Korea Leading Economic Index",
+    "type": "macro",
+    "category": "indicator",
+    "region": "KR",
+    "unit": "pt",
+    "currentValue": "100.5",
+    "change": "+0.3",
+    "changeDirection": "up",
+    "dataSource": "ECOS",
+    "description": "7개 선행지표 종합. 순환변동치 100 기준. 6-9개월 후 경기 방향 예측",
+    "tags": [
+      "선행지수",
+      "경기",
+      "한국",
+      "순환"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
+  },
+  {
+    "id": "kr_ppi",
+    "name": "한국 PPI",
+    "nameEn": "Korea Producer Price Index",
+    "type": "macro",
+    "category": "indicator",
+    "region": "KR",
+    "unit": "% YoY",
+    "currentValue": "1.8%",
+    "change": "-0.5",
+    "changeDirection": "down",
+    "dataSource": "ECOS",
+    "description": "생산자물가. CPI 선행지표. 원자재·환율 변동이 PPI로 → CPI로 전가되는 경로",
+    "tags": [
+      "PPI",
+      "생산자물가",
+      "한국",
+      "원자재"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
+  },
+  {
+    "id": "kr_trade_balance",
+    "name": "한국 무역수지",
+    "nameEn": "Korea Trade Balance",
+    "type": "macro",
+    "category": "indicator",
+    "region": "KR",
+    "unit": "$B",
+    "currentValue": "$4.2B",
+    "change": "+$2.1B",
+    "changeDirection": "up",
+    "description": "수출-수입 차이. 반도체 호황기에 흑자 급증. 에너지 수입 비중 높아 유가에 민감",
+    "tags": [
+      "무역수지",
+      "수출",
+      "수입",
+      "한국"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
+  },
+  {
+    "id": "semiconductor_cycle",
+    "name": "반도체 사이클",
+    "nameEn": "Semiconductor Cycle",
+    "type": "macro",
+    "category": "indicator",
+    "region": "Global",
+    "unit": "phase",
+    "currentValue": "업사이클",
+    "change": "HBM 수요 급증",
+    "changeDirection": "up",
+    "description": "메모리 가격 + AI 수요가 결정. 성상현: 2027년까지 슈퍼사이클 전망. KOSPI 30% 비중",
+    "tags": [
+      "반도체",
+      "메모리",
+      "HBM",
+      "AI"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
+  },
+  {
+    "id": "us_bank_lending",
+    "name": "미국 은행대출",
+    "nameEn": "US Bank Lending Standards",
+    "type": "macro",
+    "category": "indicator",
+    "region": "US",
+    "unit": "level",
+    "currentValue": "긴축",
+    "change": "강화",
+    "changeDirection": "down",
+    "description": "SLOOS 은행 대출태도 서베이. 대출 긴축 → 6-12개월 후 실물경기 둔화. 막스의 신용사이클 핵심 지표",
+    "tags": [
+      "대출",
+      "은행",
+      "신용",
+      "SLOOS"
+    ],
+    "trackedBy": [
+      "막스",
+      "드러켄밀러"
+    ]
+  },
+  {
+    "id": "us_consumer_confidence",
+    "name": "미국 소비자신뢰",
+    "nameEn": "US Consumer Confidence",
+    "type": "macro",
+    "category": "indicator",
+    "region": "US",
+    "unit": "pt",
+    "currentValue": "102.5",
+    "change": "-3.5",
+    "changeDirection": "down",
+    "description": "소비 심리. Conference Board 지수. 기대지수 하락이 실제 소비 둔화를 3-6개월 선행",
+    "tags": [
+      "소비자신뢰",
+      "심리",
+      "소비",
+      "미국"
+    ],
+    "trackedBy": [
+      "드러켄밀러"
+    ]
   },
   {
     "id": "us_cpi",
@@ -340,8 +2190,253 @@
     "dataSource": "FRED",
     "apiKey": "CPIAUCSL",
     "description": "인플레이션의 핵심 지표. 애크먼: 구조적 3%+ 지속 전망. Fed 피벗의 열쇠",
-    "tags": ["인플레이션", "CPI", "물가"],
-    "trackedBy": ["드러켄밀러", "애크먼", "시타델", "성상현", "막스"]
+    "tags": [
+      "인플레이션",
+      "CPI",
+      "물가"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "애크먼",
+      "시타델",
+      "성상현",
+      "막스"
+    ]
+  },
+  {
+    "id": "us_cpi_core",
+    "name": "미국 Core CPI",
+    "nameEn": "US Core CPI",
+    "type": "macro",
+    "category": "indicator",
+    "region": "US",
+    "unit": "% YoY",
+    "currentValue": "3.9%",
+    "change": "-0.1",
+    "changeDirection": "down",
+    "dataSource": "FRED",
+    "description": "식품·에너지 제외 근원물가. 서비스 인플레이션(주거비+임금) 경직성 반영. Fed의 실질 타겟",
+    "tags": [
+      "Core CPI",
+      "근원물가",
+      "인플레이션",
+      "서비스"
+    ],
+    "trackedBy": [
+      "애크먼",
+      "드러켄밀러"
+    ]
+  },
+  {
+    "id": "us_fiscal_deficit",
+    "name": "미국 재정적자",
+    "nameEn": "US Federal Budget Deficit",
+    "type": "macro",
+    "category": "indicator",
+    "region": "US",
+    "unit": "$T",
+    "currentValue": "$1.7T",
+    "change": "+$0.3T",
+    "changeDirection": "up",
+    "description": "연방정부 재정적자. 국채 발행 증가 → 장기금리 상승 압력. 애크먼 장기금리 상승론의 핵심 근거",
+    "tags": [
+      "재정적자",
+      "국채",
+      "정부부채",
+      "금리"
+    ],
+    "trackedBy": [
+      "애크먼",
+      "드러켄밀러"
+    ]
+  },
+  {
+    "id": "us_gdp",
+    "name": "미국 GDP 성장률",
+    "nameEn": "US GDP Growth Rate",
+    "type": "macro",
+    "category": "indicator",
+    "region": "US",
+    "unit": "% QoQ",
+    "currentValue": "3.3%",
+    "change": "+0.5",
+    "changeDirection": "up",
+    "dataSource": "FRED",
+    "description": "경제 성장의 종합지표. 드러켄밀러: 명목 GDP vs Fed Funds Rate 괴리 = 정책오류 신호",
+    "tags": [
+      "GDP",
+      "성장",
+      "경제"
+    ],
+    "trackedBy": [
+      "드러켄밀러"
+    ]
+  },
+  {
+    "id": "us_housing",
+    "name": "미국 주택시장",
+    "nameEn": "US Housing Market Index",
+    "type": "macro",
+    "category": "indicator",
+    "region": "US",
+    "unit": "index",
+    "currentValue": "약세",
+    "change": "-2.3%",
+    "changeDirection": "down",
+    "description": "드러켄밀러가 선행지표로 활용. 주택 착공/허가 → 내구재 소비 → GDP로 이어지는 경기 선행 채널",
+    "tags": [
+      "주택",
+      "부동산",
+      "경기선행",
+      "내구재"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "시타델"
+    ]
+  },
+  {
+    "id": "us_housing_starts",
+    "name": "미국 주택착공",
+    "nameEn": "US Housing Starts",
+    "type": "macro",
+    "category": "indicator",
+    "region": "US",
+    "unit": "K",
+    "currentValue": "1,350K",
+    "change": "-25",
+    "changeDirection": "down",
+    "dataSource": "FRED",
+    "description": "주택 신규 착공건수. 건설자재·가전·가구 소비의 선행지표. 모기지 금리와 역상관",
+    "tags": [
+      "주택착공",
+      "건설",
+      "부동산",
+      "선행지표"
+    ],
+    "trackedBy": [
+      "드러켄밀러"
+    ]
+  },
+  {
+    "id": "us_industrial_prod",
+    "name": "미국 산업생산",
+    "nameEn": "US Industrial Production",
+    "type": "macro",
+    "category": "indicator",
+    "region": "US",
+    "unit": "% MoM",
+    "currentValue": "-0.1%",
+    "change": "-0.3",
+    "changeDirection": "down",
+    "dataSource": "FRED",
+    "description": "제조업·광업·유틸리티 생산. 경기동행지표. ISM PMI와 높은 상관",
+    "tags": [
+      "산업생산",
+      "제조업",
+      "미국",
+      "경기"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "us_initial_claims",
+    "name": "미국 신규실업수당",
+    "nameEn": "US Initial Jobless Claims",
+    "type": "macro",
+    "category": "indicator",
+    "region": "US",
+    "unit": "K",
+    "currentValue": "215K",
+    "change": "+5",
+    "changeDirection": "up",
+    "dataSource": "FRED",
+    "apiKey": "ICSA",
+    "description": "주간 고빈도 고용지표. 급증 시 경기침체 조기경보. 4주 이동평균 추세가 핵심",
+    "tags": [
+      "실업수당",
+      "고용",
+      "주간지표",
+      "경기"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "시타델"
+    ]
+  },
+  {
+    "id": "us_ism_mfg_pmi",
+    "name": "ISM 제조업 PMI",
+    "nameEn": "ISM Manufacturing PMI",
+    "type": "macro",
+    "category": "indicator",
+    "region": "US",
+    "unit": "pt",
+    "currentValue": "49.2",
+    "change": "+0.8",
+    "changeDirection": "up",
+    "description": "미국 제조업 경기. 50 기준선. 신규주문-재고 스프레드가 향후 3개월 방향 예측",
+    "tags": [
+      "ISM",
+      "PMI",
+      "제조업",
+      "미국"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "시타델"
+    ]
+  },
+  {
+    "id": "us_jolts",
+    "name": "미국 구인건수(JOLTS)",
+    "nameEn": "US JOLTS Job Openings",
+    "type": "macro",
+    "category": "indicator",
+    "region": "US",
+    "unit": "M",
+    "currentValue": "8.8M",
+    "change": "-0.3",
+    "changeDirection": "down",
+    "dataSource": "FRED",
+    "description": "구인 수. 노동시장 과열의 척도. 구인/실업 비율 하락이 임금 상승 둔화의 선행지표",
+    "tags": [
+      "구인",
+      "JOLTS",
+      "노동시장",
+      "고용"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "시타델"
+    ]
+  },
+  {
+    "id": "us_nonfarm_payroll",
+    "name": "비농업고용",
+    "nameEn": "US Nonfarm Payrolls",
+    "type": "macro",
+    "category": "indicator",
+    "region": "US",
+    "unit": "K",
+    "currentValue": "+216K",
+    "change": "+30",
+    "changeDirection": "up",
+    "dataSource": "FRED",
+    "description": "매월 첫째 금요일 발표. 시장 변동성 최대 이벤트. 20만+ = 견조, 10만 이하 = 경기둔화 신호",
+    "tags": [
+      "고용",
+      "비농업",
+      "NFP",
+      "노동시장"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "시타델",
+      "애크먼"
+    ]
   },
   {
     "id": "us_pce",
@@ -356,8 +2451,15 @@
     "changeDirection": "down",
     "dataSource": "FRED",
     "description": "Fed가 선호하는 인플레이션 지표. 목표치 2%",
-    "tags": ["인플레이션", "PCE", "연준"],
-    "trackedBy": ["드러켄밀러", "애크먼"]
+    "tags": [
+      "인플레이션",
+      "PCE",
+      "연준"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "애크먼"
+    ]
   },
   {
     "id": "us_pmi",
@@ -371,8 +2473,39 @@
     "change": "+0.8",
     "changeDirection": "up",
     "description": "제조업 경기 체감지표. 50 이상=확장, 이하=수축. 경기선행지표",
-    "tags": ["PMI", "제조업", "경기"],
-    "trackedBy": ["시타델", "드러켄밀러"]
+    "tags": [
+      "PMI",
+      "제조업",
+      "경기"
+    ],
+    "trackedBy": [
+      "시타델",
+      "드러켄밀러"
+    ]
+  },
+  {
+    "id": "us_retail_sales",
+    "name": "미국 소매판매",
+    "nameEn": "US Retail Sales",
+    "type": "macro",
+    "category": "indicator",
+    "region": "US",
+    "unit": "% MoM",
+    "currentValue": "+0.6%",
+    "change": "+0.3",
+    "changeDirection": "up",
+    "dataSource": "FRED",
+    "description": "소비 경기의 직접 지표. 미국 GDP의 70%가 소비. 명목 vs 실질 소매판매 괴리 주목",
+    "tags": [
+      "소매판매",
+      "소비",
+      "미국",
+      "경기"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "시타델"
+    ]
   },
   {
     "id": "us_unemployment",
@@ -388,263 +2521,15 @@
     "dataSource": "FRED",
     "apiKey": "UNRATE",
     "description": "노동시장 건전성 지표. 급등 시 경기침체 신호",
-    "tags": ["실업률", "고용", "노동시장"],
-    "trackedBy": ["드러켄밀러", "시타델"]
-  },
-  {
-    "id": "us_gdp",
-    "name": "미국 GDP 성장률",
-    "nameEn": "US GDP Growth Rate",
-    "type": "macro",
-    "category": "indicator",
-    "region": "US",
-    "unit": "% QoQ",
-    "currentValue": "3.3%",
-    "change": "+0.5",
-    "changeDirection": "up",
-    "dataSource": "FRED",
-    "description": "경제 성장의 종합지표. 드러켄밀러: 명목 GDP vs Fed Funds Rate 괴리 = 정책오류 신호",
-    "tags": ["GDP", "성장", "경제"],
-    "trackedBy": ["드러켄밀러"]
-  },
-  {
-    "id": "kr_export",
-    "name": "한국 수출",
-    "nameEn": "Korean Exports",
-    "type": "macro",
-    "category": "indicator",
-    "region": "KR",
-    "unit": "$B",
-    "currentValue": "$57.3B",
-    "change": "+12.3%",
-    "changeDirection": "up",
-    "dataSource": "KITA",
-    "description": "한국 경제의 핵심. 반도체 비중 30%+. KOSPI와 높은 상관관계",
-    "tags": ["수출", "한국", "반도체"],
-    "trackedBy": ["성상현"]
-  },
-  {
-    "id": "semiconductor_cycle",
-    "name": "반도체 사이클",
-    "nameEn": "Semiconductor Cycle",
-    "type": "macro",
-    "category": "indicator",
-    "region": "Global",
-    "unit": "phase",
-    "currentValue": "업사이클",
-    "change": "HBM 수요 급증",
-    "changeDirection": "up",
-    "description": "메모리 가격 + AI 수요가 결정. 성상현: 2027년까지 슈퍼사이클 전망. KOSPI 30% 비중",
-    "tags": ["반도체", "메모리", "HBM", "AI"],
-    "trackedBy": ["성상현"]
-  },
-  {
-    "id": "foreign_flow_kr",
-    "name": "외국인 순매수",
-    "nameEn": "Foreign Net Buying (KR)",
-    "type": "macro",
-    "category": "flow",
-    "region": "KR",
-    "unit": "억원",
-    "currentValue": "-1,250",
-    "change": "순매도",
-    "changeDirection": "down",
-    "description": "외국인 자금 흐름. 원화 약세 시 매도 압력. KOSPI 방향의 주요 결정 요인",
-    "tags": ["외국인", "순매수", "자금흐름"],
-    "trackedBy": ["성상현"]
-  },
-  {
-    "id": "vix",
-    "name": "VIX (공포지수)",
-    "nameEn": "CBOE Volatility Index",
-    "type": "macro",
-    "category": "index",
-    "region": "US",
-    "unit": "pt",
-    "currentValue": "15.2",
-    "change": "-0.5",
-    "changeDirection": "down",
-    "description": "시장 공포/탐욕 지표. 20 이하=안도, 30 이상=공포. 막스의 사이클 위치 판단 보조지표",
-    "tags": ["변동성", "공포", "VIX"],
-    "trackedBy": ["막스", "시타델"]
-  },
-  {
-    "id": "kospi",
-    "name": "KOSPI",
-    "nameEn": "KOSPI Index",
-    "type": "macro",
-    "category": "index",
-    "region": "KR",
-    "unit": "pt",
-    "currentValue": "2,580",
-    "change": "+15",
-    "changeDirection": "up",
-    "description": "한국 대표 지수. 삼성전자+SK하이닉스 비중 30%+. 반도체 사이클에 민감",
-    "tags": ["KOSPI", "한국", "주식시장"],
-    "trackedBy": ["성상현", "VIP"]
-  },
-  {
-    "id": "kosdaq",
-    "name": "KOSDAQ",
-    "nameEn": "KOSDAQ Index",
-    "type": "macro",
-    "category": "index",
-    "region": "KR",
-    "unit": "pt",
-    "currentValue": "845",
-    "change": "+8",
-    "changeDirection": "up",
-    "description": "한국 기술/성장주 지수. 개인투자자 비중 높음",
-    "tags": ["KOSDAQ", "한국", "성장주"],
-    "trackedBy": ["성상현"]
-  },
-  {
-    "id": "sp500",
-    "name": "S&P 500",
-    "nameEn": "S&P 500 Index",
-    "type": "macro",
-    "category": "index",
-    "region": "US",
-    "unit": "pt",
-    "currentValue": "4,850",
-    "change": "+25",
-    "changeDirection": "up",
-    "description": "글로벌 주식시장 벤치마크. 미국 대형주 500개. 드러켄밀러: -30% 시 경기침체 신호",
-    "tags": ["S&P500", "미국", "주식시장"],
-    "trackedBy": ["드러켄밀러", "시타델", "애크먼"]
-  },
-  {
-    "id": "nasdaq",
-    "name": "나스닥",
-    "nameEn": "NASDAQ Composite",
-    "type": "macro",
-    "category": "index",
-    "region": "US",
-    "unit": "pt",
-    "currentValue": "15,300",
-    "change": "+85",
-    "changeDirection": "up",
-    "description": "기술주 중심 지수. AI/반도체 테마에 민감",
-    "tags": ["나스닥", "기술주", "미국"],
-    "trackedBy": ["시타델", "드러켄밀러"]
-  },
-  {
-    "id": "investor_sentiment",
-    "name": "투자자 심리",
-    "nameEn": "Investor Sentiment (FOMO/Fear)",
-    "type": "macro",
-    "category": "flow",
-    "region": "Global",
-    "unit": "level",
-    "currentValue": "탐욕 우세",
-    "changeDirection": "up",
-    "description": "막스: '인지된 위험이 낮을 때 실제 위험이 높다'. FOMO vs 공포의 사이클",
-    "tags": ["심리", "FOMO", "공포", "탐욕"],
-    "trackedBy": ["막스"]
-  },
-  {
-    "id": "credit_cycle",
-    "name": "신용 사이클",
-    "nameEn": "Credit Cycle Phase",
-    "type": "macro",
-    "category": "flow",
-    "region": "Global",
-    "unit": "phase",
-    "currentValue": "신용확대 후기",
-    "changeDirection": "neutral",
-    "description": "막스의 핵심 프레임워크: 번영→확대→무분별→손실→중단→번영. 현재 위치 파악이 핵심",
-    "tags": ["신용", "사이클", "대출"],
-    "trackedBy": ["막스", "드러켄밀러"]
-  },
-  {
-    "id": "lithium",
-    "name": "리튬 가격",
-    "nameEn": "Lithium Carbonate Price",
-    "type": "macro",
-    "category": "commodity",
-    "region": "Global",
-    "unit": "$/mt",
-    "currentValue": "$15,500",
-    "change": "-8.5%",
-    "changeDirection": "down",
-    "description": "2차전지 핵심 원재료. EV 수요와 공급 과잉 간 균형이 가격 결정. 배터리 셀 원가의 40%+ 차지",
-    "tags": ["리튬", "2차전지", "배터리", "원자재", "EV"],
-    "trackedBy": ["시타델", "성상현"]
-  },
-  {
-    "id": "iron_ore",
-    "name": "철광석",
-    "nameEn": "Iron Ore (62% Fe)",
-    "type": "macro",
-    "category": "commodity",
-    "region": "Global",
-    "unit": "$/mt",
-    "currentValue": "$125",
-    "change": "+3.2",
-    "changeDirection": "up",
-    "description": "건설/조선/자동차 원재료. 중국 부동산 경기와 밀접. 글로벌 인프라 투자 사이클 반영",
-    "tags": ["철광석", "철강", "건설", "조선", "원자재"],
-    "trackedBy": ["시타델", "성상현"]
-  },
-  {
-    "id": "electricity_demand",
-    "name": "전력 수요",
-    "nameEn": "Global Electricity Demand",
-    "type": "macro",
-    "category": "indicator",
-    "region": "Global",
-    "unit": "TWh",
-    "currentValue": "증가세",
-    "change": "+4.5%",
-    "changeDirection": "up",
-    "description": "AI 데이터센터 전력수요 급증. 2030년까지 데이터센터 전력 소비 2-3배 증가 전망. 전력 인프라 투자 촉발",
-    "tags": ["전력", "데이터센터", "AI", "에너지", "인프라"],
-    "trackedBy": ["시타델", "성상현", "VIP"]
-  },
-  {
-    "id": "us_housing",
-    "name": "미국 주택시장",
-    "nameEn": "US Housing Market Index",
-    "type": "macro",
-    "category": "indicator",
-    "region": "US",
-    "unit": "index",
-    "currentValue": "약세",
-    "change": "-2.3%",
-    "changeDirection": "down",
-    "description": "드러켄밀러가 선행지표로 활용. 주택 착공/허가 → 내구재 소비 → GDP로 이어지는 경기 선행 채널",
-    "tags": ["주택", "부동산", "경기선행", "내구재"],
-    "trackedBy": ["드러켄밀러", "시타델"]
-  },
-  {
-    "id": "china_pmi",
-    "name": "중국 PMI",
-    "nameEn": "China Manufacturing PMI",
-    "type": "macro",
-    "category": "indicator",
-    "region": "CN",
-    "unit": "pt",
-    "currentValue": "50.1",
-    "change": "+0.3",
-    "changeDirection": "up",
-    "description": "글로벌 제조업 경기의 바로미터. 50 기준선 위=확장. 한국 수출, 원자재 가격에 직결",
-    "tags": ["PMI", "중국", "제조업", "경기"],
-    "trackedBy": ["시타델", "드러켄밀러", "성상현"]
-  },
-  {
-    "id": "kr_cpi",
-    "name": "한국 CPI",
-    "nameEn": "Korea Consumer Price Index",
-    "type": "macro",
-    "category": "indicator",
-    "region": "KR",
-    "unit": "% YoY",
-    "currentValue": "3.1%",
-    "change": "-0.2",
-    "changeDirection": "down",
-    "description": "한은 금리결정 핵심 변수. 목표치 2%. 농산물/에너지 가격 변동에 민감",
-    "tags": ["인플레이션", "CPI", "물가", "한국", "한은"],
-    "trackedBy": ["성상현"]
+    "tags": [
+      "실업률",
+      "고용",
+      "노동시장"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "시타델"
+    ]
   },
   {
     "id": "us_wage_growth",
@@ -658,38 +2543,61 @@
     "change": "+0.1",
     "changeDirection": "up",
     "description": "서비스 인플레이션 결정요인. 임금-물가 악순환(wage-price spiral) 우려의 핵심 지표",
-    "tags": ["임금", "고용", "인플레이션", "서비스"],
-    "trackedBy": ["드러켄밀러", "애크먼", "시타델"]
+    "tags": [
+      "임금",
+      "고용",
+      "인플레이션",
+      "서비스"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "애크먼",
+      "시타델"
+    ]
   },
   {
-    "id": "real_interest_rate",
-    "name": "실질금리",
-    "nameEn": "US Real Interest Rate (TIPS)",
+    "id": "aaii_sentiment",
+    "name": "AAII 투자심리",
+    "nameEn": "AAII Investor Sentiment",
     "type": "macro",
-    "category": "bond",
+    "category": "flow",
     "region": "US",
     "unit": "%",
-    "currentValue": "1.95%",
-    "change": "+0.15",
+    "currentValue": "Bull 42%",
+    "change": "+5",
     "changeDirection": "up",
-    "description": "명목금리-기대인플레이션 = 실질금리. 금 가격의 역지표. 자산 밸류에이션의 진짜 할인율",
-    "tags": ["실질금리", "TIPS", "할인율", "금"],
-    "trackedBy": ["드러켄밀러", "애크먼", "막스"]
+    "description": "미국 개인투자자 강세/약세 비율. 극단 낙관 시 역발상 매도, 극단 비관 시 매수 신호",
+    "tags": [
+      "AAII",
+      "심리",
+      "개인투자자",
+      "역발상"
+    ],
+    "trackedBy": [
+      "막스"
+    ]
   },
   {
-    "id": "term_premium",
-    "name": "기간 프리미엄",
-    "nameEn": "US Term Premium",
+    "id": "btc_usd",
+    "name": "비트코인",
+    "nameEn": "Bitcoin (BTC/USD)",
     "type": "macro",
-    "category": "bond",
-    "region": "US",
-    "unit": "%p",
-    "currentValue": "0.35%",
-    "change": "+0.10",
+    "category": "flow",
+    "region": "Global",
+    "unit": "$",
+    "currentValue": "$42,500",
+    "change": "+$1,200",
     "changeDirection": "up",
-    "description": "장기채 보유에 대한 보상. 재정적자 확대, 국채 발행 증가 시 상승. 애크먼 30Y 공식의 핵심 변수",
-    "tags": ["기간프리미엄", "장기채", "재정적자", "국채"],
-    "trackedBy": ["애크먼", "드러켄밀러"]
+    "description": "디지털 자산 벤치마크. 글로벌 유동성과 높은 상관. 위험자산 심리의 프록시. ETF 승인 후 기관화 진행",
+    "tags": [
+      "비트코인",
+      "암호화폐",
+      "유동성",
+      "위험자산"
+    ],
+    "trackedBy": [
+      "드러켄밀러"
+    ]
   },
   {
     "id": "corporate_leverage",
@@ -703,23 +2611,37 @@
     "change": "상승",
     "changeDirection": "up",
     "description": "신용사이클 후기 신호. 기업 부채/EBITDA 비율. 레버리지 과도 → 금리 상승 시 디폴트 위험 증가",
-    "tags": ["레버리지", "기업부채", "신용사이클", "디폴트"],
-    "trackedBy": ["막스", "애크먼"]
+    "tags": [
+      "레버리지",
+      "기업부채",
+      "신용사이클",
+      "디폴트"
+    ],
+    "trackedBy": [
+      "막스",
+      "애크먼"
+    ]
   },
   {
-    "id": "lending_standards",
-    "name": "대출 기준",
-    "nameEn": "US Senior Loan Officer Survey",
+    "id": "credit_cycle",
+    "name": "신용 사이클",
+    "nameEn": "Credit Cycle Phase",
     "type": "macro",
     "category": "flow",
-    "region": "US",
-    "unit": "level",
-    "currentValue": "강화",
-    "change": "강화",
-    "changeDirection": "up",
-    "description": "신용위축의 선행지표. 은행 대출 기준 강화 → 기업/소비자 신용 접근성↓ → 경기 둔화",
-    "tags": ["대출", "신용위축", "은행", "경기선행"],
-    "trackedBy": ["드러켄밀러", "막스"]
+    "region": "Global",
+    "unit": "phase",
+    "currentValue": "신용확대 후기",
+    "changeDirection": "neutral",
+    "description": "막스의 핵심 프레임워크: 번영→확대→무분별→손실→중단→번영. 현재 위치 파악이 핵심",
+    "tags": [
+      "신용",
+      "사이클",
+      "대출"
+    ],
+    "trackedBy": [
+      "막스",
+      "드러켄밀러"
+    ]
   },
   {
     "id": "customer_deposits_kr",
@@ -733,8 +2655,192 @@
     "change": "+2.1",
     "changeDirection": "up",
     "description": "개인투자자 대기자금. 증가 시 매수 여력 확대. 시장 저점 근처에서 급증하면 반등 신호",
-    "tags": ["예탁금", "개인투자자", "대기자금", "유동성"],
-    "trackedBy": ["성상현", "VIP"]
+    "tags": [
+      "예탁금",
+      "개인투자자",
+      "대기자금",
+      "유동성"
+    ],
+    "trackedBy": [
+      "성상현",
+      "VIP"
+    ]
+  },
+  {
+    "id": "em_fund_flows",
+    "name": "EM 펀드 자금흐름",
+    "nameEn": "EM Fund Flows",
+    "type": "macro",
+    "category": "flow",
+    "region": "Global",
+    "unit": "$B/wk",
+    "currentValue": "-$2.5B",
+    "change": "-$1.2B",
+    "changeDirection": "down",
+    "description": "신흥국 펀드 유출입. DXY·Fed 정책에 반비례. 한국은 EM 분류에 포함되어 직접 영향",
+    "tags": [
+      "신흥국",
+      "자금흐름",
+      "EM",
+      "유출"
+    ],
+    "trackedBy": [
+      "시타델",
+      "성상현"
+    ]
+  },
+  {
+    "id": "fear_greed_index",
+    "name": "공포·탐욕 지수",
+    "nameEn": "CNN Fear & Greed Index",
+    "type": "macro",
+    "category": "flow",
+    "region": "US",
+    "unit": "pt",
+    "currentValue": "68",
+    "change": "+5",
+    "changeDirection": "up",
+    "description": "7개 시장지표 종합. 0=극도 공포, 100=극도 탐욕. 막스 사이클론의 정량화 버전",
+    "tags": [
+      "공포",
+      "탐욕",
+      "심리",
+      "종합지표"
+    ],
+    "trackedBy": [
+      "막스"
+    ]
+  },
+  {
+    "id": "foreign_flow_kr",
+    "name": "외국인 순매수",
+    "nameEn": "Foreign Net Buying (KR)",
+    "type": "macro",
+    "category": "flow",
+    "region": "KR",
+    "unit": "억원",
+    "currentValue": "-1,250",
+    "change": "순매도",
+    "changeDirection": "down",
+    "description": "외국인 자금 흐름. 원화 약세 시 매도 압력. KOSPI 방향의 주요 결정 요인",
+    "tags": [
+      "외국인",
+      "순매수",
+      "자금흐름"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
+  },
+  {
+    "id": "fund_flows_bond",
+    "name": "채권펀드 자금흐름",
+    "nameEn": "Global Bond Fund Flows",
+    "type": "macro",
+    "category": "flow",
+    "region": "Global",
+    "unit": "$B/wk",
+    "currentValue": "+$8B",
+    "change": "+$3B",
+    "changeDirection": "up",
+    "description": "채권펀드 순유입. Risk-off 시 채권으로 이동. 금리 하락 기대 시 유입 가속",
+    "tags": [
+      "자금흐름",
+      "채권",
+      "펀드",
+      "유입"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "fund_flows_equity",
+    "name": "주식펀드 자금흐름",
+    "nameEn": "Global Equity Fund Flows",
+    "type": "macro",
+    "category": "flow",
+    "region": "Global",
+    "unit": "$B/wk",
+    "currentValue": "+$12B",
+    "change": "+$5B",
+    "changeDirection": "up",
+    "description": "글로벌 주식펀드 순유입. 지속적 유입이 상승장 지지. 대규모 유출 시 패닉 가속",
+    "tags": [
+      "자금흐름",
+      "펀드",
+      "주식",
+      "유입"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "investor_sentiment",
+    "name": "투자자 심리",
+    "nameEn": "Investor Sentiment (FOMO/Fear)",
+    "type": "macro",
+    "category": "flow",
+    "region": "Global",
+    "unit": "level",
+    "currentValue": "탐욕 우세",
+    "changeDirection": "up",
+    "description": "막스: '인지된 위험이 낮을 때 실제 위험이 높다'. FOMO vs 공포의 사이클",
+    "tags": [
+      "심리",
+      "FOMO",
+      "공포",
+      "탐욕"
+    ],
+    "trackedBy": [
+      "막스"
+    ]
+  },
+  {
+    "id": "kr_ipo_volume",
+    "name": "한국 IPO 시장",
+    "nameEn": "Korea IPO Volume",
+    "type": "macro",
+    "category": "flow",
+    "region": "KR",
+    "unit": "건",
+    "currentValue": "월 8건",
+    "change": "+3",
+    "changeDirection": "up",
+    "description": "신규상장 건수·금액. IPO 시장 과열은 사이클 후기 신호. 대형 IPO가 시장 유동성 흡수",
+    "tags": [
+      "IPO",
+      "상장",
+      "신규",
+      "시장"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
+  },
+  {
+    "id": "lending_standards",
+    "name": "대출 기준",
+    "nameEn": "US Senior Loan Officer Survey",
+    "type": "macro",
+    "category": "flow",
+    "region": "US",
+    "unit": "level",
+    "currentValue": "강화",
+    "change": "강화",
+    "changeDirection": "up",
+    "description": "신용위축의 선행지표. 은행 대출 기준 강화 → 기업/소비자 신용 접근성↓ → 경기 둔화",
+    "tags": [
+      "대출",
+      "신용위축",
+      "은행",
+      "경기선행"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "막스"
+    ]
   },
   {
     "id": "margin_trading_kr",
@@ -748,37 +2854,383 @@
     "change": "-0.3",
     "changeDirection": "down",
     "description": "개인투자자 레버리지. 급증 시 과열 신호, 급감 시 반대매매 압력. KOSDAQ에 특히 민감",
-    "tags": ["신용잔고", "레버리지", "개인투자자", "반대매매"],
-    "trackedBy": ["성상현", "VIP"]
+    "tags": [
+      "신용잔고",
+      "레버리지",
+      "개인투자자",
+      "반대매매"
+    ],
+    "trackedBy": [
+      "성상현",
+      "VIP"
+    ]
   },
   {
-    "id": "inflation_expectations",
-    "name": "기대인플레이션",
-    "nameEn": "US Breakeven Inflation Rate (5Y)",
+    "id": "put_call_ratio",
+    "name": "풋/콜 비율",
+    "nameEn": "CBOE Put/Call Ratio",
     "type": "macro",
-    "category": "indicator",
+    "category": "flow",
     "region": "US",
-    "unit": "%",
-    "currentValue": "2.4%",
-    "change": "+0.1",
+    "unit": "ratio",
+    "currentValue": "0.82",
+    "change": "+0.05",
     "changeDirection": "up",
-    "description": "BEI(손익분기인플레이션). TIPS와 명목국채 수익률 차이. Fed 신뢰도와 인플레이션 고착화 판단 지표",
-    "tags": ["기대인플레", "BEI", "TIPS", "인플레이션"],
-    "trackedBy": ["애크먼", "드러켄밀러"]
+    "description": "옵션시장 심리지표. 1.0 이상=극도의 공포(역발상 매수), 0.7 이하=과도한 낙관(경계)",
+    "tags": [
+      "풋콜",
+      "옵션",
+      "심리",
+      "역발상"
+    ],
+    "trackedBy": [
+      "막스"
+    ]
   },
   {
-    "id": "baltic_dry",
-    "name": "발틱운임지수",
-    "nameEn": "Baltic Dry Index (BDI)",
+    "id": "short_interest_ratio",
+    "name": "공매도 비율",
+    "nameEn": "Short Interest Ratio",
     "type": "macro",
-    "category": "indicator",
+    "category": "flow",
+    "region": "US",
+    "unit": "ratio",
+    "currentValue": "2.8일",
+    "change": "+0.3",
+    "changeDirection": "up",
+    "description": "전체 유통주식 대비 공매도 잔고. 높으면 숏스퀴즈 잠재력. 개별 종목 레벨에서 더 유의미",
+    "tags": [
+      "공매도",
+      "숏",
+      "숏스퀴즈",
+      "포지셔닝"
+    ],
+    "trackedBy": []
+  },
+  {
+    "id": "dax",
+    "name": "DAX",
+    "nameEn": "DAX 40",
+    "type": "macro",
+    "category": "index",
+    "region": "EU",
+    "unit": "pt",
+    "currentValue": "16,750",
+    "change": "+120",
+    "changeDirection": "up",
+    "description": "독일 대표지수. 유럽 최대 경제. 자동차·화학·산업재 중심. 에너지 비용이 경쟁력 변수",
+    "tags": [
+      "DAX",
+      "독일",
+      "유럽",
+      "주식시장"
+    ],
+    "trackedBy": [
+      "드러켄밀러"
+    ]
+  },
+  {
+    "id": "ftse100",
+    "name": "FTSE 100",
+    "nameEn": "FTSE 100",
+    "type": "macro",
+    "category": "index",
+    "region": "EU",
+    "unit": "pt",
+    "currentValue": "7,650",
+    "change": "+45",
+    "changeDirection": "up",
+    "description": "영국 대표지수. 원자재·금융·헬스케어 중심. 글로벌 수익 비중 높아 파운드 약세 시 강세",
+    "tags": [
+      "FTSE",
+      "영국",
+      "주식시장"
+    ],
+    "trackedBy": []
+  },
+  {
+    "id": "hang_seng",
+    "name": "항셍지수",
+    "nameEn": "Hang Seng Index",
+    "type": "macro",
+    "category": "index",
+    "region": "CN",
+    "unit": "pt",
+    "currentValue": "16,800",
+    "change": "-150",
+    "changeDirection": "down",
+    "description": "홍콩 대표지수. 중국 테크·부동산 비중 높음. 미중 갈등과 중국 규제 리스크의 바로미터",
+    "tags": [
+      "항셍",
+      "홍콩",
+      "중국",
+      "주식시장"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "kosdaq",
+    "name": "KOSDAQ",
+    "nameEn": "KOSDAQ Index",
+    "type": "macro",
+    "category": "index",
+    "region": "KR",
+    "unit": "pt",
+    "currentValue": "845",
+    "change": "+8",
+    "changeDirection": "up",
+    "description": "한국 기술/성장주 지수. 개인투자자 비중 높음",
+    "tags": [
+      "KOSDAQ",
+      "한국",
+      "성장주"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
+  },
+  {
+    "id": "kosdaq150",
+    "name": "코스닥150",
+    "nameEn": "KOSDAQ 150 Index",
+    "type": "macro",
+    "category": "index",
+    "region": "KR",
+    "unit": "pt",
+    "currentValue": "1,150",
+    "change": "+12",
+    "changeDirection": "up",
+    "description": "코스닥 대표 150종목. 바이오·IT·게임 중심. 개인투자자 비중 높아 심리에 민감",
+    "tags": [
+      "코스닥",
+      "150",
+      "한국",
+      "성장주"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
+  },
+  {
+    "id": "kospi",
+    "name": "KOSPI",
+    "nameEn": "KOSPI Index",
+    "type": "macro",
+    "category": "index",
+    "region": "KR",
+    "unit": "pt",
+    "currentValue": "2,580",
+    "change": "+15",
+    "changeDirection": "up",
+    "description": "한국 대표 지수. 삼성전자+SK하이닉스 비중 30%+. 반도체 사이클에 민감",
+    "tags": [
+      "KOSPI",
+      "한국",
+      "주식시장"
+    ],
+    "trackedBy": [
+      "성상현",
+      "VIP"
+    ]
+  },
+  {
+    "id": "msci_em",
+    "name": "MSCI EM",
+    "nameEn": "MSCI Emerging Markets",
+    "type": "macro",
+    "category": "index",
     "region": "Global",
     "unit": "pt",
-    "currentValue": "1,850",
-    "change": "+125",
+    "currentValue": "1,025",
+    "change": "+8",
     "changeDirection": "up",
-    "description": "해상 운임, 글로벌 교역 선행지표. 벌크 화물 운임 반영. 중국 원자재 수입과 높은 상관관계",
-    "tags": ["운임", "해운", "교역", "경기선행", "BDI"],
-    "trackedBy": ["시타델", "성상현"]
+    "description": "신흥국 주식 벤치마크. 중국·대만·인도·한국 비중 순. 패시브 자금 흐름의 기준점",
+    "tags": [
+      "MSCI",
+      "신흥국",
+      "EM",
+      "글로벌"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "nasdaq",
+    "name": "나스닥",
+    "nameEn": "NASDAQ Composite",
+    "type": "macro",
+    "category": "index",
+    "region": "US",
+    "unit": "pt",
+    "currentValue": "15,300",
+    "change": "+85",
+    "changeDirection": "up",
+    "description": "기술주 중심 지수. AI/반도체 테마에 민감",
+    "tags": [
+      "나스닥",
+      "기술주",
+      "미국"
+    ],
+    "trackedBy": [
+      "시타델",
+      "드러켄밀러"
+    ]
+  },
+  {
+    "id": "nikkei225",
+    "name": "닛케이225",
+    "nameEn": "Nikkei 225",
+    "type": "macro",
+    "category": "index",
+    "region": "JP",
+    "unit": "pt",
+    "currentValue": "35,800",
+    "change": "+350",
+    "changeDirection": "up",
+    "description": "일본 대표지수. 엔화 약세=수출주 강세. 30년 만에 사상최고 근접. 워런 버핏의 일본 종합상사 투자 주목",
+    "tags": [
+      "닛케이",
+      "일본",
+      "주식시장"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "russell2000",
+    "name": "러셀2000",
+    "nameEn": "Russell 2000",
+    "type": "macro",
+    "category": "index",
+    "region": "US",
+    "unit": "pt",
+    "currentValue": "2,020",
+    "change": "+15",
+    "changeDirection": "up",
+    "description": "미국 소형주 지수. 금리 민감도 높음. 대형주 대비 할인율이 사이클 전환 신호",
+    "tags": [
+      "러셀",
+      "소형주",
+      "미국",
+      "금리민감"
+    ],
+    "trackedBy": [
+      "드러켄밀러"
+    ]
+  },
+  {
+    "id": "shanghai_composite",
+    "name": "상하이종합",
+    "nameEn": "Shanghai Composite",
+    "type": "macro",
+    "category": "index",
+    "region": "CN",
+    "unit": "pt",
+    "currentValue": "3,050",
+    "change": "+25",
+    "changeDirection": "up",
+    "description": "중국 본토 대표지수. 정부 부양정책에 민감. A주 시장의 외국인 접근성 제한적",
+    "tags": [
+      "상하이",
+      "중국",
+      "주식시장"
+    ],
+    "trackedBy": [
+      "시타델"
+    ]
+  },
+  {
+    "id": "sox_index",
+    "name": "필라델피아 반도체",
+    "nameEn": "Philadelphia Semiconductor (SOX)",
+    "type": "macro",
+    "category": "index",
+    "region": "US",
+    "unit": "pt",
+    "currentValue": "4,200",
+    "change": "+85",
+    "changeDirection": "up",
+    "description": "글로벌 반도체 주가 벤치마크. 삼성전자·SK하이닉스 주가와 높은 동조성. AI 수요 기대 반영",
+    "tags": [
+      "SOX",
+      "반도체",
+      "기술주",
+      "미국"
+    ],
+    "trackedBy": [
+      "시타델",
+      "성상현"
+    ]
+  },
+  {
+    "id": "sp500",
+    "name": "S&P 500",
+    "nameEn": "S&P 500 Index",
+    "type": "macro",
+    "category": "index",
+    "region": "US",
+    "unit": "pt",
+    "currentValue": "4,850",
+    "change": "+25",
+    "changeDirection": "up",
+    "description": "글로벌 주식시장 벤치마크. 미국 대형주 500개. 드러켄밀러: -30% 시 경기침체 신호",
+    "tags": [
+      "S&P500",
+      "미국",
+      "주식시장"
+    ],
+    "trackedBy": [
+      "드러켄밀러",
+      "시타델",
+      "애크먼"
+    ]
+  },
+  {
+    "id": "vix",
+    "name": "VIX (공포지수)",
+    "nameEn": "CBOE Volatility Index",
+    "type": "macro",
+    "category": "index",
+    "region": "US",
+    "unit": "pt",
+    "currentValue": "15.2",
+    "change": "-0.5",
+    "changeDirection": "down",
+    "description": "시장 공포/탐욕 지표. 20 이하=안도, 30 이상=공포. 막스의 사이클 위치 판단 보조지표",
+    "tags": [
+      "변동성",
+      "공포",
+      "VIX"
+    ],
+    "trackedBy": [
+      "막스",
+      "시타델"
+    ]
+  },
+  {
+    "id": "vkospi",
+    "name": "VKOSPI",
+    "nameEn": "KOSPI Volatility Index",
+    "type": "macro",
+    "category": "index",
+    "region": "KR",
+    "unit": "pt",
+    "currentValue": "18.5",
+    "change": "-0.8",
+    "changeDirection": "down",
+    "description": "한국판 VIX. KOSPI200 옵션 내재변동성. 20 이상 시 시장 불안, 30 이상 시 패닉",
+    "tags": [
+      "VKOSPI",
+      "변동성",
+      "한국",
+      "옵션"
+    ],
+    "trackedBy": [
+      "성상현"
+    ]
   }
 ]

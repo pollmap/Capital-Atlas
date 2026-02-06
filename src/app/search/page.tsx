@@ -17,8 +17,8 @@ const typeIcons: Record<NodeType, typeof Network> = {
 
 const typeLinks: Record<NodeType, string> = {
   macro: "/macro",
-  sector: "/sectors",
-  theme: "/themes",
+  sector: "/graph?focus=",
+  theme: "/graph?focus=",
   company: "/companies",
 };
 
@@ -63,6 +63,9 @@ export default function SearchPage() {
 
   const getLink = (node: BaseNode) => {
     const base = typeLinks[node.type];
+    if (node.type === "sector" || node.type === "theme") {
+      return `${base}${node.id}`;
+    }
     return `${base}/${node.id}`;
   };
 
