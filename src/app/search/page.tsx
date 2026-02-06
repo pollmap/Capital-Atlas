@@ -13,7 +13,6 @@ const typeIcons: Record<NodeType, typeof Network> = {
   sector: BarChart3,
   theme: Layers,
   company: Building2,
-  report: Network,
 };
 
 const typeLinks: Record<NodeType, string> = {
@@ -21,7 +20,6 @@ const typeLinks: Record<NodeType, string> = {
   sector: "/sectors",
   theme: "/themes",
   company: "/companies",
-  report: "/research",
 };
 
 export default function SearchPage() {

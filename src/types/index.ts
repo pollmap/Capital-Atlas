@@ -1,11 +1,11 @@
-// Capital Atlas — Core Type Definitions
+// Capital Atlas v2 — Core Type Definitions
 // 총괄 개발자: 이찬희
 
 // ============================================================
 // Node Types
 // ============================================================
 
-export type NodeType = "macro" | "sector" | "theme" | "company" | "report";
+export type NodeType = "macro" | "sector" | "theme" | "company";
 
 export type MacroCategory =
   | "monetary_policy"
@@ -92,28 +92,11 @@ export interface CompanyNode extends BaseNode {
   valuation?: CompanyValuation;
 }
 
-export interface ReportNode extends BaseNode {
-  type: "report";
-  title: string;
-  author: string;
-  authorRole?: string;
-  date: string;
-  sector: string;
-  companies: string[];
-  opinion: "BUY" | "HOLD" | "SELL";
-  targetPrice?: number;
-  currentPriceAtPublish?: number;
-  connectedMacroNodes: string[];
-  connectedThemes: string[];
-  contentPath?: string;
-  status: "draft" | "published";
-}
-
 // ============================================================
 // Edge Types
 // ============================================================
 
-export type EdgeType = "causal" | "supply_chain" | "belongs_to" | "analyzes";
+export type EdgeType = "causal" | "supply_chain" | "belongs_to";
 export type EdgeDirection = "positive" | "negative" | "complex";
 export type EdgeStrength = "strong" | "medium" | "weak";
 
@@ -135,7 +118,7 @@ export interface Edge {
 // ============================================================
 
 export interface GraphData {
-  nodes: (MacroNode | SectorNode | ThemeNode | CompanyNode | ReportNode)[];
+  nodes: (MacroNode | SectorNode | ThemeNode | CompanyNode)[];
   edges: Edge[];
 }
 
@@ -151,6 +134,7 @@ export interface ScenarioResult {
   strength: EdgeStrength;
   mechanism: string;
   timeLag?: string;
+  depth: number;
 }
 
 // ============================================================
@@ -176,4 +160,33 @@ export interface NavItem {
   icon?: string;
 }
 
-export type ViewMode = "3d" | "2d";
+// ============================================================
+// Graph Simulation Types (D3)
+// ============================================================
+
+export interface SimNode {
+  id: string;
+  name: string;
+  nameEn: string;
+  type: NodeType;
+  category?: string;
+  region?: string;
+  radius: number;
+  color: string;
+  x?: number;
+  y?: number;
+  fx?: number | null;
+  fy?: number | null;
+  vx?: number;
+  vy?: number;
+}
+
+export interface SimLink {
+  source: string | SimNode;
+  target: string | SimNode;
+  id: string;
+  edgeType: EdgeType;
+  direction?: EdgeDirection;
+  strength?: EdgeStrength;
+  mechanism?: string;
+}

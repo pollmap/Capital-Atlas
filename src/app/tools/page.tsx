@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Calculator, TrendingUp, Percent, DollarSign, BarChart3, Grid3X3 } from "lucide-react";
+import { Calculator, TrendingUp, Percent, DollarSign, BarChart3, Grid3X3, Briefcase } from "lucide-react";
 
 const tools = [
   {
@@ -53,8 +53,17 @@ const tools = [
     nameEn: "Correlation Heatmap",
     description: "매크로 변수 간 인과적 상관관계를 히트맵으로 시각화합니다",
     icon: Grid3X3,
-    color: "text-atlas-report",
-    bgColor: "bg-atlas-report/10",
+    color: "text-atlas-gold",
+    bgColor: "bg-atlas-gold/10",
+  },
+  {
+    id: "backtest",
+    name: "포트폴리오 백테스트",
+    nameEn: "Portfolio Backtesting",
+    description: "종목을 선택하고 비중을 설정하여 과거 시뮬레이션 수익률을 분석합니다",
+    icon: Briefcase,
+    color: "text-atlas-macro",
+    bgColor: "bg-atlas-macro/10",
   },
 ];
 

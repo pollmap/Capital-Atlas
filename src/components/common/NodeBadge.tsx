@@ -14,7 +14,6 @@ const typeLabels: Record<NodeType, string> = {
   sector: "섹터",
   theme: "테마",
   company: "기업",
-  report: "리포트",
 };
 
 export function NodeBadge({ type, label, size = "sm" }: NodeBadgeProps) {

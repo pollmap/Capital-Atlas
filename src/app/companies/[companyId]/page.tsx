@@ -10,6 +10,7 @@ import {
 } from "@/lib/data";
 import { NodeBadge } from "@/components/common/NodeBadge";
 import { CompanyExportButton } from "./ExportButton";
+import { LiveCompanyPrice } from "@/components/common/LiveCompanyPrice";
 
 export function generateStaticParams() {
   return getCompanyNodes().map((c) => ({ companyId: c.id }));
@@ -92,6 +93,15 @@ export default function CompanyDetailPage({
             valuation: company.valuation,
             themes: themes.map((t) => t?.name || "").filter(Boolean),
           }}
+        />
+      </div>
+
+      {/* Live Price */}
+      <div className="mb-6">
+        <LiveCompanyPrice
+          companyId={company.id}
+          staticPrice={company.valuation?.currentPrice}
+          currency={company.market === "NYSE" || company.market === "NASDAQ" ? "USD" : "KRW"}
         />
       </div>
 
