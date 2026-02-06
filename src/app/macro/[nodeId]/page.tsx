@@ -1,12 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import {
-  ArrowRight,
-  TrendingUp,
-  TrendingDown,
-  Minus,
-  Network,
-} from "lucide-react";
+import { ArrowRight, Network } from "lucide-react";
 import {
   getMacroNodeById,
   getMacroNodes,
@@ -14,6 +8,7 @@ import {
 } from "@/lib/data";
 import { NodeBadge } from "@/components/common/NodeBadge";
 import { EdgeIndicator } from "@/components/common/EdgeIndicator";
+import { LiveMacroValue } from "@/components/common/LiveMacroValue";
 
 export function generateStaticParams() {
   return getMacroNodes().map((node) => ({ nodeId: node.id }));
@@ -65,43 +60,8 @@ export default function MacroDetailPage({
         </Link>
       </div>
 
-      {/* Value Card */}
-      {node.currentValue && (
-        <div className="bg-atlas-panel border border-atlas-border rounded-xl p-6 mb-6">
-          <div className="flex items-end justify-between">
-            <div>
-              <div className="text-sm text-atlas-text-muted mb-1">현재 수치</div>
-              <div className="font-data text-4xl font-bold text-atlas-text-primary">
-                {node.currentValue}
-              </div>
-            </div>
-            {node.change && (
-              <div
-                className={`flex items-center gap-1 font-data text-lg ${
-                  node.changeDirection === "up"
-                    ? "text-atlas-up"
-                    : node.changeDirection === "down"
-                    ? "text-atlas-down"
-                    : "text-atlas-text-muted"
-                }`}
-              >
-                {node.changeDirection === "up" ? (
-                  <TrendingUp size={20} />
-                ) : node.changeDirection === "down" ? (
-                  <TrendingDown size={20} />
-                ) : (
-                  <Minus size={20} />
-                )}
-                {node.change}
-              </div>
-            )}
-          </div>
-          <div className="flex items-center gap-4 mt-4 text-xs text-atlas-text-muted">
-            {node.dataSource && <span>출처: {node.dataSource}</span>}
-            {node.unit && <span>단위: {node.unit}</span>}
-          </div>
-        </div>
-      )}
+      {/* Value Card - Live Data */}
+      <LiveMacroValue node={node} />
 
       {/* Description */}
       <div className="bg-atlas-panel border border-atlas-border rounded-xl p-6 mb-6">
