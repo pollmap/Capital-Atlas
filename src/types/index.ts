@@ -12,13 +12,16 @@ export type MacroCategory =
   | "currency"
   | "bond"
   | "commodity"
+  | "commodity_energy"
+  | "commodity_metal"
+  | "commodity_agri"
   | "indicator"
   | "flow"
   | "index";
 
 export type Region = "US" | "KR" | "EU" | "JP" | "CN" | "Global";
 
-export type Market = "KOSPI" | "KOSDAQ" | "NYSE" | "NASDAQ";
+export type Market = "KOSPI" | "KOSDAQ" | "NYSE" | "NASDAQ" | "LSE" | "TSE" | "ASX" | "SSE" | "UNLISTED";
 
 export interface BaseNode {
   id: string;

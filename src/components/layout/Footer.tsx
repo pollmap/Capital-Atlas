@@ -33,55 +33,19 @@ export function Footer() {
                 href="/graph"
                 className="block text-sm text-atlas-text-muted hover:text-atlas-text-primary transition-colors"
               >
-                인과지도
+                인드라망 인과지도
               </Link>
               <Link
-                href="/themes"
+                href="/macro"
                 className="block text-sm text-atlas-text-muted hover:text-atlas-text-primary transition-colors"
               >
-                테마 밸류체인
+                매크로 대시보드
               </Link>
               <Link
-                href="/sectors"
+                href="/search"
                 className="block text-sm text-atlas-text-muted hover:text-atlas-text-primary transition-colors"
               >
-                섹터 비교
-              </Link>
-              <Link
-                href="/investors"
-                className="block text-sm text-atlas-text-muted hover:text-atlas-text-primary transition-colors"
-              >
-                매크로 투자자
-              </Link>
-              <Link
-                href="/tools"
-                className="block text-sm text-atlas-text-muted hover:text-atlas-text-primary transition-colors"
-              >
-                밸류에이션 도구
-              </Link>
-              <Link
-                href="/research"
-                className="block text-sm text-atlas-text-muted hover:text-atlas-text-primary transition-colors"
-              >
-                리서치 아카이브
-              </Link>
-              <Link
-                href="/glossary"
-                className="block text-sm text-atlas-text-muted hover:text-atlas-text-primary transition-colors"
-              >
-                금융 용어사전
-              </Link>
-              <Link
-                href="/changelog"
-                className="block text-sm text-atlas-text-muted hover:text-atlas-text-primary transition-colors"
-              >
-                Changelog
-              </Link>
-              <Link
-                href="/about"
-                className="block text-sm text-atlas-text-muted hover:text-atlas-text-primary transition-colors"
-              >
-                프로젝트 소개
+                통합 검색
               </Link>
             </div>
           </div>
@@ -116,7 +80,7 @@ export function Footer() {
 
         <div className="mt-8 pt-6 border-t border-atlas-border flex flex-col sm:flex-row justify-between items-center gap-2">
           <p className="text-xs text-atlas-text-muted">
-            &copy; 2026 이찬희. Capital Atlas — 오픈소스 프로젝트
+            &copy; 2026 이찬희. Capital Atlas
           </p>
           <p className="text-xs text-atlas-text-muted">
             CUFA 투자연구회

@@ -3,24 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import {
-  Network,
-  TrendingUp,
-  Layers,
-  BarChart3,
-  Search,
-  Menu,
-  X,
-  Calculator,
-  Grid3X3,
-} from "lucide-react";
+import { Network, TrendingUp, Search, Menu, X } from "lucide-react";
 
 const navItems = [
   { label: "인드라망", href: "/graph", icon: Network },
   { label: "매크로", href: "/macro", icon: TrendingUp },
-  { label: "테마", href: "/themes", icon: Layers },
-  { label: "섹터", href: "/sectors", icon: BarChart3 },
-  { label: "도구", href: "/tools", icon: Calculator },
   { label: "검색", href: "/search", icon: Search },
 ];
 
@@ -116,15 +103,6 @@ export function Header() {
                 </Link>
               );
             })}
-            <div className="border-t border-atlas-border mt-2 pt-2">
-              <Link
-                href="/tools/heatmap"
-                className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-atlas-text-secondary hover:text-atlas-text-primary touch-target"
-              >
-                <Grid3X3 size={16} />
-                상관관계 히트맵
-              </Link>
-            </div>
           </nav>
         </div>
       )}

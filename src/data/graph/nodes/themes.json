@@ -1,130 +1,834 @@
 [
   {
     "id": "ai_datacenter",
-    "name": "AI 데이터센터",
+    "name": "AI/데이터센터",
     "nameEn": "AI Data Center",
     "type": "theme",
-    "description": "AI 학습·추론을 위한 대규모 연산 인프라 밸류체인. GPU 설계부터 전력·냉각·건설까지",
-    "tags": ["AI", "데이터센터", "GPU", "HBM", "전력"],
+    "description": "AI 학습·추론을 위한 대규모 연산 인프라 밸류체인. GPU 설계에서 HBM 메모리, 서버 조립, 데이터센터 건설·전력 공급, 클라우드 운영, 최종 AI 서비스까지 이어지는 수직적 가치사슬로, 글로벌 빅테크의 Capex 확대가 전체 밸류체인을 견인하고 있다.",
+    "tags": ["AI", "데이터센터", "GPU", "HBM", "클라우드", "전력"],
+    "connectedMacroNodes": ["semiconductor_cycle", "us_fed_rate", "copper", "electricity_pjm", "nasdaq"],
     "tiers": [
-      { "tier": 1, "name": "설계·칩", "nameEn": "Design & Chips", "nodes": ["nvidia", "amd", "broadcom"] },
-      { "tier": 2, "name": "파운드리·패키징", "nameEn": "Foundry & Packaging", "nodes": ["tsmc", "sk_hynix", "samsung_elec"] },
-      { "tier": 3, "name": "장비·소재", "nameEn": "Equipment & Materials", "nodes": ["asml", "hanmi_semi", "soulbrain"] },
-      { "tier": 4, "name": "전력·냉각", "nameEn": "Power & Cooling", "nodes": ["ls_electric", "hd_hyundai_electric", "hyosung_heavy"] },
-      { "tier": 5, "name": "네트워크·서버", "nameEn": "Network & Server", "nodes": ["arista", "dell_tech"] },
-      { "tier": 6, "name": "클라우드·운영", "nameEn": "Cloud & Operations", "nodes": ["aws_amzn", "msft_azure", "naver_cloud"] }
-    ],
-    "connectedMacroNodes": ["us_fed_rate", "copper", "semiconductor_cycle", "nasdaq"]
+      {
+        "tier": 1,
+        "name": "GPU·설계",
+        "nameEn": "GPU & Chip Design",
+        "nodes": ["nvidia", "amd", "broadcom"]
+      },
+      {
+        "tier": 2,
+        "name": "HBM·메모리",
+        "nameEn": "HBM & Memory",
+        "nodes": ["sk_hynix", "samsung_elec", "hanmi_semi"]
+      },
+      {
+        "tier": 3,
+        "name": "서버·네트워크",
+        "nameEn": "Server & Network",
+        "nodes": ["dell_tech", "arista", "supermicro"]
+      },
+      {
+        "tier": 4,
+        "name": "데이터센터 전력·냉각",
+        "nameEn": "DC Power & Cooling",
+        "nodes": ["kepco", "ls_electric", "hd_hyundai_electric", "hyosung_heavy", "doosan_enerbility"]
+      },
+      {
+        "tier": 5,
+        "name": "클라우드·운영",
+        "nameEn": "Cloud & Operations",
+        "nodes": ["naver", "kt_corp", "sk_telecom"]
+      },
+      {
+        "tier": 6,
+        "name": "AI 서비스·응용",
+        "nameEn": "AI Services & Applications",
+        "nodes": ["kakao", "naver", "krafton"]
+      }
+    ]
   },
   {
     "id": "nuclear_renaissance",
     "name": "원전 르네상스",
     "nameEn": "Nuclear Renaissance",
     "type": "theme",
-    "description": "탄소중립 + AI 전력수요 급증으로 원전 재부상. 소형모듈원자로(SMR) 주목",
-    "tags": ["원전", "SMR", "에너지", "탄소중립", "전력"],
+    "description": "탄소중립 달성과 AI 데이터센터 전력 수요 폭증으로 원전이 기저 전력원으로 재부상. 우라늄 채굴에서 핵연료 가공, 원자로·주기기 제조, 발전소 건설·운영, 송배전까지 이어지는 밸류체인. 한국형 원전(APR1400) 수출이 핵심 성장 동력이다.",
+    "tags": ["원전", "SMR", "에너지", "탄소중립", "전력", "우라늄"],
+    "connectedMacroNodes": ["uranium", "electricity_pjm", "us_cpi", "cn_gdp"],
     "tiers": [
-      { "tier": 1, "name": "원료·연료", "nameEn": "Fuel & Uranium", "nodes": ["cameco", "kazatomprom"] },
-      { "tier": 2, "name": "원자로·기자재", "nameEn": "Reactor & Equipment", "nodes": ["doosan_enerbility", "bwx_tech"] },
-      { "tier": 3, "name": "건설·시공", "nameEn": "Construction", "nodes": ["kepco_enc", "samsung_ct"] },
-      { "tier": 4, "name": "운영·발전", "nameEn": "Operation & Generation", "nodes": ["kepco", "khnp_proxy"] },
-      { "tier": 5, "name": "해체·폐기물", "nameEn": "Decommission & Waste", "nodes": ["hyundai_eng"] }
-    ],
-    "connectedMacroNodes": ["wti", "natural_gas", "copper", "us_cpi"]
+      {
+        "tier": 1,
+        "name": "우라늄·원료",
+        "nameEn": "Uranium & Raw Materials",
+        "nodes": ["cameco", "kazatomprom", "uranium_etf"]
+      },
+      {
+        "tier": 2,
+        "name": "핵연료·가공",
+        "nameEn": "Nuclear Fuel Processing",
+        "nodes": ["kepco_eng", "bwxt", "centrus_energy"]
+      },
+      {
+        "tier": 3,
+        "name": "원자로·주기기",
+        "nameEn": "Reactor & Core Equipment",
+        "nodes": ["doosan_enerbility", "bwxt", "nuscale_power"]
+      },
+      {
+        "tier": 4,
+        "name": "발전·운영",
+        "nameEn": "Generation & Operations",
+        "nodes": ["kepco", "khnp_proxy", "korea_hydro_nuclear"]
+      },
+      {
+        "tier": 5,
+        "name": "송배전·전력인프라",
+        "nameEn": "Transmission & Grid",
+        "nodes": ["ls_electric", "hd_hyundai_electric", "hyosung_heavy"]
+      }
+    ]
   },
   {
     "id": "k_defense",
     "name": "K-방산",
     "nameEn": "K-Defense",
     "type": "theme",
-    "description": "한국 방산의 글로벌 수출 확대. 폴란드·사우디·호주 등 대형 계약 수주",
-    "tags": ["방산", "수출", "무기", "군사"],
+    "description": "한국 방산의 글로벌 수출 확대 밸류체인. 센서·전자전 부품에서 유도무기·탄두, 지상·해상·항공 플랫폼, 시스템 통합, 최종 수출 계약까지의 가치사슬. 폴란드·사우디·호주 등 대규모 수출 계약이 수주잔고를 사상 최고 수준으로 견인하고 있다.",
+    "tags": ["방산", "수출", "무기", "군사", "K-방산"],
+    "connectedMacroNodes": ["usd_krw", "kr_export", "kr_fiscal_policy"],
     "tiers": [
-      { "tier": 1, "name": "탄약·소화기", "nameEn": "Ammunition & Small Arms", "nodes": ["poongsan"] },
-      { "tier": 2, "name": "지상무기", "nameEn": "Land Systems", "nodes": ["hyundai_rotem", "hanwha_aerospace"] },
-      { "tier": 3, "name": "항공·미사일", "nameEn": "Aerospace & Missiles", "nodes": ["korea_aerospace", "lig_nex1"] },
-      { "tier": 4, "name": "함정·해양", "nameEn": "Naval Systems", "nodes": ["hd_hyundai_heavy", "hanwha_ocean"] },
-      { "tier": 5, "name": "전자·C4I", "nameEn": "Electronics & C4I", "nodes": ["hanwha_systems", "huneed_tech"] }
-    ],
-    "connectedMacroNodes": ["usd_krw", "kr_export"]
+      {
+        "tier": 1,
+        "name": "센서·전자전",
+        "nameEn": "Sensors & Electronic Warfare",
+        "nodes": ["lig_nex1", "hanwha_systems", "victek", "huneed_tech"]
+      },
+      {
+        "tier": 2,
+        "name": "유도·탄두",
+        "nameEn": "Guided Weapons & Warheads",
+        "nodes": ["lig_nex1", "poongsan", "hanwha_aerospace"]
+      },
+      {
+        "tier": 3,
+        "name": "플랫폼(지상·해상)",
+        "nameEn": "Platforms (Land & Naval)",
+        "nodes": ["hyundai_rotem", "hanwha_aerospace", "hanwha_ocean", "hd_korea_shipbuilding"]
+      },
+      {
+        "tier": 4,
+        "name": "플랫폼(항공)",
+        "nameEn": "Platforms (Aerospace)",
+        "nodes": ["korea_aerospace", "hanwha_aerospace"]
+      },
+      {
+        "tier": 5,
+        "name": "시스템 통합·수출",
+        "nameEn": "System Integration & Export",
+        "nodes": ["hanwha_aerospace", "korea_aerospace", "lig_nex1", "hyundai_rotem"]
+      }
+    ]
   },
   {
-    "id": "shipbuilding_cycle",
-    "name": "조선·해운",
-    "nameEn": "Shipbuilding & Shipping",
+    "id": "global_shipbuilding",
+    "name": "글로벌 조선",
+    "nameEn": "Global Shipbuilding",
     "type": "theme",
-    "description": "LNG선 슈퍼사이클 + 친환경 선박 교체 수요. 한국 조선 3사 수주잔고 역대 최대",
-    "tags": ["조선", "해운", "LNG", "친환경선박"],
+    "description": "LNG선 슈퍼사이클과 친환경 규제에 따른 선박 교체 수요가 주도하는 글로벌 조선 밸류체인. 철강·후판 원자재에서 엔진·기자재, 선체 건조, 특수선(LNG·군함) 제작, 해운 운영까지의 가치사슬. 한국 조선 3사가 고부가 선종에서 글로벌 1위를 유지하고 있다.",
+    "tags": ["조선", "해운", "LNG", "친환경선박", "해양플랜트"],
+    "connectedMacroNodes": ["iron_ore", "steel", "baltic_dry_index", "lng_spot", "wti"],
     "tiers": [
-      { "tier": 1, "name": "철강·소재", "nameEn": "Steel & Materials", "nodes": ["posco_holdings"] },
-      { "tier": 2, "name": "엔진·기자재", "nameEn": "Engine & Equipment", "nodes": ["hsd_engine", "sk_oceanplant"] },
-      { "tier": 3, "name": "조선", "nameEn": "Shipbuilding", "nodes": ["hd_korea_shipbuilding", "samsung_heavy", "hanwha_ocean"] },
-      { "tier": 4, "name": "해운", "nameEn": "Shipping", "nodes": ["hmm", "pan_ocean"] }
-    ],
-    "connectedMacroNodes": ["wti", "natural_gas", "kr_export", "usd_krw"]
+      {
+        "tier": 1,
+        "name": "철강·소재",
+        "nameEn": "Steel & Materials",
+        "nodes": ["posco_hldg", "hyundai_steel", "dongkuk_steel"]
+      },
+      {
+        "tier": 2,
+        "name": "엔진·기자재",
+        "nameEn": "Engine & Equipment",
+        "nodes": ["hsd_engine", "sk_oceanplant", "semes"]
+      },
+      {
+        "tier": 3,
+        "name": "선체·건조",
+        "nameEn": "Hull & Shipbuilding",
+        "nodes": ["hd_korea_shipbuilding", "samsung_heavy", "hanwha_ocean"]
+      },
+      {
+        "tier": 4,
+        "name": "특수선·해양",
+        "nameEn": "Specialized Vessels & Offshore",
+        "nodes": ["hd_korea_shipbuilding", "hanwha_ocean", "samsung_heavy"]
+      },
+      {
+        "tier": 5,
+        "name": "해운·운영",
+        "nameEn": "Shipping & Operations",
+        "nodes": ["hmm", "pan_ocean", "korea_line"]
+      }
+    ]
   },
   {
-    "id": "secondary_battery",
-    "name": "2차전지",
-    "nameEn": "Secondary Battery (EV)",
+    "id": "ev_battery",
+    "name": "EV/배터리",
+    "nameEn": "EV & Battery",
     "type": "theme",
-    "description": "전기차 핵심 부품. 광물→양극재/음극재→셀→팩→재활용 전체 밸류체인",
-    "tags": ["2차전지", "전기차", "배터리", "리튬"],
+    "description": "전기차 배터리의 전체 밸류체인. 리튬·코발트·니켈 등 핵심 광물 채굴에서 양극재·음극재 소재, 분리막·전해액, 셀 제조, 모듈·팩 조립, 완성차 탑재, 충전 인프라 구축까지의 수직적 가치사슬. 미국 IRA·유럽 CRMA 등 산업정책이 공급망 재편을 가속화하고 있다.",
+    "tags": ["전기차", "배터리", "리튬", "양극재", "IRA"],
+    "connectedMacroNodes": ["lithium_carbonate", "cobalt", "nickel", "copper", "us_consumer_confidence"],
     "tiers": [
-      { "tier": 1, "name": "광물·원재료", "nameEn": "Minerals & Raw Materials", "nodes": ["albemarle", "posco_future_m"] },
-      { "tier": 2, "name": "양극재·음극재", "nameEn": "Cathode & Anode", "nodes": ["ecopro_bm", "lg_chem"] },
-      { "tier": 3, "name": "분리막·전해액", "nameEn": "Separator & Electrolyte", "nodes": ["sk_ie_tech", "enchem"] },
-      { "tier": 4, "name": "셀·팩", "nameEn": "Cell & Pack", "nodes": ["lg_energy", "samsung_sdi", "sk_on_proxy"] },
-      { "tier": 5, "name": "재활용", "nameEn": "Recycling", "nodes": ["sungeel_hitech"] }
-    ],
-    "connectedMacroNodes": ["copper", "us_fed_rate", "us_cpi"]
+      {
+        "tier": 1,
+        "name": "광물·원재료",
+        "nameEn": "Minerals & Raw Materials",
+        "nodes": ["posco_future_m", "albemarle", "sqm"]
+      },
+      {
+        "tier": 2,
+        "name": "양극재·음극재",
+        "nameEn": "Cathode & Anode Materials",
+        "nodes": ["ecopro_bm", "lg_chem", "posco_future_m"]
+      },
+      {
+        "tier": 3,
+        "name": "분리막·전해액",
+        "nameEn": "Separator & Electrolyte",
+        "nodes": ["sk_ie_tech", "enchem", "soulbrain"]
+      },
+      {
+        "tier": 4,
+        "name": "셀·모듈·팩",
+        "nameEn": "Cell, Module & Pack",
+        "nodes": ["lg_energy", "samsung_sdi", "sk_on_proxy"]
+      },
+      {
+        "tier": 5,
+        "name": "완성차",
+        "nameEn": "OEM & Finished Vehicles",
+        "nodes": ["hyundai_motor", "kia", "hyundai_mobis"]
+      },
+      {
+        "tier": 6,
+        "name": "충전인프라·서비스",
+        "nameEn": "Charging Infra & Services",
+        "nodes": ["sk_signet", "chaevi", "kepco"]
+      }
+    ]
   },
   {
-    "id": "bio_healthcare",
-    "name": "바이오/헬스케어",
-    "nameEn": "Bio & Healthcare",
+    "id": "autonomous_driving",
+    "name": "자율주행",
+    "nameEn": "Autonomous Driving",
     "type": "theme",
-    "description": "비만치료제·ADC 항암제·AI 신약개발 등 글로벌 제약바이오 혁신 밸류체인",
-    "tags": ["바이오", "제약", "헬스케어", "비만치료제", "ADC"],
+    "description": "레벨 3~5 자율주행 실현을 위한 밸류체인. LiDAR·카메라·레이더 센서에서 자율주행 전용 반도체(SoC), 인지·판단 소프트웨어, 완성차 OEM 통합, 로보택시·MaaS(서비스형 모빌리티)까지의 가치사슬. 소프트웨어 정의 차량(SDV) 전환이 산업 재편을 이끌고 있다.",
+    "tags": ["자율주행", "SDV", "LiDAR", "모빌리티", "AI"],
+    "connectedMacroNodes": ["semiconductor_cycle", "us_consumer_confidence"],
     "tiers": [
-      { "tier": 1, "name": "신약 R&D", "nameEn": "Drug Discovery & R&D", "nodes": ["samsung_biologics", "celltrion"] },
-      { "tier": 2, "name": "CDMO·위탁생산", "nameEn": "CDMO & CMO", "nodes": ["samsung_biologics", "sk_bioscience"] },
-      { "tier": 3, "name": "의약품 제조", "nameEn": "Pharma Manufacturing", "nodes": ["yuhan", "hanmi_pharm"] },
-      { "tier": 4, "name": "진단·의료기기", "nameEn": "Diagnostics & Devices", "nodes": ["seegene", "osstem_implant"] },
-      { "tier": 5, "name": "유통·플랫폼", "nameEn": "Distribution & Platform", "nodes": ["pharma_platform"] }
-    ],
-    "connectedMacroNodes": ["us_fed_rate", "usd_krw", "nasdaq"]
+      {
+        "tier": 1,
+        "name": "센서(LiDAR·카메라)",
+        "nameEn": "Sensors (LiDAR, Camera, Radar)",
+        "nodes": ["hyundai_mobis", "suresoft", "hl_mando"]
+      },
+      {
+        "tier": 2,
+        "name": "자율주행 반도체",
+        "nameEn": "AD Semiconductors & SoC",
+        "nodes": ["samsung_elec", "nvidia", "mobileye"]
+      },
+      {
+        "tier": 3,
+        "name": "SW·알고리즘",
+        "nameEn": "Software & Algorithms",
+        "nodes": ["naver", "kakao", "suresoft"]
+      },
+      {
+        "tier": 4,
+        "name": "완성차 OEM",
+        "nameEn": "OEM Integration",
+        "nodes": ["hyundai_motor", "kia", "hyundai_mobis"]
+      },
+      {
+        "tier": 5,
+        "name": "모빌리티 서비스",
+        "nameEn": "Mobility Services (MaaS)",
+        "nodes": ["kakao", "socar", "tmap_mobility"]
+      }
+    ]
   },
   {
-    "id": "reits_real_estate",
-    "name": "부동산/리츠",
-    "nameEn": "Real Estate & REITs",
+    "id": "robotics_automation",
+    "name": "로보틱스/자동화",
+    "nameEn": "Robotics & Automation",
     "type": "theme",
-    "description": "금리 인하 수혜 + 데이터센터 리츠 부상. 실물자산 기반 인컴 투자 밸류체인",
-    "tags": ["리츠", "부동산", "데이터센터", "인프라", "금리"],
+    "description": "산업용·협동·서비스 로봇의 전체 밸류체인. 감속기·서보모터 등 핵심 부품에서 제어기, 로봇 본체 제작, 시스템 통합·자동화 라인 구축까지의 가치사슬. 인건비 상승, 인구 감소, 스마트팩토리 확산이 구조적 수요를 견인하고 있다.",
+    "tags": ["로봇", "자동화", "감속기", "서보모터", "스마트팩토리"],
+    "connectedMacroNodes": ["us_ism_mfg_pmi", "cn_caixin_pmi", "us_nonfarm_payroll"],
     "tiers": [
-      { "tier": 1, "name": "토지·개발", "nameEn": "Land & Development", "nodes": ["daewoo_enc", "hyundai_dev"] },
-      { "tier": 2, "name": "건설·시공", "nameEn": "Construction", "nodes": ["samsung_ct", "hyundai_enc"] },
-      { "tier": 3, "name": "오피스·상업", "nameEn": "Office & Commercial", "nodes": ["esr_kendall", "koramco_reit"] },
-      { "tier": 4, "name": "데이터센터·인프라 리츠", "nameEn": "DC & Infra REITs", "nodes": ["digital_realty_proxy", "sk_reit"] },
-      { "tier": 5, "name": "물류·창고", "nameEn": "Logistics & Warehouse", "nodes": ["esc_reit", "lotte_reit"] }
-    ],
-    "connectedMacroNodes": ["us_fed_rate", "us_10y", "us_housing", "kr_bok_rate"]
+      {
+        "tier": 1,
+        "name": "감속기·베어링",
+        "nameEn": "Reducers & Bearings",
+        "nodes": ["nabtesco_proxy", "harmonic_drive_proxy", "samik_thk"]
+      },
+      {
+        "tier": 2,
+        "name": "서보모터·구동",
+        "nameEn": "Servo Motors & Actuators",
+        "nodes": ["ls_electric", "hyundai_elevator", "samsung_elec"]
+      },
+      {
+        "tier": 3,
+        "name": "제어기·SW",
+        "nameEn": "Controllers & Software",
+        "nodes": ["naver", "doosan_bobcat", "rainbow_robotics"]
+      },
+      {
+        "tier": 4,
+        "name": "로봇 본체",
+        "nameEn": "Robot Body & Assembly",
+        "nodes": ["doosan_bobcat", "hyundai_motor", "rainbow_robotics"]
+      },
+      {
+        "tier": 5,
+        "name": "시스템 통합·자동화",
+        "nameEn": "System Integration & Automation",
+        "nodes": ["samsung_engineering", "hyundai_engineering", "naver"]
+      }
+    ]
   },
   {
-    "id": "space_satellite",
-    "name": "우주/위성",
-    "nameEn": "Space & Satellite",
+    "id": "space_industry",
+    "name": "우주산업",
+    "nameEn": "Space Industry",
     "type": "theme",
-    "description": "뉴스페이스 시대. 군사정찰위성·SAR 위성·우주발사체·위성통신 밸류체인",
-    "tags": ["우주", "위성", "발사체", "뉴스페이스"],
+    "description": "뉴스페이스 시대의 우주산업 밸류체인. 특수 소재·경량 합금에서 추진체·엔진, 위성 제조, 발사체 제작·운용, 지상시스템·통신까지의 가치사슬. 군사정찰위성·SAR위성·저궤도 통신위성 수요가 폭증하며, 한국도 독자 발사체(누리호) 기술 확보에 성공했다.",
+    "tags": ["우주", "위성", "발사체", "뉴스페이스", "정찰위성"],
+    "connectedMacroNodes": ["us_fiscal_deficit", "kr_export"],
     "tiers": [
-      { "tier": 1, "name": "발사체·추진", "nameEn": "Launch & Propulsion", "nodes": ["hanwha_aerospace", "innospace"] },
-      { "tier": 2, "name": "위성 제조", "nameEn": "Satellite Manufacturing", "nodes": ["satrec_i", "korea_aerospace"] },
-      { "tier": 3, "name": "위성 부품·센서", "nameEn": "Components & Sensors", "nodes": ["lumir", "victek"] },
-      { "tier": 4, "name": "지상국·통신", "nameEn": "Ground Station & Comm", "nodes": ["ktnf", "contec"] },
-      { "tier": 5, "name": "데이터·서비스", "nameEn": "Data & Services", "nodes": ["si_analytics", "nara_space"] }
-    ],
-    "connectedMacroNodes": ["geopolitical_risk", "usd_krw"]
+      {
+        "tier": 1,
+        "name": "소재·경량합금",
+        "nameEn": "Materials & Alloys",
+        "nodes": ["posco_hldg", "toray_advanced", "skc"]
+      },
+      {
+        "tier": 2,
+        "name": "추진체·엔진",
+        "nameEn": "Propulsion & Engines",
+        "nodes": ["hanwha_aerospace", "innospace", "perigee_aerospace"]
+      },
+      {
+        "tier": 3,
+        "name": "위성 제조",
+        "nameEn": "Satellite Manufacturing",
+        "nodes": ["korea_aerospace", "satrec_i", "contec"]
+      },
+      {
+        "tier": 4,
+        "name": "발사체",
+        "nameEn": "Launch Vehicles",
+        "nodes": ["hanwha_aerospace", "innospace", "korea_aerospace"]
+      },
+      {
+        "tier": 5,
+        "name": "지상시스템·데이터",
+        "nameEn": "Ground Systems & Data Services",
+        "nodes": ["lig_nex1", "ktnf", "si_analytics", "nara_space"]
+      }
+    ]
+  },
+  {
+    "id": "cybersecurity",
+    "name": "사이버보안",
+    "nameEn": "Cybersecurity",
+    "type": "theme",
+    "description": "디지털 전환과 AI 확산에 따라 중요성이 급증하는 사이버보안 밸류체인. 인프라·네트워크 보안에서 엔드포인트 보호, 클라우드 보안, 보안관제·운영(SOC)까지의 가치사슬. 국가 핵심 인프라 보호, 데이터 보호 규제 강화가 구조적 수요를 견인하고 있다.",
+    "tags": ["보안", "사이버보안", "클라우드보안", "정보보호"],
+    "connectedMacroNodes": ["nasdaq", "us_bank_lending"],
+    "tiers": [
+      {
+        "tier": 1,
+        "name": "인프라 보안",
+        "nameEn": "Infrastructure Security",
+        "nodes": ["ahnlab", "secui", "penta_security"]
+      },
+      {
+        "tier": 2,
+        "name": "네트워크 보안",
+        "nameEn": "Network Security",
+        "nodes": ["wins", "secui", "genians"]
+      },
+      {
+        "tier": 3,
+        "name": "엔드포인트 보안",
+        "nameEn": "Endpoint Security",
+        "nodes": ["ahnlab", "crowdstrike_proxy", "genians"]
+      },
+      {
+        "tier": 4,
+        "name": "클라우드 보안",
+        "nameEn": "Cloud Security",
+        "nodes": ["naver", "kakao", "sk_shieldus"]
+      },
+      {
+        "tier": 5,
+        "name": "관제·운영(SOC)",
+        "nameEn": "Security Operations Center",
+        "nodes": ["sk_shieldus", "ahnlab", "igloo_security"]
+      }
+    ]
+  },
+  {
+    "id": "green_hydrogen",
+    "name": "그린수소",
+    "nameEn": "Green Hydrogen",
+    "type": "theme",
+    "description": "탄소중립을 위한 그린수소 경제 밸류체인. 재생에너지 발전에서 수전해 전해조, 수소 저장·압축, 수소 운송·인프라, 연료전지·최종 활용까지의 가치사슬. 글로벌 수소 경제 로드맵에 따라 장기적 성장 잠재력이 높은 테마이다.",
+    "tags": ["수소", "그린수소", "전해조", "연료전지", "탄소중립"],
+    "connectedMacroNodes": ["natural_gas", "electricity_pjm", "eu_pmi"],
+    "tiers": [
+      {
+        "tier": 1,
+        "name": "재생에너지 발전",
+        "nameEn": "Renewable Energy Generation",
+        "nodes": ["hanwha_solutions", "oc_i", "sk_ecoplant"]
+      },
+      {
+        "tier": 2,
+        "name": "전해조(수전해)",
+        "nameEn": "Electrolyzer",
+        "nodes": ["doosan_enerbility", "elchemtech", "plug_power_proxy"]
+      },
+      {
+        "tier": 3,
+        "name": "수소 저장·압축",
+        "nameEn": "Hydrogen Storage & Compression",
+        "nodes": ["iljin_hysolus", "hylium_industries", "korea_gas"]
+      },
+      {
+        "tier": 4,
+        "name": "수소 운송·배관",
+        "nameEn": "Hydrogen Transport & Pipeline",
+        "nodes": ["korea_gas", "hyundai_motor", "sk_ecoplant"]
+      },
+      {
+        "tier": 5,
+        "name": "연료전지·활용",
+        "nameEn": "Fuel Cell & End Use",
+        "nodes": ["doosan_enerbility", "hyundai_motor", "sk_ecoplant", "bloom_energy_proxy"]
+      }
+    ]
+  },
+  {
+    "id": "solar_wind",
+    "name": "태양광/풍력",
+    "nameEn": "Solar & Wind Energy",
+    "type": "theme",
+    "description": "재생에너지 발전의 양대 축인 태양광·풍력 밸류체인. 폴리실리콘 원료에서 웨이퍼·셀·모듈 제조, 인버터·BOS(Balance of System), 발전사업 개발·운영까지의 가치사슬. 글로벌 에너지 전환 정책과 전기요금 경쟁력 확보가 성장 동력이다.",
+    "tags": ["태양광", "풍력", "재생에너지", "탄소중립", "ESG"],
+    "connectedMacroNodes": ["silver", "copper", "us_housing_starts"],
+    "tiers": [
+      {
+        "tier": 1,
+        "name": "폴리실리콘·원재료",
+        "nameEn": "Polysilicon & Raw Materials",
+        "nodes": ["oc_i", "hanwha_solutions", "wacker_proxy"]
+      },
+      {
+        "tier": 2,
+        "name": "웨이퍼·셀",
+        "nameEn": "Wafer & Cell",
+        "nodes": ["hanwha_solutions", "shinsung_e_g"]
+      },
+      {
+        "tier": 3,
+        "name": "모듈·부품",
+        "nameEn": "Module & Components",
+        "nodes": ["hanwha_solutions", "lg_energy", "ls_electric"]
+      },
+      {
+        "tier": 4,
+        "name": "인버터·BOS",
+        "nameEn": "Inverter & Balance of System",
+        "nodes": ["ls_electric", "dasstech", "hyosung_heavy"]
+      },
+      {
+        "tier": 5,
+        "name": "발전사업·운영",
+        "nameEn": "Power Generation & Operations",
+        "nodes": ["kepco", "sk_ecoplant", "korea_district_heating"]
+      }
+    ]
+  },
+  {
+    "id": "quantum_computing",
+    "name": "양자컴퓨팅",
+    "nameEn": "Quantum Computing",
+    "type": "theme",
+    "description": "차세대 연산 패러다임인 양자컴퓨팅 밸류체인. 극저온 냉각 장비에서 큐비트 칩 제작, 제어 전자장치, 양자 소프트웨어·알고리즘, 금융·신약·물류 등 응용 서비스까지의 가치사슬. 아직 초기 단계이나 파괴적 잠재력으로 글로벌 R&D 투자가 급증하고 있다.",
+    "tags": ["양자", "큐비트", "양자컴퓨터", "차세대연산"],
+    "connectedMacroNodes": ["us_fed_rate", "nasdaq"],
+    "tiers": [
+      {
+        "tier": 1,
+        "name": "극저온·냉각장비",
+        "nameEn": "Cryogenic & Cooling Equipment",
+        "nodes": ["bluefors_proxy", "oxford_instruments_proxy", "wonik_ips"]
+      },
+      {
+        "tier": 2,
+        "name": "큐비트 칩",
+        "nameEn": "Qubit Chips",
+        "nodes": ["samsung_elec", "ibm_proxy", "google_proxy"]
+      },
+      {
+        "tier": 3,
+        "name": "제어 전자장치",
+        "nameEn": "Control Electronics",
+        "nodes": ["samsung_elec", "sk_hynix", "keysight_proxy"]
+      },
+      {
+        "tier": 4,
+        "name": "양자 소프트웨어",
+        "nameEn": "Quantum Software",
+        "nodes": ["naver", "kt_corp", "qunasys_proxy"]
+      },
+      {
+        "tier": 5,
+        "name": "응용 서비스",
+        "nameEn": "Application Services",
+        "nodes": ["kb_financial", "samsung_biologics", "naver"]
+      }
+    ]
+  },
+  {
+    "id": "cdo_biosimilar",
+    "name": "CDO/바이오시밀러",
+    "nameEn": "CDO & Biosimilar",
+    "type": "theme",
+    "description": "바이오의약품 위탁개발생산(CDMO)과 바이오시밀러 밸류체인. 세포주 개발에서 대규모 배양, 정제·분석, 완제의약품 생산, 글로벌 유통·허가까지의 가치사슬. 한국은 삼성바이오로직스(CDMO 세계 1위)와 셀트리온(바이오시밀러 세계 1위)을 보유한 글로벌 강국이다.",
+    "tags": ["CDMO", "바이오시밀러", "바이오", "항체", "위탁생산"],
+    "connectedMacroNodes": ["usd_krw", "us_cpi", "kr_export"],
+    "tiers": [
+      {
+        "tier": 1,
+        "name": "세포주·R&D",
+        "nameEn": "Cell Line & R&D",
+        "nodes": ["celltrion", "samsung_biologics", "sk_biopharmaceuticals"]
+      },
+      {
+        "tier": 2,
+        "name": "배양·발효",
+        "nameEn": "Cell Culture & Fermentation",
+        "nodes": ["samsung_biologics", "celltrion", "binex"]
+      },
+      {
+        "tier": 3,
+        "name": "정제·분석",
+        "nameEn": "Purification & Analytics",
+        "nodes": ["samsung_biologics", "celltrion", "abclon"]
+      },
+      {
+        "tier": 4,
+        "name": "완제·충전",
+        "nameEn": "Fill & Finish",
+        "nodes": ["samsung_biologics", "celltrion", "sk_biopharmaceuticals"]
+      },
+      {
+        "tier": 5,
+        "name": "글로벌 유통·허가",
+        "nameEn": "Global Distribution & Regulatory",
+        "nodes": ["celltrion", "yuhan", "hanmi_pharma"]
+      }
+    ]
+  },
+  {
+    "id": "digital_health",
+    "name": "디지털헬스",
+    "nameEn": "Digital Health",
+    "type": "theme",
+    "description": "의료의 디지털 전환 밸류체인. 웨어러블 센서·의료기기에서 건강 데이터 수집, AI 기반 분석·진단, 원격진료·디지털치료제, 보험연계·플랫폼까지의 가치사슬. 고령화와 만성질환 증가로 예방·관리 중심 의료 패러다임 전환이 가속화되고 있다.",
+    "tags": ["디지털헬스", "원격의료", "AI진단", "웨어러블", "디지털치료제"],
+    "connectedMacroNodes": ["us_consumer_confidence", "nasdaq"],
+    "tiers": [
+      {
+        "tier": 1,
+        "name": "센서·웨어러블",
+        "nameEn": "Sensors & Wearables",
+        "nodes": ["samsung_elec", "sk_biopharmaceuticals", "vivozon"]
+      },
+      {
+        "tier": 2,
+        "name": "데이터 수집·EMR",
+        "nameEn": "Data Collection & EMR",
+        "nodes": ["naver", "kakao", "lunit"]
+      },
+      {
+        "tier": 3,
+        "name": "AI 분석·진단",
+        "nameEn": "AI Analysis & Diagnostics",
+        "nodes": ["lunit", "vuno", "deepnoid"]
+      },
+      {
+        "tier": 4,
+        "name": "원격진료·디지털치료제",
+        "nameEn": "Telemedicine & Digital Therapeutics",
+        "nodes": ["kakao", "naver", "welt"]
+      },
+      {
+        "tier": 5,
+        "name": "보험연계·플랫폼",
+        "nameEn": "Insurance Integration & Platform",
+        "nodes": ["samsung_fire", "hyundai_marine", "kakao"]
+      }
+    ]
+  },
+  {
+    "id": "smart_factory",
+    "name": "스마트팩토리",
+    "nameEn": "Smart Factory",
+    "type": "theme",
+    "description": "제조업의 디지털 전환을 이끄는 스마트팩토리 밸류체인. IoT 센서에서 PLC·MES(제조실행시스템), 산업용 AI, 디지털트윈, 공정자동화·최적화까지의 가치사슬. 인건비 상승, 품질 요구 강화, 공급망 리스크 관리 필요성이 구조적 수요를 견인하고 있다.",
+    "tags": ["스마트팩토리", "IoT", "MES", "디지털트윈", "자동화"],
+    "connectedMacroNodes": ["us_ism_mfg_pmi", "cn_caixin_pmi", "semiconductor_cycle"],
+    "tiers": [
+      {
+        "tier": 1,
+        "name": "센서·IoT",
+        "nameEn": "Sensors & IoT",
+        "nodes": ["samsung_elec", "ls_electric", "semes"]
+      },
+      {
+        "tier": 2,
+        "name": "PLC·MES",
+        "nameEn": "PLC & MES",
+        "nodes": ["ls_electric", "naver", "mirae_asset"]
+      },
+      {
+        "tier": 3,
+        "name": "산업용 AI",
+        "nameEn": "Industrial AI",
+        "nodes": ["naver", "samsung_elec", "kakao"]
+      },
+      {
+        "tier": 4,
+        "name": "디지털트윈",
+        "nameEn": "Digital Twin",
+        "nodes": ["naver", "samsung_engineering", "hyundai_engineering"]
+      },
+      {
+        "tier": 5,
+        "name": "공정자동화·최적화",
+        "nameEn": "Process Automation & Optimization",
+        "nodes": ["wonik_ips", "doosan_bobcat", "hyundai_elevator", "semes"]
+      }
+    ]
+  },
+  {
+    "id": "rare_earth_supply",
+    "name": "희토류 공급망",
+    "nameEn": "Rare Earth Supply Chain",
+    "type": "theme",
+    "description": "전기차 모터·풍력 발전기·전자부품에 필수적인 희토류 밸류체인. 광산 채굴에서 분리·정제, 합금·영구자석 제조, 모터·전자부품 적용, 최종 제품(EV·가전·로봇)까지의 가치사슬. 중국 의존도 탈피를 위한 공급망 다변화가 글로벌 과제이다.",
+    "tags": ["희토류", "영구자석", "공급망", "탈중국", "전기차모터"],
+    "connectedMacroNodes": ["rare_earth_index", "usd_cny", "cn_gdp"],
+    "tiers": [
+      {
+        "tier": 1,
+        "name": "광산·채굴",
+        "nameEn": "Mining & Extraction",
+        "nodes": ["mp_materials_proxy", "lynas_proxy", "china_rare_earth_proxy"]
+      },
+      {
+        "tier": 2,
+        "name": "분리·정제",
+        "nameEn": "Separation & Refining",
+        "nodes": ["posco_hldg", "lynas_proxy", "mp_materials_proxy"]
+      },
+      {
+        "tier": 3,
+        "name": "합금·영구자석",
+        "nameEn": "Alloy & Permanent Magnets",
+        "nodes": ["star_group_proxy", "tdk_proxy", "posco_future_m"]
+      },
+      {
+        "tier": 4,
+        "name": "모터·전자부품",
+        "nameEn": "Motors & Electronic Components",
+        "nodes": ["hyundai_mobis", "lg_energy", "samsung_elec"]
+      },
+      {
+        "tier": 5,
+        "name": "최종 제품",
+        "nameEn": "End Products (EV, Wind, Electronics)",
+        "nodes": ["hyundai_motor", "kia", "hanwha_solutions"]
+      }
+    ]
+  },
+  {
+    "id": "hbm_memory",
+    "name": "HBM/메모리",
+    "nameEn": "HBM & Memory",
+    "type": "theme",
+    "description": "AI GPU에 필수적인 HBM(고대역폭메모리) 밸류체인. 실리콘 웨이퍼에서 DRAM 다이 제조, TSV(관통전극) 적층, HBM 패키징, GPU 모듈 조립까지의 가치사슬. SK하이닉스가 HBM3E 세계 1위를 차지하며, AI 데이터센터 확장과 직결되는 핵심 테마이다.",
+    "tags": ["HBM", "메모리", "DRAM", "TSV", "AI반도체"],
+    "connectedMacroNodes": ["semiconductor_cycle", "nasdaq", "copper"],
+    "tiers": [
+      {
+        "tier": 1,
+        "name": "웨이퍼·소재",
+        "nameEn": "Wafer & Materials",
+        "nodes": ["sk_siltron", "soulbrain", "dongjin_semi"]
+      },
+      {
+        "tier": 2,
+        "name": "DRAM 다이 제조",
+        "nameEn": "DRAM Die Fabrication",
+        "nodes": ["sk_hynix", "samsung_elec"]
+      },
+      {
+        "tier": 3,
+        "name": "TSV 적층·가공",
+        "nameEn": "TSV Stacking & Processing",
+        "nodes": ["sk_hynix", "samsung_elec", "wonik_ips"]
+      },
+      {
+        "tier": 4,
+        "name": "HBM 패키징",
+        "nameEn": "HBM Packaging",
+        "nodes": ["hanmi_semi", "semes", "db_hitek"]
+      },
+      {
+        "tier": 5,
+        "name": "GPU 모듈 조립",
+        "nameEn": "GPU Module Assembly",
+        "nodes": ["nvidia", "samsung_elec", "sk_hynix"]
+      }
+    ]
+  },
+  {
+    "id": "k_content",
+    "name": "K-콘텐츠",
+    "nameEn": "K-Content",
+    "type": "theme",
+    "description": "한류 콘텐츠의 글로벌 밸류체인. 기획·IP 개발에서 음악·드라마·영화 제작, OTT·플랫폼 유통, 글로벌 배급, MD·콘서트·팬덤 IP 사업까지의 가치사슬. K-POP 아티스트의 글로벌 팬덤 확대와 K-드라마의 OTT 수출 호조가 산업 성장을 견인하고 있다.",
+    "tags": ["K-콘텐츠", "K-POP", "K-드라마", "한류", "엔터"],
+    "connectedMacroNodes": ["usd_krw", "kr_export", "us_consumer_confidence"],
+    "tiers": [
+      {
+        "tier": 1,
+        "name": "기획·IP 개발",
+        "nameEn": "Planning & IP Development",
+        "nodes": ["hybe", "jyp_ent", "sm_ent", "cj_cheiljedang"]
+      },
+      {
+        "tier": 2,
+        "name": "제작·프로덕션",
+        "nameEn": "Production",
+        "nodes": ["hybe", "jyp_ent", "sm_ent", "krafton"]
+      },
+      {
+        "tier": 3,
+        "name": "유통(OTT·플랫폼)",
+        "nameEn": "Distribution (OTT & Platform)",
+        "nodes": ["naver", "kakao", "coupang"]
+      },
+      {
+        "tier": 4,
+        "name": "글로벌 배급",
+        "nameEn": "Global Distribution",
+        "nodes": ["hybe", "jyp_ent", "sm_ent"]
+      },
+      {
+        "tier": 5,
+        "name": "IP 사업(MD·콘서트)",
+        "nameEn": "IP Monetization (MD, Concert, Licensing)",
+        "nodes": ["hybe", "jyp_ent", "sm_ent", "cj_logistics"]
+      }
+    ]
+  },
+  {
+    "id": "fintech_cbdc",
+    "name": "핀테크/CBDC",
+    "nameEn": "Fintech & CBDC",
+    "type": "theme",
+    "description": "금융의 디지털 전환 밸류체인. 블록체인·DLT 인프라에서 디지털 결제, 해외 송금, AI 자산관리(로보어드바이저), 중앙은행 디지털화폐(CBDC)까지의 가치사슬. 기존 금융기관과 핀테크 스타트업 간 경쟁·협력이 산업 지형을 재편하고 있다.",
+    "tags": ["핀테크", "CBDC", "블록체인", "결제", "디지털금융"],
+    "connectedMacroNodes": ["btc_usd", "us_fed_rate", "kr_credit_growth"],
+    "tiers": [
+      {
+        "tier": 1,
+        "name": "인프라(블록체인·DLT)",
+        "nameEn": "Infrastructure (Blockchain & DLT)",
+        "nodes": ["naver", "kakao", "samsung_elec"]
+      },
+      {
+        "tier": 2,
+        "name": "디지털 결제",
+        "nameEn": "Digital Payments",
+        "nodes": ["kakao", "naver", "coupang"]
+      },
+      {
+        "tier": 3,
+        "name": "송금·환전",
+        "nameEn": "Remittance & FX",
+        "nodes": ["kakao", "shinhan_financial", "kb_financial"]
+      },
+      {
+        "tier": 4,
+        "name": "자산관리·로보어드바이저",
+        "nameEn": "Wealth Management & Robo-advisor",
+        "nodes": ["mirae_asset", "samsung_securities", "kb_financial"]
+      },
+      {
+        "tier": 5,
+        "name": "CBDC·디지털통화",
+        "nameEn": "CBDC & Digital Currency",
+        "nodes": ["kb_financial", "shinhan_financial", "hana_financial", "kakao"]
+      }
+    ]
+  },
+  {
+    "id": "water_infrastructure",
+    "name": "수자원/인프라",
+    "nameEn": "Water Infrastructure",
+    "type": "theme",
+    "description": "물 순환 전체를 포괄하는 수자원 인프라 밸류체인. 취수·원수 확보에서 정수·수처리, 배관·관망 시스템, 하수·폐수 처리, 재이용·담수화까지의 가치사슬. 기후변화에 따른 물 부족, 노후 상하수도 교체 수요, 산업용수 수요 증가가 장기적 성장 동력이다.",
+    "tags": ["수자원", "수처리", "인프라", "환경", "상하수도"],
+    "connectedMacroNodes": ["us_housing_starts", "us_fiscal_deficit"],
+    "tiers": [
+      {
+        "tier": 1,
+        "name": "취수·원수",
+        "nameEn": "Water Intake & Source",
+        "nodes": ["korea_district_heating", "kepco", "k_water_proxy"]
+      },
+      {
+        "tier": 2,
+        "name": "정수·수처리",
+        "nameEn": "Water Purification & Treatment",
+        "nodes": ["doosan_enerbility", "samsung_engineering", "coway_proxy"]
+      },
+      {
+        "tier": 3,
+        "name": "배관·관망",
+        "nameEn": "Piping & Distribution Network",
+        "nodes": ["hyundai_steel", "posco_hldg", "samsung_engineering"]
+      },
+      {
+        "tier": 4,
+        "name": "하수·폐수처리",
+        "nameEn": "Wastewater Treatment",
+        "nodes": ["samsung_engineering", "hyundai_engineering", "daewoo_enc"]
+      },
+      {
+        "tier": 5,
+        "name": "재이용·담수화",
+        "nameEn": "Reuse & Desalination",
+        "nodes": ["doosan_enerbility", "samsung_engineering", "skc"]
+      }
+    ]
   }
 ]
